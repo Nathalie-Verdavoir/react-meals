@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Header = ({categories}) => {
     categories=categories.slice(0,3);
 return (
@@ -13,6 +15,11 @@ return (
                 )
             })
             } 
+            <li key='home'>
+            <Link to='/'>
+                            Home
+                        </Link>
+                    </li>
             </>
             : 
             (

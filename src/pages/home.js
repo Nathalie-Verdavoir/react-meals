@@ -1,10 +1,10 @@
 import { useState , useEffect } from "react";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 
-const Home = () => {
+const Home = ({categories}) => {
     const [meal, setMeal] = useState(null);
-    const [categories, setCategories] = useState([]);
+   
     useEffect(() => {
        ( async function (){
         const url = "https://www.themealdb.com/api/json/v1/1/random.php";
@@ -18,17 +18,7 @@ const Home = () => {
         setMeal(mealsFromAPI.meals[0]);
     })();
 
-    ( async function (){
-        const url = "https://www.themealdb.com/api/json/v1/1/categories.php";
-        const response = await fetch(url, {
-            headers: {
-                Accept: "application/json",
-            },
-            
-        });
-        const categoriesFromAPI = await response.json();
-        setCategories(categoriesFromAPI.categories);
-    })();
+    
     }, []);//tableau vide pour initialiser au premier chargement
     
     const handleClick = async (event) => {
@@ -46,7 +36,7 @@ const Home = () => {
         <><Header categories={categories}/>
         <main>
         {meal ? (
-            <article>
+            <article><button onClick={handleClick}>Afficher une autre recette</button>
             <h1>{meal.strMeal}</h1>
             <img className="photo" src={meal.strMealThumb}  alt={meal.strMeal}/>
             <p className="meal-photo-text">{meal.strInstructions}</p>
@@ -55,7 +45,7 @@ const Home = () => {
         ) : (
             <p>pas de recette</p>
         )}
-        <button onClick={handleClick}>Afficher une recette</button>
+        
         </main>
             <Sidebar categories={categories} />
         </>
