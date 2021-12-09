@@ -26,15 +26,13 @@ const Category = ({categories}) => {
 
 return (
     <>
-
-   
     <Header categories={categories}/>
     <section>
   {mealsByCategories ? (
       <>
       {mealsByCategories.map((meal) => {
           return(
-           <article id={meal.idMeal}>
+           <article key={meal.idMeal}>
             
             
             <div className="vignette">
@@ -48,8 +46,8 @@ return (
           }
         )
       }
-           
-        </>) : (<p>pas de recette</p>)
+        </>   
+        ) : (<p>pas de recette</p>)
         }
 </section>
     </>
