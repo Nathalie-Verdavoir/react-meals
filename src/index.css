@@ -11,3 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+main {
+  float: left;
+  width: 78%;
+}
+
+aside{
+  background-color: blanchedalmond;
+  float: right;
+  width: 20%;
+  text-align: center;
+}
+
+li {
+  display: inline;
+}
+
+.meal-photo-text {
+  display : flex;
+}
+
+.photo {
+  width: 30vw;
+  float: left;
+  padding-right: 10px;
+}
+
+.vignette,
+.vignette-photo {
+  width: 10vw;
+}

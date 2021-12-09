@@ -1,7 +1,8 @@
 import { useState , useEffect } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-const Meals = () => {
+
+const Home = () => {
     const [meal, setMeal] = useState(null);
     const [categories, setCategories] = useState([]);
     useEffect(() => {
@@ -60,4 +61,4 @@ const Meals = () => {
         </>
     )
 };
-export default Meals;
+export default Home;
