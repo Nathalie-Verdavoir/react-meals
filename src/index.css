@@ -16,17 +16,32 @@ main {
   width: 78%;
 }
 
-aside{
-  background-color: blanchedalmond;
+aside {
+  padding: 1rem;
+  color: #da8350;
   float: right;
   width: 20%;
   text-align: center;
 }
 
+aside.categories {
+  background-color: blanchedalmond;
+}
+
+aside.ingredients {
+  background-color: rgb(247, 203, 138);
+}
 li {
   display: inline;
 }
-
+a {
+  color: #da8350;
+  text-decoration: none;
+}
+a:focus {
+  color: #da8350;
+  text-decoration: underline;
+}
 .meal-photo-text {
   display : flex;
 }

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 const Sidebar = ({categories}) => {
 return (
     <>
-    <aside>
-        <h1>Toutes les catégories : </h1>
+    <aside className="categories">
+        <h3>All categories</h3>
         {categories ?
             <> 
             {categories.map(category => {
@@ -25,6 +25,13 @@ return (
                 <p>pas de categories</p>
             )
        }
+       <article key="allCategories">
+                       
+                       <Link to={`/category/all`}>
+                          ...
+                       </Link>
+                       
+        </article>
     </aside>
     </>
 ) 
