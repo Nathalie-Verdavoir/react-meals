@@ -4,6 +4,7 @@ import './App.css';
 import Category from './pages/Category';
 import Ingredient from './pages/Ingredient';
 import Home from './pages/home';
+import Meal from './pages/Meal';
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -44,7 +45,7 @@ function App() {
         <Route path="/"  element={<Home categories={categories} ingredients={ingredients}/>} />
         <Route path="/category/:strCategory"  element={<Category categories={categories} ingredients={ingredients}/>} />
         <Route path="/ingredient/:strIngredient"  element={<Ingredient categories={categories} ingredients={ingredients}/>} />
-        <Route path="/category/:strCategory"  element={<Category categories={categories} ingredients={ingredients}/>} />
+        <Route path="/meal/:strMeal"  element={<Meal categories={categories} ingredients={ingredients}/>} />
       </Routes>
     </BrowserRouter>
    

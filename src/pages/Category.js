@@ -31,7 +31,7 @@ return (
     <>
     <Header categories={categories} ingredients={ingredients}/>
     <main className="container w-75 p-3">
-        <h1>Receipes with {strCategory}</h1>
+        <h1>Recipes with {strCategory}</h1>
             <section className="row align-items-center g-0"> 
                 {mealsByCategories ? (
                     <>
@@ -43,7 +43,7 @@ return (
                                         <img className="vignette-photo img-fluid rounded-start" src={meal.strMealThumb}  alt={meal.strMeal}/>
                                         <div className="vignette card-body p-2"> 
                             <h5 className="card-text small-card">{meal.strMeal.length>35?(meal.strMeal.slice(0,35) + '...') : meal.strMeal}</h5>
-                                            <Link to={`/meals/${meal.idMeal}`} className="btn border position-absolute bottom-0 end-0 m-2 border-dark">Receipe</Link>
+                                            <Link to={`/meal/${meal.idMeal}`} className="btn border position-absolute bottom-0 end-0 m-2 border-dark">Recipe</Link>
                                             {meal.strInstructions}
                                         </div>
                                     </div>
