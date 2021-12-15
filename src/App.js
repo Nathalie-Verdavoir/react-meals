@@ -24,20 +24,20 @@ function App() {
       setIngredients(ingredientsFromAPI.meals);
     })();
 
- ( async function (){
-     const url = "https://www.themealdb.com/api/json/v1/1/categories.php";
-     const response = await fetch(url, {
-         headers: {
-             Accept: "application/json",
-         },
-         
-     });
-     const categoriesFromAPI = await response.json();
-     setCategories(categoriesFromAPI.categories);
- })();
-
+    ( async function (){
+      const url = "https://www.themealdb.com/api/json/v1/1/categories.php";
+      const response = await fetch(url, {
+          headers: {
+              Accept: "application/json",
+          },
+          
+      });
+      const categoriesFromAPI = await response.json();
+      setCategories(categoriesFromAPI.categories);
+  })(); 
  
- }, []);//tableau vide pour initialiser au premier chargement
+
+}, []);//tableau vide pour initialiser au premier chargement
 
   return (
     <BrowserRouter>
