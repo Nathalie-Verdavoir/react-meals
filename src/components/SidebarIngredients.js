@@ -1,40 +1,65 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import allActions from "../actions/allActions";
+import Loader from "./Loader";
 
-const SidebarIngredients = ({ingredients}) => {
-return (
-    <>
-    <aside className="ingredients">
-        <h3>All ingredients</h3>
-        {ingredients ?
-            <> 
-            {ingredients.map(ingredient => {
-                return(
-                    <article key={ingredient.idIngredient}>
-                       
-                        <Link to={`/ingredient/${ingredient.strIngredient}`}>
-                            {ingredient.strIngredient}
-                        </Link>
-                        
-                    </article>
-                )
-            })
-            } 
-            </> 
-            :   
-            (
-                <p>pas de ingredients</p>
-            )
-       }
-       <article key="allIngredients">
-                       
-                       <Link to={`/ingredients/all`}>
-                          ...
-                       </Link>
-                       
-        </article>
-    </aside>
-    </>
-) 
+const SidebarIngredients = () => {
+        
+    const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
+    const isIngredientsLoading = useSelector(state => state.ingredientsReducer.isLoading);
+    const dispatch = useDispatch();
+
+    useEffect(() => { 
+        if(ingredients===null) {
+            dispatch(allActions.loadingIngredientsAction());
+            ( async function (){
+                try {
+                    const url = "https://www.themealdb.com/api/json/v1/1/list.php?i=list";
+                    const response = await fetch(url, {
+                        headers: {
+                             Accept: "application/json",
+                        },
+                    });
+                    const ingredientsFromAPI = await response.json();
+                    dispatch(allActions.ingredientsAction(ingredientsFromAPI.meals));
+                } catch(error) {
+                        console.log(error);
+                }
+            })();
+        }
+    }, [ingredients,dispatch]);
+
+    return (
+        <>
+            <aside className="ingredients">
+                <h3>All ingredients</h3>
+                {isIngredientsLoading ? <Loader/> :
+                    ( ingredients ?
+                        (<> 
+                            {ingredients.slice(0,8).map(ingredient => {
+                                    return(
+                                        <article key={ingredient.idIngredient}>
+                                            <Link to={`/ingredient/${ingredient.strIngredient}`}>
+                                                {ingredient.strIngredient}
+                                            </Link>
+                                        </article>
+                                    )
+                                })
+                            } 
+                            <article key="allIngredients">
+                                <Link to={`/ingredients/all`}>
+                                    ...
+                                </Link>
+                            </article>
+                        </> )
+                        :   
+                        (<p>pas de ingredients</p>)
+                    )
+                }
+            </aside>
+        </>
+    ) 
 }
 
 export default SidebarIngredients;

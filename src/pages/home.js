@@ -1,8 +1,9 @@
 import { useState , useEffect } from "react";
 import Header from "../components/Header";
+import RecipeButton from "../components/RecipeButton";
 import Sidebar from "../components/Sidebar";
 
-const Home = ({categories, ingredients}) => {
+const Home = () => {
     const [meal, setMeal] = useState(null);
    
     useEffect(() => {
@@ -33,7 +34,7 @@ const Home = ({categories, ingredients}) => {
     };
     return (
         <>
-            <Header categories={categories} ingredients={ingredients}/>
+            <Header/>
             <main>
                 {meal ? (
                     <article>
@@ -44,13 +45,13 @@ const Home = ({categories, ingredients}) => {
                             </svg>
                             Random recipe
                         </button>
-
                         <div key={meal.idMeal} className="card m-2">
                             <div className="row g-0">
                                 <img className="photo img-fluid rounded-start" src={meal.strMealThumb}  alt={meal.strMeal}/>
                                 <div className="vignette card-body"> 
                                     <h3 className="card-title">{meal.strMeal}</h3> 
                                     <p className="card-text fs-5">{meal.strInstructions}</p> 
+                                    <RecipeButton urlTo={`/meal/${meal.idMeal}`}/>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +60,7 @@ const Home = ({categories, ingredients}) => {
                     <p>No Recipe</p>
                 )}
             </main>
-            <Sidebar categories={categories.slice(0,8)}  ingredients={ingredients.slice(0,8)} />
+            <Sidebar/>
         </>
     )
 };

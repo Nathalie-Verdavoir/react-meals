@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 
 
-const Ingredient = ({ingredients,categories}) => {
+const Ingredient = () => {
    
     const { strIngredient } = useParams();
     const [mealsByIngredients, setMealsByIngredients] = useState([]);
@@ -29,7 +29,7 @@ const Ingredient = ({ingredients,categories}) => {
 
 return (
     <>
-    <Header categories={categories} ingredients={ingredients}/>
+    <Header/>
     <main className="container w-75 p-3"><h1>Recipes with {strIngredient}</h1>
     <section className="row align-items-center g-0"> 
   {mealsByIngredients ? (
@@ -56,7 +56,7 @@ return (
         ) : (<p>pas de recette</p>)
         }
 </section></main>  
-<Sidebar categories={categories.slice(0,8)}  ingredients={ingredients.slice(0,8)} />
+<Sidebar/>
     </>
 ) 
 }
