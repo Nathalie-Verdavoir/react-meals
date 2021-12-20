@@ -9,7 +9,8 @@ const SidebarIngredients = () => {
     const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
     const isIngredientsLoading = useSelector(state => state.ingredientsReducer.isLoading);
     const dispatch = useDispatch();
-
+    const propComparator = (propName) => (a, b) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
+    
     useEffect(() => { 
         if(ingredients===null) {
             dispatch(allActions.loadingIngredientsAction());
@@ -22,7 +23,7 @@ const SidebarIngredients = () => {
                         },
                     });
                     const ingredientsFromAPI = await response.json();
-                    dispatch(allActions.ingredientsAction(ingredientsFromAPI.meals));
+                    dispatch(allActions.ingredientsAction(ingredientsFromAPI.meals.sort(propComparator('strIngredient'))));
                 } catch(error) {
                         console.log(error);
                 }
@@ -48,7 +49,7 @@ const SidebarIngredients = () => {
                                 })
                             } 
                             <article key="allIngredients">
-                                <Link to={`/ingredients/all`}>
+                                <Link to={`/ingredient/all`}>
                                     ...
                                 </Link>
                             </article>

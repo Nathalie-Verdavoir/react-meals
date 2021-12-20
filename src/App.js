@@ -5,6 +5,7 @@ import Category from './pages/Category';
 import Ingredient from './pages/Ingredient';
 import Home from './pages/home';
 import Meal from './pages/Meal';
+import IndexOfMeals from './pages/IndexOfMeals';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/category/:strCategory"  element={<Category/>} />
         <Route path="/ingredient/:strIngredient"  element={<Ingredient/>} />
         <Route path="/meal/:strMeal"  element={<Meal/>} />
+        <Route path="/meals/:letter"  element={<IndexOfMeals/>} />
       </Routes>
     </BrowserRouter>
    

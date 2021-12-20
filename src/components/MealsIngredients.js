@@ -7,12 +7,12 @@ export default function MealsIngredients({ing}) {
     const currentMeal = useSelector(state => state.currentMealReducer.currentMeal);
     const isCurrentMealLoading = useSelector(state => state.currentMealReducer.isLoading);
     const ingredientsViews =[];
-    for(let i=1;i<13;i++){
-        if(currentMeal["strIngredient"+i] && currentMeal["strIngredient"+i]!=='' && currentMeal["strIngredient"+i]!==null){
+    for(let iM=1;iM<13;iM++){
+        if(currentMeal["strIngredient"+iM] && currentMeal["strIngredient"+iM]!=='' && currentMeal["strIngredient"+iM]!==null){
             ingredientsViews.push(
-                    <IngredientCard key={i} ing={currentMeal["strIngredient"+i]} qty={currentMeal["strMeasure"+i]}/>
+                    <IngredientCard key={`m${iM}`} ing={currentMeal["strIngredient"+iM]} qty={currentMeal["strMeasure"+iM]}/>
             );
-        }else if (i===1){
+        }else if (iM===1){
             ingredientsViews.push(
                <p>pas d'ingrédients</p>
         );

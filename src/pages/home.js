@@ -51,7 +51,7 @@ const Home = () => {
                                 <div className="vignette card-body"> 
                                     <h3 className="card-title">{meal.strMeal}</h3> 
                                     <p className="card-text fs-5">{meal.strInstructions.slice(0,850)+'...'}</p> 
-                                    <RecipeButton urlTo={`/meal/${meal.idMeal}`}/>
+                                    <RecipeButton urlTo={`/meal/${meal.idMeal}`} titleButton={'Recipe'}/>
                                 </div>
                             </div>
                         </div>

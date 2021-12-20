@@ -36,13 +36,20 @@ const Category = () => {
         }
     },[strCategory,categories]);
     
+    const allCat = strCategory==='all';
+    const title = allCat ? `All categories` : `Recipes with ${strCategory}`;
+    const titleButton = allCat ? `All recipes` : `Recipe`;
+    const propsButtons = meal => {
+        const urlTo = allCat ? (`/category/${meal.strMeal}`) : (`/meal/${meal.idMeal}`);
+        return (<RecipeButton urlTo={urlTo} titleButton={titleButton}/>)
+    }    
   
 
 return (
     <>
     <Header/>
     <main className="container w-75 p-3">
-        <h1>{strCategory==='all' ? (`All categories`) : (`Recipes with ${strCategory}`)}</h1>
+        <h1>{title}</h1>
             <section className="row align-items-center g-0"> 
                 {mealsByCategories ? (
                     <>
@@ -54,7 +61,7 @@ return (
                                         <img className="vignette-photo img-fluid rounded-start" src={meal.strMealThumb}  alt={meal.strMeal}/>
                                         <div className="vignette card-body p-2"> 
                                             <h5 className="card-text small-card">{meal.strMeal.length>35?(meal.strMeal.slice(0,35) + '...') : meal.strMeal}</h5>
-                                            <RecipeButton urlTo={strCategory==='all' ? (`/category/${meal.strMeal}`) : (`/meal/${meal.idMeal}`)}/>
+                                            {propsButtons(meal)}
                                         </div>
                                     </div>
                                 </div>

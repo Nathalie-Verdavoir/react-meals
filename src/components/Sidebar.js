@@ -1,6 +1,7 @@
 
 import SidebarIngredients from "../components/SidebarIngredients";
 import SidebarCategories from "./SidebarCategories.js";
+import SidebarMeals from "./SidebarMeals";
 
 const Sidebar = () => {
     return (
@@ -9,6 +10,7 @@ const Sidebar = () => {
                 <>
                     <SidebarCategories/>
                     <SidebarIngredients/>
+                    <SidebarMeals/>
                 </>
             </div>
         </>

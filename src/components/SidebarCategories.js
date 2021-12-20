@@ -9,6 +9,7 @@ const SidebarCategories = () => {
     const isCategoriesLoading = useSelector(state => state.categoriesReducer.isLoading);
     const dispatch = useDispatch();
 
+    const propComparator = (propName) => (a, b) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
     useEffect(() => { 
         if(categories===null) {
             dispatch(allActions.loadingCategoriesAction());
@@ -21,7 +22,7 @@ const SidebarCategories = () => {
                         },
                     });
                     const categoriesFromAPI = await response.json();
-                    dispatch(allActions.categoriesAction(categoriesFromAPI.categories));
+                    dispatch(allActions.categoriesAction(categoriesFromAPI.categories.sort(propComparator('strCategory'))));
                 } catch(error) {
                     console.log(error);
                 }

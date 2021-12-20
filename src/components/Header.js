@@ -28,16 +28,27 @@ return (
                                 Categories
                             </button>
                             <ul className="dropdown-menu">
+                                        <li key="catAllHeader" className="nav-item">
+                                            <Link to="/category/all" className="nav-link fs-5 lh-1 text p-0 m-0" >
+                                                ALL
+                                            </Link>
+                                        </li>
                                 {categories.map(category => {
                                     return(
-                                        <li key={'cat'+category.idCategory} className="nav-item">
+                                        <li key={'catHeader'+category.idCategory} className="nav-item">
                                             <Link to={`/category/${category.strCategory}`} className="nav-link fs-5 lh-1 text p-0 m-0" >
                                                 {category.strCategory}
                                             </Link>
                                         </li>
                                     )
                                 })
-                                } 
+                                    
+                                }   
+                                <li key="catAllHeaderDown" className="nav-item">
+                                        <Link to="/category/all" className="nav-link fs-5 lh-1 text p-0 m-0" >
+                                            ...
+                                        </Link>
+                                </li>
                             </ul>
                         </>
                     : 
@@ -57,9 +68,14 @@ return (
                                 Ingredients
                             </button>
                             <ul className="dropdown-menu">
+                                        <li key="ingAllHeader" className="nav-item">
+                                            <Link to="/ingredient/all" className="nav-link fs-5 lh-1 text p-0 m-0" >
+                                                ALL
+                                            </Link>
+                                        </li>
                                 {ingredients.slice(0,30).map(ingredient => {
                                     return(
-                                        <li key={'ing'+ingredient.idIngredient} className="nav-item">
+                                        <li key={'ingHeader'+ingredient.idIngredient} className="nav-item">
                                             <Link to={`/ingredient/${ingredient.strIngredient}`} className="nav-link fs-5 lh-1 text p-0 m-0" >
                                                 {ingredient.strIngredient}
                                             </Link>
@@ -67,6 +83,11 @@ return (
                                     )
                                 })
                                 } 
+                                <li key="ingAllHeaderDown" className="nav-item">
+                                        <Link to="/ingredient/all" className="nav-link fs-5 lh-1 text p-0 m-0" >
+                                            ...
+                                        </Link>
+                                </li>
                             </ul>
                         </>
                     : 

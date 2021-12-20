@@ -3,7 +3,10 @@ body {
   margin: 0;
   font-family: 'Fuzzy Bubbles', cursive;
 }
-
+ul.dropdown-menu>li:first-child>a {
+  color: white;
+  background-color: #da8350;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -27,12 +30,17 @@ aside {
 }
 
 aside.categories {
-  background-color: blanchedalmond;
+  background-color: rgb(253, 240, 221);
 }
 
 aside.ingredients {
-  background-color: rgb(247, 203, 138);
+  background-color: rgb(250, 217, 167);
 }
+
+aside.meals {
+  background-color: rgb(251, 199, 121);
+}
+
 li {
   display: inline;
 }
@@ -92,6 +100,7 @@ a:focus {
 .vignette,
 .vignette-photo {
   width: 10vw;
+  background-color: #daeb5c;
 }
 
 .ing-list,
