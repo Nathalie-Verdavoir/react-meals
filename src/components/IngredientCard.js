@@ -3,7 +3,7 @@ import Loader from "./Loader";
 import defaultimg from "../img/defaultimg.png";
 
 
-export default function IngredientCard({ing,qty}) {console.log('1'+ing);
+export default function IngredientCard({ing,qty}) {
     const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
     const isIngredientsLoading = useSelector(state => state.ingredientsReducer.isLoading);
     
@@ -12,7 +12,6 @@ export default function IngredientCard({ing,qty}) {console.log('1'+ing);
     }else{
         for(let i=0;i<ingredients.length;i++){
             if(ing.toLowerCase().replace('-',' ')===ingredients[i].strIngredient.toLowerCase().replace('-',' ')){
-                console.log(ing);
                 return (
                     <div key={'ingC'+i} className="row col-3 g-0 p-2">
                     <div  className="card vignette-ing "> 
