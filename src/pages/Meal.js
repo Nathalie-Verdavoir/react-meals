@@ -43,7 +43,6 @@ const Home = () => {
                 (currentMeal ? 
                     (<>
                         <article>
-                        
                             <div key={currentMeal.idMeal} className="card meal m-2">
                                 <div className="row g-0">
                                     <img className="photo img-fluid rounded-start" src={currentMeal.strMealThumb}  alt={currentMeal.strMeal}/>
@@ -59,8 +58,7 @@ const Home = () => {
                             <MealsIngredients/>
                             <Video youtubeLink={currentMeal.strYoutube.toString()}/>
                         </div>
-                        
-                        </>
+                    </>
                     ) : (
                     <p>No Recipe</p>
                     )

@@ -120,35 +120,35 @@ a:focus {
   background: hsl(23, 59%, 87%);
 }
 
-.flag{float:right;height:32px;width:32px;vertical-align:text-top;line-height:32px; background-image: url("./img/flags32.png");}
+.flag{float:right;height:64px;width:64px;vertical-align:text-top;line-height:64px; background-image: url("./img/flags32.png");}
 
-.American{background-position:0 -7328px;}
-.British{background-position:0 -2912px;}
-.Canadian{background-position:0 -1792px;}
-.Chinese{background-position:0 -2080px;}
-.Croatian{background-position:0 -3488px;}
-.Dutch{background-position:0 -5504px;}
-.Egyptian{background-position:0 -2560px;}
-.French{background-position:0 -2848px;}
-.Greek{background-position:0 -3264px;}
-.Indian{background-position:0 -3712px;}
-.Irish{background-position:0 -3616px;}
-.Italian{background-position:0 -3840px;}
-.Jamaican{background-position:0 -3904px;}
-.Japanese{background-position:0 -3968px;}
-.Kenyan{background-position:0 -4000px;}
-.Malaysian{background-position:0 -5280px;}
-.Mexican{background-position:0 -5248px;}
-.Moroccan{background-position:0 -4704px;}
-.Polish{background-position:0 -5888px;}
-.Portuguese{background-position:0 -5984px;}
-.Russian{background-position:0 -6208px;}
-.Spanish{background-position:0 -2656px;}
-.Thai{background-position:0 -6912px;}
-.Tunisian{background-position:0 -7040px;}
-.Turkish{background-position:0 -7104px;}
+.American{background-position:0 calc(-7328*2px);}
+.British{background-position:0 calc(-2912*2px);}
+.Canadian{background-position:0 calc(-1792*2px);}
+.Chinese{background-position:0 calc(-2080*2px);}
+.Croatian{background-position:0 calc(-3488*2px);}
+.Dutch{background-position:0 calc(-5504*2px);}
+.Egyptian{background-position:0 calc(-2560*2px);}
+.French{background-position:0 calc(-2848*2px);}
+.Greek{background-position:0 calc(-3264*2px);}
+.Indian{background-position:0 calc(-3712*2px);}
+.Irish{background-position:0 calc(-3616*2px);}
+.Italian{background-position:0 calc(-3840*2px);}
+.Jamaican{background-position:0 calc(-3904*2px);}
+.Japanese{background-position:0 calc(-3968*2px);}
+.Kenyan{background-position:0 calc(-4000*2px);}
+.Malaysian{background-position:0 calc(-5280*2px);}
+.Mexican{background-position:0 calc(-5248*2px);}
+.Moroccan{background-position:0 calc(-4704*2px);}
+.Polish{background-position:0 calc(-5888*2px);}
+.Portuguese{background-position:0 calc(-5984*2px);}
+.Russian{background-position:0 calc(-6208*2px);}
+.Spanish{background-position:0 calc(-2656*2px);}
+.Thai{background-position:0 calc(-6912*2px);}
+.Tunisian{background-position:0 calc(-7040*2px);}
+.Turkish{background-position:0 calc(-7104*2px);}
 .Unknown{display:inline-block;height:32px;width:32px;vertical-align:text-top;line-height:32px; background-image: url("./img/flags32.png");}
-.Vietnamese{background-position:0 -7584px;}
+.Vietnamese{background-position:0 calc(-7584*2px);}
 
 @import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap');
