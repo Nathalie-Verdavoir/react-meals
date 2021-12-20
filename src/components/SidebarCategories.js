@@ -46,8 +46,8 @@ const SidebarCategories = () => {
                                      )
                                 })
                             }
-                            <article key="allIngredients">
-                                <Link to={`/ingredients/all`}>
+                            <article key="allCategoriess">
+                                <Link to={`/category/all`}>
                                     ...
                                 </Link>
                             </article> 

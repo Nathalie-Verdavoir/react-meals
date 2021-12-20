@@ -4,34 +4,45 @@ import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import RecipeButton from "../components/RecipeButton";
+import { useSelector } from "react-redux";
 
 const Category = () => {
-   
     const { strCategory } = useParams();
     const [mealsByCategories, setMealsByCategories] = useState([]);
-   useEffect (() => {
-    
-   (async () => {
-        const url = "https://www.themealdb.com/api/json/v1/1/filter.php?c="+strCategory;
-       
-        const response = await fetch(url, {
-            headers: {
-                Accept : 'application/json'
-            }
+    const categories = useSelector(state => state.categoriesReducer.categories);
+    useEffect (() => {
+        if(strCategory==='all' && categories){
+            const mealsByCat = categories.map(cat => {
+                return {
+                idMeal : cat.idCategory,
+                strMealThumb : cat.strCategoryThumb,
+                strMeal : cat.strCategory,
+                }
+            })
+            setMealsByCategories(mealsByCat);
         }
-            )
-
-            const categoriesFromAPI = await response.json();
-            setMealsByCategories(categoriesFromAPI.meals);
-    })();
+        else {
+            (async () => {
+                const url = "https://www.themealdb.com/api/json/v1/1/filter.php?c="+strCategory;
+                const response = await fetch(url, {
+                     headers: {
+                         Accept : 'application/json'
+                     }
+                 }
+                )
+                const categoriesFromAPI = await response.json();
+                setMealsByCategories(categoriesFromAPI.meals);
+             })();
+        }
+    },[strCategory,categories]);
     
-},[strCategory]);
+  
 
 return (
     <>
     <Header/>
     <main className="container w-75 p-3">
-        <h1>Recipes with {strCategory}</h1>
+        <h1>{strCategory==='all' ? (`All categories`) : (`Recipes with ${strCategory}`)}</h1>
             <section className="row align-items-center g-0"> 
                 {mealsByCategories ? (
                     <>
@@ -43,7 +54,7 @@ return (
                                         <img className="vignette-photo img-fluid rounded-start" src={meal.strMealThumb}  alt={meal.strMeal}/>
                                         <div className="vignette card-body p-2"> 
                                             <h5 className="card-text small-card">{meal.strMeal.length>35?(meal.strMeal.slice(0,35) + '...') : meal.strMeal}</h5>
-                                            <RecipeButton urlTo={`/meal/${meal.idMeal}`}/>
+                                            <RecipeButton urlTo={strCategory==='all' ? (`/category/${meal.strMeal}`) : (`/meal/${meal.idMeal}`)}/>
                                         </div>
                                     </div>
                                 </div>
