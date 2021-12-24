@@ -6,7 +6,7 @@ import SidebarMeals from "./SidebarMeals";
 const Sidebar = () => {
     return (
         <>
-            <div className="sidebar">
+            <div className="sidebar col-2">
                 <>
                     <SidebarCategories/>
                     <SidebarIngredients/>

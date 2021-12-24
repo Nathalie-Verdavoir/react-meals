@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import RecipeButton from "../components/RecipeButton";
 import Sidebar from "../components/Sidebar";
 
-const Home = () => {
+const HomeMeals = () => {
     const [meal, setMeal] = useState(null);
    
     useEffect(() => {
@@ -22,7 +22,7 @@ const Home = () => {
     
     }, []);//tableau vide pour initialiser au premier chargement
     
-    const handleClick = async (event) => {
+    const handleClick = async () => {
         const url = "https://www.themealdb.com/api/json/v1/1/random.php";
         const response = await fetch(url, {
             headers: {
@@ -68,4 +68,4 @@ const Home = () => {
         </>
     )
 };
-export default Home;
+export default HomeMeals;

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap');
+
 
 body {
   margin: 0;
@@ -20,7 +23,6 @@ main {
 div.sidebar{
   color: #da8350;
   float: right;
-  width: 20%;
 }
 
 aside {
@@ -58,11 +60,7 @@ a:focus {
   display : flex;
 }
 
-.photo {
-  width: 30vw;
-  float: left;
-  padding-right: 10px;
-}
+
 .App-logo-faster,
 .nav-link,
 .dropdown-toggle.show,
@@ -80,26 +78,31 @@ a:focus {
   width: 33vw;
 }
 
+.card {
+  flex-flow: nowrap
+}
+
 .card-body {
   background-image: url("./img/cahier.png");
   
 }
+
 .card-text {
   line-height: 2.3rem;
   margin-top: 2rem;
 }
 
-.card-text.small-card {
-  margin-top: 0.2rem;
+.card-title.small-card {
+  margin-top: 0.5rem;
 }
 .App-logo {
   margin: 10px;
   pointer-events: none;
 }
 
-.vignette,
+
 .vignette-photo {
-  width: 10vw;
+  width: 50%;
   background-color: #daeb5c;
 }
 
@@ -159,14 +162,41 @@ a:focus {
 .Unknown{display:inline-block;height:32px;width:32px;vertical-align:text-top;line-height:32px; background-image: url("./img/flags32.png");}
 .Vietnamese{background-position:0 calc(-7584*2px);}
 
-@import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap');
 
 
+footer {
+  width: 100vw;
+  display: block;
+  position: relative;
+  bottom: 0;
+  background-color: rgb(218, 131, 80);
+}
 
+footer, 
+footer a {
+  color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+
+.socials {
+    width: 10%;
+}
+
+@media screen and  (max-width: 767px) { 
+  .sidebar{
+    display: none;
+  }
+
+  .vignette,
+  .vignette-photo {
+    width: 100vw;
+  }
+} 
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
+    width: 1.5rem;
     animation: App-logo-spin infinite 15s linear;
   }
   .App-logo-faster {

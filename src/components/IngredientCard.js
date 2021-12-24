@@ -13,8 +13,8 @@ export default function IngredientCard({ing,qty}) {
         for(let i=0;i<ingredients.length;i++){
             if(ing.toLowerCase().replace('-',' ')===ingredients[i].strIngredient.toLowerCase().replace('-',' ')){
                 return (
-                    <div key={'ingC'+i} className="row col-3 g-0 p-2">
-                    <div  className="card vignette-ing "> 
+                    <div key={'ingC'+i} className=" col-12  col-md-6 col-lg-3 g-0 p-2 flex-grow-1">
+                    <div  className="card flex-grow-1 vignette-ing "> 
                      <div className="row g-0">
                         <div className="col-md-4">
                             <img 
@@ -24,7 +24,7 @@ export default function IngredientCard({ing,qty}) {
                                                 } 
                                             }
                                         }
-                                className="vignette-photo-ing img-fluid rounded-start" 
+                                className="vignette-photo-ing img-fluid rounded" 
                                 alt={ing}
                             />
                         </div>

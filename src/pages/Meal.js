@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import allActions from "../actions/allActions";
 import AreaFlag from "../components/areas";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Loader from "../components/Loader";
 import MealsIngredients from "../components/MealsIngredients";
 import Sidebar from "../components/Sidebar";
 import Video from "../components/Video";
 
-const Home = () => {
+const Meal = () => {
 
     const currentMeal = useSelector(state => state.currentMealReducer.currentMeal);
     const isCurrentMealLoading = useSelector(state => state.currentMealReducer.isLoading);
@@ -43,9 +44,9 @@ const Home = () => {
                 (currentMeal ? 
                     (<>
                         <article>
-                            <div key={currentMeal.idMeal} className="card meal m-2">
-                                <div className="row g-0">
-                                    <img className="photo img-fluid rounded-start" src={currentMeal.strMealThumb}  alt={currentMeal.strMeal}/>
+                            <div key={currentMeal.idMeal} className="card meal flex-grow-1 m-2">
+                                <div className="d-flex  flex-wrap flex-md-nowrap  g-0">
+                                    <img className="photo img-fluid rounded" src={currentMeal.strMealThumb}  alt={currentMeal.strMeal}/>
                                     <div className="vignette card-body">  <AreaFlag country={currentMeal.strArea}/>
                                         <h3 className="card-title">{currentMeal.strMeal}</h3>
                                         <p className="card-text fs-6">{currentMeal.strInstructions}</p> 
@@ -65,8 +66,9 @@ const Home = () => {
                 )}
             </main>
             <Sidebar/>
+            <Footer/>
         </>
     )
 };
 
-export default Home;
+export default Meal;

@@ -2,43 +2,43 @@ import { useState , useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import RecipeButton from "../components/RecipeButton";
-import Sidebar from "../components/Sidebar";
+import SidebarDrinks from "../components/SidebarDrinks";
 
-const Home = () => {
-    const [meal, setMeal] = useState(null);
+const HomeDrinks = () => {
+    const [drink, setDrink] = useState(null);
    
     useEffect(() => {
        ( async function (){
-        const url = "https://www.themealdb.com/api/json/v1/1/random.php";
+        const url = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
         const response = await fetch(url, {
             headers: {
                 Accept: "application/json",
             },
             
         });
-        const mealsFromAPI = await response.json();
-        setMeal(mealsFromAPI.meals[0]);
+        const drinksFromAPI = await response.json();
+        setDrink(drinksFromAPI.drinks[0]);
     })();
     
     }, []);//tableau vide pour initialiser au premier chargement
     
-    const handleClick = async (event) => {
-        const url = "https://www.themealdb.com/api/json/v1/1/random.php";
+    const handleClick = async () => {
+        const url = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
         const response = await fetch(url, {
             headers: {
                 Accept: "application/json",
             },
             
         });
-        const mealsFromAPI = await response.json();
-        setMeal(mealsFromAPI.meals[0]);
+        const drinksFromAPI = await response.json();
+        setDrink(drinksFromAPI.drinks[0]);
     };
     return (
         <>
             <Header/>
             <main className="d-flex col-12">
                 <section className="col-12 col-md-10">
-                {meal ? (
+                {drink ? (
                     <article>
                         <button className="btn fs-3 border border-dark m-4 " onClick={handleClick}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#da8350" className="bi bi-shuffle me-3" viewBox="0 0 16 16">
@@ -47,13 +47,14 @@ const Home = () => {
                             </svg>
                             Random recipe
                         </button>
-                        <div key={meal.idMeal} className="card flex-grow-1 m-2">
+                        <div key={drink.idDrink} className="card flex-grow-1 m-2">
                             <div className="d-flex  flex-wrap flex-md-nowrap g-0">
-                                <img className="photo img-fluid rounded" src={meal.strMealThumb}  alt={meal.strMeal}/>
+                                <img className="photo img-fluid rounded" src={drink.strDrinkThumb}  alt={drink.strDrink}/>
                                 <div className="vignette card-body"> 
-                                    <h3 className="card-title">{meal.strMeal}</h3> 
-                                    <p className="card-text fs-5">{meal.strInstructions.slice(0,850)+'...'}</p> 
-                                    <RecipeButton urlTo={`/meal/${meal.idMeal}`} titleButton={'Recipe'}/>
+                                    <h3 className="card-title">{drink.strDrink} ({drink.strAlcoholic})</h3>  
+                                    <p className="card-text fs-5">Category : {drink.strCategory}</p>
+                                    <p className="card-text fs-5">{drink.strInstructions}</p>
+                                    <RecipeButton urlTo={`/drink/${drink.idDrink}`} titleButton={'Recipe'}/>
                                 </div>
                             </div>
                         </div>
@@ -61,11 +62,11 @@ const Home = () => {
                 ) : (
                     <p>No Recipe</p>
                 )}</section>
-                <Sidebar/>
+                <SidebarDrinks/>
             </main>
             
             <Footer/>
         </>
     )
 };
-export default Home;
+export default HomeDrinks;

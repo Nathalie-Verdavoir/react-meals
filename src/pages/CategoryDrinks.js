@@ -2,40 +2,41 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer";
-import MealCard from "../components/MealCard";
+import SidebarDrinks from "../components/SidebarDrinks";
+import DrinkCard from "../components/DrinkCard";
 
-const Category = () => {
-    const { strCategory } = useParams();
-    const [mealsByCategories, setMealsByCategories] = useState([]);
-    const categories = useSelector(state => state.categoriesReducer.categories);
+const CategoryDrinks = () => {
+    const { strCategory } = useParams() //.toString().replace('/','\\/');
+    console.log(strCategory);
+    const [drinksByCategories, setDrinksByCategories] = useState([]);
+    const categoriesDrinks = useSelector(state => state.categoriesDrinksReducer.categoriesDrinks);
     useEffect (() => {
-        if(strCategory==='all' && categories){
-            const mealsByCat = categories.map(cat => {
+        if(strCategory==='all' && categoriesDrinks){
+            const drinksByCat = categoriesDrinks.map(cat => {
                 return {
-                idMeal : cat.idCategory,
-                strMealThumb : cat.strCategoryThumb,
-                strMeal : cat.strCategory,
+                idDrink : cat.idCategory,
+                strDrinkThumb : cat.strCategoryThumb,
+                strDrink : cat.strCategory,
                 }
             })
-            setMealsByCategories(mealsByCat);
+            setDrinksByCategories(drinksByCat);
         }
         else {
             (async () => {
-                const url = "https://www.themealdb.com/api/json/v1/1/filter.php?c="+strCategory;
+                const url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c="+strCategory;
                 const response = await fetch(url, {
                      headers: {
                          Accept : 'application/json'
                      }
                  }
                 )
-                const categoriesFromAPI = await response.json();
-                setMealsByCategories(categoriesFromAPI.meals);
+                const categoriesDrinksFromAPI = await response.json();
+                setDrinksByCategories(categoriesDrinksFromAPI.drinks);
              })();
         }
-    },[strCategory,categories]);
+    },[strCategory,categoriesDrinks]);
     
     const allCat = strCategory==='all';
     const title = allCat ? `All categories` : `Recipes with ${strCategory}`;
@@ -47,11 +48,11 @@ return (
     <div className="col-12 col-md-10">
         <h1>{title}</h1>
             <section className="row align-items-center g-0"> 
-                {mealsByCategories ? (
+                {drinksByCategories ? (
                     <>
-                    {mealsByCategories.map(meal => {
+                    {drinksByCategories.map(drink => {
                         return(
-                            <MealCard key={meal.idMeal}  meal={meal} allCat={allCat} allIng={null}/>
+                            <DrinkCard key={drink.idDrink}  drink={drink} allCat={allCat} allIng={null}/>
                             )
                         }
                         )
@@ -62,7 +63,7 @@ return (
         </section>
         </div>
         
-        <Sidebar />
+        <SidebarDrinks />
     </main>  
     
     <Footer/> 
@@ -71,4 +72,4 @@ return (
 ) 
 }
 
-export default Category;
+export default CategoryDrinks;

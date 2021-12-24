@@ -3,17 +3,17 @@ import IngredientCard from "./IngredientCard";
 import Loader from "./Loader";
 
 
-export default function MealsIngredients() {
-    const currentMeal = useSelector(state => state.currentMealReducer.currentMeal);
-    const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
-    const isCurrentMealLoading = useSelector(state => state.currentMealReducer.isLoading);
+export default function DrinksIngredients() {
+    const currentDrink = useSelector(state => state.currentDrinkReducer.currentDrink);
+    const ingredients = useSelector(state => state.ingredientsDrinksReducer.ingredients);
+    const isCurrentDrinkLoading = useSelector(state => state.currentDrinkReducer.isLoading);
     let ingredientsViews=[];
     
-        if(currentMeal && ingredients!=null){
+        if(currentDrink && ingredients!=null){
             for(let iM=1;iM<13;iM++){
-                if(currentMeal["strIngredient"+iM] && currentMeal["strIngredient"+iM]!=='' && currentMeal["strIngredient"+iM]!==null){
+                if(currentDrink["strIngredient"+iM] && currentDrink["strIngredient"+iM]!=='' && currentDrink["strIngredient"+iM]!==null){
                     ingredientsViews.push(
-                            <IngredientCard key={`m${iM}`} ing={currentMeal["strIngredient"+iM]} qty={currentMeal["strMeasure"+iM]}/>
+                            <IngredientCard key={`m${iM}`} ing={currentDrink["strIngredient"+iM]} qty={currentDrink["strMeasure"+iM]}/>
                     );
                 }else if (iM===1){
                     ingredientsViews.push(
@@ -31,8 +31,8 @@ export default function MealsIngredients() {
     return (
         <div className="ing-list col-8 container-fluid">
             <div className="d-flex flex-row flex-wrap">
-            {isCurrentMealLoading ? <Loader/> :
-                (currentMeal ? 
+            {isCurrentDrinkLoading ? <Loader/> :
+                (currentDrink ? 
                     (
                         ingredientsViews
                     ) : (

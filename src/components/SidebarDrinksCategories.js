@@ -4,43 +4,43 @@ import { Link } from "react-router-dom";
 import allActions from "../actions/allActions";
 import Loader from "./Loader";
 
-const SidebarCategories = () => {
-    const categories = useSelector(state => state.categoriesReducer.categories);
-    const isCategoriesLoading = useSelector(state => state.categoriesReducer.isLoading);
+const SidebarDrinksCategories = () => {
+    const categoriesDrinks = useSelector(state => state.categoriesDrinksReducer.categoriesDrinks);
+    const isCategoriesLoading = useSelector(state => state.categoriesDrinksReducer.isLoading);
     const dispatch = useDispatch();
 
     const propComparator = (propName) => (a, b) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
     useEffect(() => { 
-        if(categories===null) {
-            dispatch(allActions.loadingCategoriesAction());
+        if(categoriesDrinks===null) {
+            dispatch(allActions.loadingCategoriesDrinksAction());
             ( async function (){  
                 try {
-                    const url = "https://www.themealdb.com/api/json/v1/1/categories.php";
+                    const url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
                     const response = await fetch(url, {
                         headers: {
                             Accept: "application/json",
                         },
                     });
                     const categoriesFromAPI = await response.json();
-                    dispatch(allActions.categoriesAction(categoriesFromAPI.categories.sort(propComparator('strCategory'))));
+                    dispatch(allActions.categoriesDrinksAction(categoriesFromAPI.drinks.sort(propComparator('strCategory'))));
                 } catch(error) {
                     console.log(error);
                 }
             })();
         }
-    }, [categories,dispatch]);
+    }, [categoriesDrinks,dispatch]);
 
     return (
         <>
             <aside className="categories">
                 <h4>All categories</h4>
                     {isCategoriesLoading ? <Loader/> :
-                        ( categories ?
+                        ( categoriesDrinks ?
                             (<> 
-                                {categories.slice(0,11).map(category => {
+                                {categoriesDrinks.slice(0,11).map(category => {
                                     return(
-                                        <article key={category.idCategory}>
-                                            <Link to={`/category/${category.strCategory}`}>
+                                        <article key={category.strCategory}>
+                                            <Link to={`/categoryDrinks/${category.strCategory.replaceAll('/','%2F')}`}>
                                                 {category.strCategory}
                                             </Link>
                                         </article>
@@ -48,7 +48,7 @@ const SidebarCategories = () => {
                                 })
                             }
                             <article key="allCategoriess">
-                                <Link to={`/category/all`}>
+                                <Link to={`/categoryDrinks/all`}>
                                     ...
                                 </Link>
                             </article> 
@@ -63,4 +63,4 @@ const SidebarCategories = () => {
 }
 
 
-export default SidebarCategories;
+export default SidebarDrinksCategories;

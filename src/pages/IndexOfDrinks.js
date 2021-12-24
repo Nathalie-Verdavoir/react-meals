@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
 import MealCard from '../components/MealCard';
 
-function IndexOfMeals() {
+function IndexOfDrinks() {
     const { letter } = useParams();
     const [mealsByIndex, setMealsByIndex] = useState(null);
    
@@ -55,5 +55,4 @@ function IndexOfMeals() {
     )
 }
 
-export default IndexOfMeals
-
+export default IndexOfDrinks

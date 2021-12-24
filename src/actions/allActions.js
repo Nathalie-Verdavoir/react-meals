@@ -1,6 +1,10 @@
 import { categoriesAction, loadingCategoriesAction }  from './categoriesAction';
 import { ingredientsAction, loadingIngredientsAction }  from './ingredientsAction';
 import { currentMealAction, loadingCurrentMealAction }  from './currentMealAction';
+import { categoriesDrinksAction, loadingCategoriesDrinksAction }  from './categoriesDrinkAction';
+import { ingredientsDrinksAction, loadingIngredientsDrinksAction }  from './ingredientsDrinksAction';
+
+import { currentDrinkAction, loadingCurrentDrinkAction, onErrorCurrentDrinkAction }  from './currentDrinkAction';
 
 const allActions = {
     categoriesAction,
@@ -8,7 +12,14 @@ const allActions = {
     ingredientsAction,
     loadingIngredientsAction,
     currentMealAction,
-    loadingCurrentMealAction
+    loadingCurrentMealAction,
+    categoriesDrinksAction,
+    loadingCategoriesDrinksAction,
+    ingredientsDrinksAction,
+    loadingIngredientsDrinksAction,
+    currentDrinkAction,
+    loadingCurrentDrinkAction,
+    onErrorCurrentDrinkAction
 }
 
 export default allActions;

@@ -4,52 +4,52 @@ import { Link } from "react-router-dom";
 import allActions from "../actions/allActions";
 import Loader from "./Loader";
 
-const SidebarIngredients = () => {
+const SidebarDrinksIngredients = () => {
         
-    const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
-    const isIngredientsLoading = useSelector(state => state.ingredientsReducer.isLoading);
+    const ingredientsDrinks = useSelector(state => state.ingredientsDrinksReducer.ingredientsDrinks);
+    const isIngredientsLoading = useSelector(state => state.ingredientsDrinksReducer.isLoading);
     const dispatch = useDispatch();
     const propComparator = (propName) => (a, b) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
     
     useEffect(() => { 
-        if(ingredients===null) {
+        if(ingredientsDrinks===null) {
             dispatch(allActions.loadingIngredientsAction());
             ( async function (){
                 try {
-                    const url = "https://www.themealdb.com/api/json/v1/1/list.php?i=list";
+                    const url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list";
                     const response = await fetch(url, {
                         headers: {
                              Accept: "application/json",
                         },
                     });
                     const ingredientsFromAPI = await response.json();
-                    dispatch(allActions.ingredientsAction(ingredientsFromAPI.meals.sort(propComparator('strIngredient'))));
+                    dispatch(allActions.ingredientsDrinksAction(ingredientsFromAPI.drinks.sort(propComparator('strIngredient1'))));
                 } catch(error) {
                         console.log(error);
                 }
             })();
         }
-    }, [ingredients,dispatch]);
+    }, [ingredientsDrinks,dispatch]);
 
     return (
         <>
             <aside className="ingredients">
                 <h4>All ingredients</h4>
                 {isIngredientsLoading ? <Loader/> :
-                    ( ingredients ?
+                    ( ingredientsDrinks ?
                         (<> 
-                            {ingredients.slice(0,10).map(ingredient => {
+                            {ingredientsDrinks.slice(0,10).map(ingredient => {
                                     return(
-                                        <article key={ingredient.idIngredient}>
-                                            <Link to={`/ingredient/${ingredient.strIngredient}`}>
-                                                {ingredient.strIngredient}
+                                        <article key={ingredient.strIngredient1}>
+                                            <Link to={`/ingredientDrinks/${ingredient.strIngredient1}`}>
+                                                {ingredient.strIngredient1}
                                             </Link>
                                         </article>
                                     )
                                 })
                             } 
                             <article key="allIngredients">
-                                <Link to={`/ingredient/all`}>
+                                <Link to={`/ingredientDrinks/all`}>
                                     ...
                                 </Link>
                             </article>
@@ -63,4 +63,4 @@ const SidebarIngredients = () => {
     ) 
 }
 
-export default SidebarIngredients;
+export default SidebarDrinksIngredients;
