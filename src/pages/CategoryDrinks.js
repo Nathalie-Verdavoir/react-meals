@@ -8,8 +8,7 @@ import SidebarDrinks from "../components/SidebarDrinks";
 import DrinkCard from "../components/DrinkCard";
 
 const CategoryDrinks = () => {
-    const { strCategory } = useParams() //.toString().replace('/','\\/');
-    console.log(strCategory);
+    const { strCategory } = useParams();
     const [drinksByCategories, setDrinksByCategories] = useState([]);
     const categoriesDrinks = useSelector(state => state.categoriesDrinksReducer.categoriesDrinks);
     useEffect (() => {

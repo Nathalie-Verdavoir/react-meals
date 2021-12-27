@@ -15,11 +15,10 @@ const currentDrinkReducer = (state = initialState, action) => {
             }     
 
         case "SET_CURRENT_DRINK":
-            console.log(action.payload,state);
             return {
                 ...state,
                 currentDrink: {
-                    ...state.currentDrinktest,
+                    ...state.currentDrink,
                     [action.payload.idDrink] : action.payload
                 },
                 isLoading: false

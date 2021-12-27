@@ -14,8 +14,8 @@ const Drink = () => {
     const iscurrentDrinkLoading = useSelector(state => state.currentDrinkReducer.isLoading);
     const dispatch = useDispatch();
     const { strDrink } = useParams();
-    useEffect(() => {console.log(currentDrink===null ||  (currentDrink && !currentDrink[strDrink] ));
-        if(currentDrink===null ||  (currentDrink && !currentDrink[strDrink] )){
+    useEffect(() => {
+        if(currentDrink===null || (currentDrink && !currentDrink[strDrink]  )){
             dispatch(allActions.loadingCurrentDrinkAction());
             ( async function (){
                 try {
