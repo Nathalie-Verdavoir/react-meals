@@ -41,7 +41,7 @@ const SidebarDrinksIngredients = () => {
                             {ingredientsDrinks.slice(0,10).map(ingredient => {
                                     return(
                                         <article key={ingredient.strIngredient1}>
-                                            <Link to={`/ingredientDrinks/${ingredient.strIngredient1}`}>
+                                            <Link to={`/ingredientsDrinks/${ingredient.strIngredient1}`}>
                                                 {ingredient.strIngredient1}
                                             </Link>
                                         </article>
@@ -49,7 +49,7 @@ const SidebarDrinksIngredients = () => {
                                 })
                             } 
                             <article key="allIngredients">
-                                <Link to={`/ingredientDrinks/all`}>
+                                <Link to={`/ingredientsDrinks/all`}>
                                     ...
                                 </Link>
                             </article>

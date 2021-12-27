@@ -62,7 +62,7 @@ return (
                             </Link>
                         </li>
                         <li key="ingDrinksAllHeader" className="nav-item">
-                            <Link to="/ingredientDrinks/all" className="nav-link fs-5 lh-1 text p-0 m-0" >
+                            <Link to="/ingredientsDrinks/all" className="nav-link fs-5 lh-1 text p-0 m-0" >
                                 Ingredients
                             </Link>
                         </li>

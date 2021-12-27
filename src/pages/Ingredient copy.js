@@ -1,44 +1,44 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import DrinkCard from "../components/DrinkCard";
-import SidebarDrinks from "../components/SidebarDrinks";
 
-const IngredientsDrinks = () => {
+const Ingredient = () => {
    
-    const { strIngredientsDrinks } = useParams();
+    const { strIngredient } = useParams();
     const [drinksByIngredients, setDrinksByIngredients] = useState([]);
-    const ingredientsDrinks = useSelector(state => state.ingredientsDrinksReducer.ingredientsDrinks);
-    
+    const ingredients = useSelector(state => state.ingredientsDrinksReducer.ingredientsDrinks);
    useEffect (() => {
-    if(strIngredientsDrinks==='all' && ingredientsDrinks){
-        const drinksByIng = ingredientsDrinks.map(ing => {
+    if(strIngredient==='all' && ingredients){
+        const drinksByIng = ingredients.map(ing => {
             return {
-            idDrink : ing.strIngredient1,
-            strDrinkThumb :"https://www.thecocktaildb.com/images/ingredients/"+ing.strIngredient1+".png",
+            idDrink : ing.idIngredient,
+            strDrinkThumb : `https://www.thecocktaildb.com/images/ingredients/${ing.strIngredient}.png`,
+            strDrink : ing.strIngredient,
             }
         })
         setDrinksByIngredients(drinksByIng);
     }
-    else if(strIngredientsDrinks!=='all' && ingredientsDrinks!=null){
+    else {
         (async () => {
-                const url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+strIngredientsDrinks;
+                const url = "https://www.thedrinkdb.com/api/json/v1/1/filter.php?i="+strIngredient;
                 const response = await fetch(url, {
                     headers: {
                         Accept : 'application/json'
                     }
                 }
                 )
-                const ingredientsDrinksFromAPI = await response.json();
-                setDrinksByIngredients(ingredientsDrinksFromAPI.drinks);
+                const ingredientsFromAPI = await response.json();
+                setDrinksByIngredients(ingredientsFromAPI.drinks);
             })();
     }
-},[strIngredientsDrinks,ingredientsDrinks]);
+},[strIngredient,ingredients]);
 
-const allIng = strIngredientsDrinks==='all';
-const title = allIng ? `All ingredients` : `Recipes with ${strIngredientsDrinks}`;                      
+const allIng = strIngredient==='all';
+const title = allIng ? `All ingredients` : `Recipes with ${strIngredient}`;                      
 
 return (
     <>
@@ -50,7 +50,7 @@ return (
     <section className="row align-items-center g-0"> 
   {drinksByIngredients ? (
       <>
-      {drinksByIngredients.map(drink => {
+      {drinksByIngredients.map((drink) => {
           return(
             <DrinkCard key={drink.idDrink}  drink={drink} allCat={null} allIng={allIng}/>
             )
@@ -60,10 +60,10 @@ return (
         </>   
         ) : (<p>pas de recette</p>)
         }
-</section></div><SidebarDrinks/></main>  
+</section></div><Sidebar/></main>  
 <Footer/>
     </>
 ) 
 }
 
-export default IngredientsDrinks;
+export default Ingredient;

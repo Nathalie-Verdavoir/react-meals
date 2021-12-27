@@ -41,6 +41,7 @@ const Drink = () => {
                 {iscurrentDrinkLoading ? <Loader/> :
                 (currentDrink ? 
                     (<>
+                        {currentDrink[strDrink]? 
                         <article>
                             <div key={currentDrink[strDrink].idDrink} className="card meal flex-grow-1 m-2">
                                 <div className="d-flex  flex-wrap flex-md-nowrap  g-0">
@@ -52,6 +53,7 @@ const Drink = () => {
                                 </div>
                             </div>
                         </article> 
+                        : (<article></article>)}
                         <div className="infos">
                             <DrinksIngredients/>
                             

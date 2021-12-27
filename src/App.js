@@ -29,7 +29,7 @@ function App() {
 
         <Route path="/homedrinks"  element={<HomeDrinks/>} />
         <Route path="/categoryDrinks/:strCategory"  element={<CategoryDrinks/>} />
-        <Route path="/ingredientDrinks/:strIngredient"  element={<IngredientsDrinks/>} />
+        <Route path="/ingredientsDrinks/:strIngredientsDrinks"  element={<IngredientsDrinks/>} />
         <Route path="/drink/:strDrink"  element={<Drink/>} />
         <Route path="/drinks/:letter"  element={<IndexOfDrinks/>} />
       </Routes>

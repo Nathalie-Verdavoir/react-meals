@@ -11,7 +11,8 @@ const DrinkCard = ({drink,allCat,allIng,justDrink}) => {
         }
         if(allIng!==null){
             titleButton = allIng ? `All recipes` : `Recipe`;
-            urlTo = allIng ? `/ingredientDrinks/${drink.strDrink}` : `/drink/${drink.idDrink}`;
+            const idnumber = ( drink.strDrink && isNaN(drink.strDrink)) ? drink.idDrink : drink.strDrink  ;
+            urlTo = allIng ? `/ingredientsDrinks/${drink.idDrink}` : `/drink/${idnumber}`;
         }
         return (<RecipeButton urlTo={urlTo} titleButton={titleButton}/>)
     } 
@@ -27,10 +28,14 @@ const DrinkCard = ({drink,allCat,allIng,justDrink}) => {
                     /> 
                     : (<div></div>)
                 }
-                <div className="vignette card-body p-2"> 
-                            <h5 className="card-title small-card">{drink.strDrink.length>35?(drink.strDrink.slice(0,35) + '...') : drink.strDrink}</h5>
-                            {propsButtons(drink)}
-                </div>
+                <div className="vignette card-body p-2">  
+                    {drink.strDrink ?
+                        <h5 className="card-title small-card">{drink.strDrink.length>35?(drink.strDrink.slice(0,35) + '...') : drink.strDrink}</h5>
+                        : 
+                        <h5 className="card-title small-card">{drink.idDrink.length>35?(drink.idDrink.slice(0,35) + '...') : drink.idDrink}</h5>
+                    }
+                    {propsButtons(drink)}
+                </div>  
             </div>
         </article>
     )
