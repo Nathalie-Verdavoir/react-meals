@@ -14,10 +14,10 @@ const Home = () => {
         <>
             <Header/>
             <main className="d-flex col-12">
-                <section className="col-12 col-md-7">
+                <section className="col-12 col-md-7 bg-meal p-2">
                 <RandomMealHome/>  
                 </section>
-                <section className="col-12 col-md-3">
+                <section className="col-12 col-md-3 bg-drink p-2">
                 <RandomDrinkHome/>  
                 </section>
                 <section className="col-12 col-md-2 sidebar-home">
