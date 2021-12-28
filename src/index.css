@@ -20,6 +20,7 @@ main {
   width: 78%;
 }
 
+.sidebar-home,
 div.sidebar{
   color: #da8350;
   float: right;
@@ -31,10 +32,12 @@ aside {
   text-align: center;
 }
 
+.bg-meal,
 aside.categories {
   background-color: rgb(253, 240, 221);
 }
 
+.bg-drink,
 aside.categoriesDrinks {
   background-color: rgb(199, 253, 204);
 }
