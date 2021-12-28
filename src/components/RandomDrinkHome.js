@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import RecipeButton from "./RecipeButton";
 
 
-export const RandomDrinkHome = () => {
+export const RandomDrinkHome = ({home}) => {
     const [drink, setDrink] = useState(null);
    
     useEffect(() => {
@@ -31,6 +31,7 @@ export const RandomDrinkHome = () => {
         const drinksFromAPI = await response.json();
         setDrink(drinksFromAPI.drinks[0]);
     };
+    const wrapped = home ? "d-flex flex-wrap g-0" : "d-flex flex-wrap flex-md-nowrap g-0";
     return (
         <>
             {drink ? (
@@ -43,7 +44,7 @@ export const RandomDrinkHome = () => {
                         Random recipe
                     </button>
                     <div key={drink.idDrink} className="card flex-grow-1 m-2">
-                        <div className="d-flex  flex-wrap flex-md-nowrap g-0">
+                        <div className={wrapped}>
                             <img className="photo img-fluid rounded" src={drink.strDrinkThumb}  alt={drink.strDrink}/>
                             <div className="vignette card-body"> 
                                 <h3 className="card-title">{drink.strDrink} ({drink.strAlcoholic})</h3>  
