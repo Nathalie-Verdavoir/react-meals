@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import RecipeButton from "../components/RecipeButton";
 import Sidebar from "../components/Sidebar";
+import SidebarDrinks from "../components/SidebarDrinks";
 
 const Home = () => {
     const [meal, setMeal] = useState(null);
@@ -37,7 +38,7 @@ const Home = () => {
         <>
             <Header/>
             <main className="d-flex col-12">
-                <section className="col-12 col-md-10">
+                <section className="col-12 col-md-8">
                 {meal ? (
                     <article>
                         <button className="btn fs-3 border border-dark m-4 " onClick={handleClick}>
@@ -62,6 +63,8 @@ const Home = () => {
                     <p>No Recipe</p>
                 )}</section>
                 <Sidebar/>
+                <SidebarDrinks/>
+
             </main>
             
             <Footer/>

@@ -35,12 +35,24 @@ aside.categories {
   background-color: rgb(253, 240, 221);
 }
 
+aside.categoriesDrinks {
+  background-color: rgb(199, 253, 204);
+}
+
 aside.ingredients {
   background-color: rgb(250, 217, 167);
 }
 
+aside.ingredientsDrinks {
+  background-color: rgb(196, 230, 150);
+}
+
 aside.meals {
   background-color: rgb(251, 199, 121);
+}
+
+aside.drinks {
+  background-color: rgb(197, 212, 104);
 }
 
 li {
