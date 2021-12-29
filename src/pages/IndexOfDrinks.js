@@ -22,8 +22,8 @@ function IndexOfDrinks() {
             setDrinksByIndex(drinksFromAPI.drinks);
         })();
 
-        }
-    )
+        }, [letter]);
+    
    
 
     return (

@@ -22,8 +22,7 @@ function IndexOfMeals() {
             setMealsByIndex(mealsFromAPI.meals);
         })();
 
-        }
-    )
+        }, [letter]);
    
 
     return (
