@@ -33,7 +33,6 @@ const Drink = () => {
             })();
         }
     }, [strDrink,dispatch,currentDrink]);
-    currentDrink && currentDrink[strDrink] ? console.log(currentDrink[strDrink]) : console.log('error');
     return (
         <>
             <Header/>

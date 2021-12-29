@@ -8,8 +8,6 @@ export default function DrinksIngredients({drinkId}) {
     const ingredientsDrinks = useSelector(state => state.ingredientsDrinksReducer.ingredientsDrinks);
     const isCurrentDrinkLoading = useSelector(state => state.currentDrinkReducer.isLoading);
     let ingredientsViews=[];
-    console.log('currentDrink[drinkId]:'+currentDrink[drinkId])
-    console.log('ingredientsDrinks:'+ingredientsDrinks)
         if(currentDrink && currentDrink[drinkId] && ingredientsDrinks!==null){
             for(let iM=1;iM<15;iM++){ 
                 if(currentDrink[drinkId]["strIngredient"+iM] && currentDrink[drinkId]["strIngredient"+iM]!=='' && currentDrink[drinkId]["strIngredient"+iM]!==null){
@@ -21,9 +19,7 @@ export default function DrinksIngredients({drinkId}) {
                        <p>pas d'ingrédients</p>
                 );
                 }
-            }
-      console.log(ingredientsViews);
-        
+            }        
     }
 
     

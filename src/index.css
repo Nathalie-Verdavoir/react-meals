@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap');
 
 
-body {
+body { background-color: #faeaab;
   margin: 0;
   font-family: 'Fuzzy Bubbles', cursive;
 }
@@ -11,10 +11,6 @@ ul.dropdown-menu>li:first-child>a {
   background-color: #da8350;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 main {
   float: left;
   width: 78%;
@@ -38,24 +34,62 @@ aside.categories {
 }
 
 .bg-drink,
-aside.categoriesDrinks {
+aside.categoriesDrinks,
+aside.categoriesDrinks>*>* {
   background-color: rgb(199, 253, 204);
+  color: #15550a;
 }
 
 aside.ingredients {
   background-color: rgb(250, 217, 167);
 }
 
-aside.ingredientsDrinks {
+aside.ingredientsDrinks,
+aside.ingredientsDrinks>*>* {
   background-color: rgb(196, 230, 150);
+  color: #15550a;
 }
 
 aside.meals {
   background-color: rgb(251, 199, 121);
 }
 
-aside.drinks {
+aside.drinks,
+aside.drinks>*>* {
   background-color: rgb(197, 212, 104);
+  color: #15550a;
+}
+
+.accordion-button {
+  font-family: 'Fuzzy Bubbles', cursive;
+}
+
+.accordion-button.meal {
+  color: #da8350;
+}
+
+.accordion-button.drink {
+  color: #15550a;
+}
+
+.accordion-button.meal.collapsed {
+  background-color: rgb(253, 240, 221);
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+
+.accordion-button.drink.collapsed {
+background-color: rgb(199, 253, 204);
+box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+
+.accordion-button.meal:not(.collapsed) {
+    background-color: rgb(250, 217, 167);
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+
+.accordion-button.drink:not(.collapsed) {
+  background-color: rgb(196, 230, 150);
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
 }
 
 li {
