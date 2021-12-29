@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import RecipeButton from "./RecipeButton";
+import allActions from "../actions/allActions";
 
 
 export const RandomMealHome = () => {
     const [meal, setMeal] = useState(null);
-   
+    const dispatch = useDispatch();
     useEffect(() => {
+        dispatch(allActions.loadingCurrentMealAction());
        ( async function (){
         const url = "https://www.themealdb.com/api/json/v1/1/random.php";
         const response = await fetch(url, {
@@ -16,11 +19,13 @@ export const RandomMealHome = () => {
         });
         const mealsFromAPI = await response.json();
         setMeal(mealsFromAPI.meals[0]);
+        dispatch(allActions.currentMealAction(mealsFromAPI.meals[0]));
     })();
     
-    }, []);//tableau vide pour initialiser au premier chargement
+    }, [dispatch]);//tableau vide pour initialiser au premier chargement
     
     const handleClick = async () => {
+        dispatch(allActions.loadingCurrentMealAction());
         const url = "https://www.themealdb.com/api/json/v1/1/random.php";
         const response = await fetch(url, {
             headers: {
@@ -29,7 +34,8 @@ export const RandomMealHome = () => {
             
         });
         const mealsFromAPI = await response.json();
-        setMeal(mealsFromAPI.meals[0]);
+        setMeal(mealsFromAPI.meals[0]); 
+        dispatch(allActions.currentMealAction(mealsFromAPI.meals[0]));
     };
     return (
         <>
