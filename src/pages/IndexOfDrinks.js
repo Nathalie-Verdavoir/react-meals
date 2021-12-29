@@ -1,25 +1,25 @@
 import { useEffect, useState }  from 'react';
 import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
 import { useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
-import MealCard from '../components/MealCard';
+import DrinkCard from '../components/DrinkCard';
+import SidebarDrinks from '../components/SidebarDrinks';
 
 function IndexOfDrinks() {
     const { letter } = useParams();
-    const [mealsByIndex, setMealsByIndex] = useState(null);
+    const [drinksByIndex, setDrinksByIndex] = useState(null);
    
     useEffect(() => {
        ( async function (){
-            const url = "https://www.themealdb.com/api/json/v1/1/search.php?f="+letter;
+            const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f="+letter;
             const response = await fetch(url, {
                 headers: {
                     Accept: "application/json",
                 },
                 
             });
-            const mealsFromAPI = await response.json();
-            setMealsByIndex(mealsFromAPI.meals);
+            const drinksFromAPI = await response.json();
+            setDrinksByIndex(drinksFromAPI.drinks);
         })();
 
         }
@@ -31,14 +31,14 @@ function IndexOfDrinks() {
         <Header/>
         <main className="d-flex col-12">
     <div className="col-12 col-md-10">
-    <h1>{`Meals starting by ${letter.toUpperCase()}`}</h1>
+    <h1>{`Drinks starting by ${letter.toUpperCase()}`}</h1>
         
         <section className="row align-items-center g-0"> 
-            {mealsByIndex ? (
+            {drinksByIndex ? (
                 <>
-                {mealsByIndex.map(meal => {
+                {drinksByIndex.map(drink => {
                     return(
-                        <MealCard key={meal.idMeal}  meal={meal} allCat={false} allIng={null}/>
+                        <DrinkCard key={drink.idDrink}  drink={drink} allCat={false} allIng={null}/>
                         )
                     }
                     )
@@ -48,7 +48,7 @@ function IndexOfDrinks() {
                     }
     </section>
     </div>
-    <Sidebar/>
+    <SidebarDrinks/>
     </main>  
     <Footer/>
         </>
