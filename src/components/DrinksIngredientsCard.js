@@ -1,18 +1,8 @@
-import { useSelector } from "react-redux";
-import Loader from "./Loader";
 import defaultimg from "../img/defaultimg.png";
 
-
-export default function DrinksIngredientsCard({ing,qty}) {
-    const ingredientsDrinks = useSelector(state => state.ingredientsDrinksReducer.ingredientsDrinks);
-    const isIngredientsLoading = useSelector(state => state.ingredientsDrinksReducer.isLoading);
-    
-    let el = [];
-        for(let i=0;i<ingredientsDrinks.length;i++){ console.log('ok;',(ing.toLowerCase().replace('-',' ')===ingredientsDrinks[i].strIngredient1.toLowerCase().replace('-',' ')));
-    if(ing.toLowerCase().replace('-',' ')===ingredientsDrinks[i].strIngredient1.toLowerCase().replace('-',' ')){
-      
-        el.push (
-            <div key={'ingC'+i} className=" col-12  col-md-6 col-lg-3 g-0 p-2 flex-grow-1">
+export default function DrinksIngredientsCard({ing,qty}) {  
+    return (
+            <div key={'ingC'+ing} className=" col-12  col-md-6 col-lg-3 g-0 p-2 flex-grow-1">
             <div  className="card flex-grow-1 vignette-ing "> 
              <div className="row g-0">
                 <div className="col-md-4">
@@ -34,16 +24,4 @@ export default function DrinksIngredientsCard({ing,qty}) {
                 </div> 
             </div></div></div></div>
         )
-    }
-
-    }
-    
-
-    if(isIngredientsLoading){
-        return (<Loader/>)
-    }else{
-        return el
-    }
- 
-    
 }
