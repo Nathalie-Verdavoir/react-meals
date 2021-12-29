@@ -33,7 +33,7 @@ const Drink = () => {
             })();
         }
     }, [strDrink,dispatch,currentDrink]);
-    
+    currentDrink && currentDrink[strDrink] ? console.log(currentDrink[strDrink]) : console.log('error');
     return (
         <>
             <Header/>
@@ -44,8 +44,10 @@ const Drink = () => {
                         {currentDrink[strDrink]? 
                         <article>
                             <div key={currentDrink[strDrink].idDrink} className="card meal flex-grow-1 m-2">
+                                 <img className="photo img-fluid rounded" src={currentDrink[strDrink].strDrinkThumb}  alt={currentDrink[strDrink].strDrink}/>
                                 <div className="d-flex  flex-wrap flex-md-nowrap  g-0">
                                     <div className="vignette card-body">
+                                   
                                         <h3 className="card-title">{currentDrink[strDrink].strDrink}</h3>
                                         <p className="card-text fs-6">{currentDrink[strDrink].strInstructions}</p> 
                                        
@@ -55,8 +57,7 @@ const Drink = () => {
                         </article> 
                         : (<article></article>)}
                         <div className="infos">
-                            <DrinksIngredients/>
-                            
+                            <DrinksIngredients drinkId={strDrink}/>
                         </div>
                     </>
                     ) : (
