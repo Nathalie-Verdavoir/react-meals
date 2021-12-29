@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import allActions from "../actions/allActions";
 import RecipeButton from "./RecipeButton";
 
 
 export const RandomDrinkHome = ({home}) => {
     const [drink, setDrink] = useState(null);
-   
+   const dispatch = useDispatch();
     useEffect(() => {
        ( async function (){
+        dispatch(allActions.loadingCurrentDrinkAction());
         const url = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
         const response = await fetch(url, {
             headers: {
@@ -16,11 +19,13 @@ export const RandomDrinkHome = ({home}) => {
         });
         const drinksFromAPI = await response.json();
         setDrink(drinksFromAPI.drinks[0]);
+        dispatch(allActions.currentDrinkAction(drinksFromAPI.drinks[0]));
     })();
     
-    }, []);//tableau vide pour initialiser au premier chargement
+    }, [dispatch]);//tableau vide pour initialiser au premier chargement
     
     const handleClick = async () => {
+        dispatch(allActions.loadingCurrentDrinkAction());
         const url = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
         const response = await fetch(url, {
             headers: {
@@ -30,6 +35,7 @@ export const RandomDrinkHome = ({home}) => {
         });
         const drinksFromAPI = await response.json();
         setDrink(drinksFromAPI.drinks[0]);
+        dispatch(allActions.currentDrinkAction(drinksFromAPI.drinks[0]));
     };
     const wrapped = home ? "d-flex flex-wrap g-0" : "d-flex flex-wrap flex-md-nowrap g-0";
     return (
