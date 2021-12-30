@@ -1,14 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap');
 
+:root{
+  --yellow: #faeaab;
+  --yellow-1: rgb(250, 250, 151);
+  --orange-1: #da8350;
+  --orange-2: rgb(253, 240, 221);
+  --orange-3: rgb(250, 217, 167);
+  --orange-4: rgb(251, 199, 121);
+  --orange-5: rgb(218, 131, 80);
+  --orange-6: hsl(23, 59%, 87%);
+  --green-1: rgb(199, 253, 204);
+  --green-2: #15550a;
+  --green-3: rgb(196, 230, 150);
+  --green-4: rgb(197, 212, 104);
+  --green-5: #daeb5c;
+  --blue: #2374e1;
+  --shadow: rgb(0 0 0 / 13%);
+}
 
-body { background-color: #faeaab;
+body { background-color:  var(--yellow);
   margin: 0;
   font-family: 'Fuzzy Bubbles', cursive;
 }
 ul.dropdown-menu>li:first-child>a {
   color: white;
-  background-color: #da8350;
+  background-color: var(--orange-1);
 }
 
 main {
@@ -18,7 +35,7 @@ main {
 
 .sidebar-home,
 div.sidebar{
-  color: #da8350;
+  color:  var(--orange-1);
   float: right;
 }
 
@@ -30,79 +47,81 @@ aside {
 
 .bg-meal,
 aside.categories {
-  background-color: rgb(253, 240, 221);
+  background-color:  var(--orange-2);
 }
 
 .bg-drink,
 aside.categoriesDrinks,
 aside.categoriesDrinks>*>* {
-  background-color: rgb(199, 253, 204);
-  color: #15550a;
+  background-color:  var(--green-1);
+  color:  var(--green-2);
 }
 
 aside.ingredients {
-  background-color: rgb(250, 217, 167);
+  background-color:  var(--orange-3);
 }
 
 aside.ingredientsDrinks,
 aside.ingredientsDrinks>*>* {
-  background-color: rgb(196, 230, 150);
-  color: #15550a;
+  background-color:  var(--green-3);
+  color:  var(--green-2);
 }
 
 aside.meals {
-  background-color: rgb(251, 199, 121);
+  background-color:  var(--orange-4);
 }
 
 aside.drinks,
 aside.drinks>*>* {
-  background-color: rgb(197, 212, 104);
-  color: #15550a;
+  background-color:  var(--green-4);
+  color:  var(--green-2);
 }
-
+.accordion-item {
+  background-color: var(--yellow-1);
+}
 .accordion-button {
   font-family: 'Fuzzy Bubbles', cursive;
 }
 
 .accordion-button.meal {
-  color: #da8350;
+  color:  var(--orange-1);
 }
 
 .accordion-button.drink {
-  color: #15550a;
+  color:  var(--green-2);
 }
 
 .accordion-button.meal.collapsed {
-  background-color: rgb(253, 240, 221);
-  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+  background-color:  var(--orange-2);
+  box-shadow: inset 0 -1px 0  var(--shadow);
 }
 
 .accordion-button.drink.collapsed {
-background-color: rgb(199, 253, 204);
-box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+background-color:  var(--green-1);
+box-shadow: inset 0 -1px 0  var(--shadow);
 }
 
 .accordion-button.meal:not(.collapsed) {
-    background-color: rgb(250, 217, 167);
-    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+    background-color:  var(--orange-3);
+    box-shadow: inset 0 -1px 0  var(--shadow);
 }
 
 .accordion-button.drink:not(.collapsed) {
-  background-color: rgb(196, 230, 150);
-  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+  background-color:  var(--green-3);
+  box-shadow: inset 0 -1px 0  var(--shadow);
 }
 
 li {
   display: inline;
 }
 a {
-  color: #da8350;
+  color:  var(--orange-1);
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #da8350;
+  color:  var(--orange-1);
   text-decoration: underline;
 }
 .meal-photo-text {
@@ -115,12 +134,12 @@ a:focus {
 .dropdown-toggle.show,
 .nav-link:hover,
 .nav-link:focus {
-  color: rgb(218, 131, 80);
+  color:  var(--orange-5);
 }
 
 .nav,
 .nav-item {
-  background-color: rgb(250, 250, 151);
+  background-color: var(--yellow-1);
 }
 
 .nav-item {
@@ -144,7 +163,12 @@ a:focus {
 .card-title.small-card {
   margin-top: 0.5rem;
 }
+
+.btn-lg {
+  padding: 0;
+}
 .App-logo {
+  color: var(--orange-1);
   margin: 10px;
   pointer-events: none;
 }
@@ -152,7 +176,7 @@ a:focus {
 
 .vignette-photo {
   width: 50%;
-  background-color: #daeb5c;
+  background-color:  var(--green-5);
 }
 
 .ing-list,
@@ -178,7 +202,7 @@ a:focus {
 .vignette-ing,
 .vignette-ing .card-body,
 .vignette-photo-ing {
-  background: hsl(23, 59%, 87%);
+  background:  var(--green-6);
 }
 
 .flag{float:right;height:64px;width:64px;vertical-align:text-top;line-height:64px; background-image: url("./img/flags32.png");}
@@ -218,16 +242,26 @@ footer {
   display: block;
   position: relative;
   bottom: 0;
-  background-color: rgb(218, 131, 80);
+  background-color:  var(--orange-5);
 }
 
 footer, 
 footer a {
-  color: rgb(255, 255, 255);
+  color: white;
     text-decoration: none;
 }
 
+.footer-drinks {
+  background-color:  var(--green-2);
+}
 
+.footer-socials {
+  background-color:  var(--blue);
+}
+
+.footer-legals {
+  background-color: var(--orange-4);
+}
 .socials {
     width: 10%;
 }

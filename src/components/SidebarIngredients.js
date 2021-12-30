@@ -33,7 +33,7 @@ const SidebarIngredients = () => {
 
     return (
         <>
-            <aside className="ingredients">
+            <aside className="ingredients rounded-3 my-2">
                 <h4>All ingredients</h4>
                 {isIngredientsLoading ? <Loader/> :
                     ( ingredients ?

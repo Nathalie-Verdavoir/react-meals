@@ -32,7 +32,7 @@ const SidebarDrinksCategories = () => {
 
     return (
         <>
-            <aside className="categoriesDrinks">
+            <aside className="categoriesDrinks rounded-3 my-2">
                 <h4>All categories</h4>
                     {isCategoriesLoading ? <Loader/> :
                         ( categoriesDrinks ?

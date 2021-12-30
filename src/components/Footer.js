@@ -3,15 +3,23 @@ import React from 'react';
 function Footer() {
     return (
         <footer className="row text-center g-0">
-            <div className="col-12 col-md-4 border border-white p-3">
-                <h3 className="text-uppercase fs-6 fw-bold">Sitemap</h3>
+            <div className="col-12 col-md-3 border border-white p-3 footer-meals">
+                <h3 className="text-uppercase fs-6 fw-bold">Meals</h3>
                 <ul className="list-group">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/category/all">Categories</a></li> 
-                    <li><a href="/ingredient/all">Ingredients</a></li> 
+                    <li><a href="/category/all">Categories of Meals</a></li> 
+                    <li><a href="/ingredient/all">All Ingredients</a></li> 
                 </ul>
             </div>
-            <div className="col-12 col-md-4 border border-white p-3">
+            <div className="col-12 col-md-3 border border-white p-3 footer-drinks">
+                <h3 className="text-uppercase fs-6 fw-bold">Drinks</h3>
+                <ul className="list-group">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/category/all">Categories of Drinks</a></li> 
+                    <li><a href="/ingredientsDrinks/all">All Ingredients</a></li> 
+                </ul>
+            </div>
+            <div className="col-12 col-md-3 border border-white p-3 footer-socials">
                 <h3 className="text-uppercase fs-6 fw-bold">socials</h3>
                 <div><a href="https://github.com/Nathalie-Verdavoir/react-meals">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-github" viewBox="0 0 16 16">
@@ -48,8 +56,8 @@ function Footer() {
                     </svg>
                 </a>
             </div>
-            <div className="col-12 col-md-4 border border-white p-3">
-            <h3 className="text-uppercase fs-6 fw-bold">Legal Notices</h3>
+            <div className="col-12 col-md-3 border border-white p-3 footer-legals">
+                <h3 className="text-uppercase fs-6 fw-bold">Legal Notices</h3>
                <div> © 2021 - Meals</div>
                 
                <div> Designed by Nathalie Verdavoir</div>

@@ -12,7 +12,7 @@ const SidebarDrinksIndex = () => {
     }
     return (
         <>
-            <aside className="drinks">
+            <aside className="drinks rounded-3 my-2">
                 <h4>Index of drinks</h4>
                 <>
                     {listAlphaWithLinks()}
