@@ -6,16 +6,19 @@ const initialState = {
 const mealsByCategoriesReducer = (state = initialState, action) => {
     switch(action.type){
 
-        case "SET_CURRENT_MEAL_LOADING":
+        case "SET_MEALS_BY_CATEGORIES_LOADING":
             return {
                 ...state,
                 isLoading: true
             }     
 
-        case "SET_CURRENT_MEAL":
+        case "SET_MEALS_BY_CATEGORIES":
             return {
                 ...state,
-                mealsByCategories: action.payload,
+                mealsByCategories: {
+                    ...state.mealsByCategories,
+                    [action.payload[1]] : action.payload[0]
+                },
                 isLoading: false
             }
         
