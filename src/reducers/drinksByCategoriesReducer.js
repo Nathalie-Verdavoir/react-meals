@@ -14,7 +14,6 @@ const drinksByCategoriesReducer = (state = initialState, action) => {
             }     
 
         case "SET_DRINKS_BY_CATEGORIES":
-            console.log(state.drinksByCategories);
             return {
                 ...state,
                 drinksByCategories: {
