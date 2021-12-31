@@ -1,9 +1,9 @@
 const initialState = {
-    currentMeal: null,
+    mealsByCategories: null,
     isLoading: false
 }
 
-const currentMealReducer = (state = initialState, action) => {
+const mealsByCategoriesReducer = (state = initialState, action) => {
     switch(action.type){
 
         case "SET_CURRENT_MEAL_LOADING":
@@ -15,10 +15,7 @@ const currentMealReducer = (state = initialState, action) => {
         case "SET_CURRENT_MEAL":
             return {
                 ...state,
-                currentMeal: {
-                    ...state.currentMeal,
-                    [action.payload.idMeal] : action.payload
-                },
+                mealsByCategories: action.payload,
                 isLoading: false
             }
         
@@ -27,4 +24,4 @@ const currentMealReducer = (state = initialState, action) => {
     }
 }
 
-export default currentMealReducer;
+export default mealsByCategoriesReducer;

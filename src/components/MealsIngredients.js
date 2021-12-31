@@ -3,17 +3,17 @@ import IngredientCard from "./IngredientCard";
 import Loader from "./Loader";
 
 
-export default function MealsIngredients() {
+export default function MealsIngredients({mealId}) {
     const currentMeal = useSelector(state => state.currentMealReducer.currentMeal);
     const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
     const isCurrentMealLoading = useSelector(state => state.currentMealReducer.isLoading);
     let ingredientsViews=[];
     
-        if(currentMeal && ingredients!=null){
+        if(currentMeal && currentMeal[mealId] && ingredients!=null){
             for(let iM=1;iM<13;iM++){
-                if(currentMeal["strIngredient"+iM] && currentMeal["strIngredient"+iM]!=='' && currentMeal["strIngredient"+iM]!==null){
+                if(currentMeal[mealId]["strIngredient"+iM] && currentMeal[mealId]["strIngredient"+iM]!=='' && currentMeal[mealId]["strIngredient"+iM]!==null){
                     ingredientsViews.push(
-                            <IngredientCard key={`m${iM}`} ing={currentMeal["strIngredient"+iM]} qty={currentMeal["strMeasure"+iM]}/>
+                            <IngredientCard key={`m${iM}`} ing={currentMeal[mealId]["strIngredient"+iM]} qty={currentMeal[mealId]["strMeasure"+iM]}/>
                     );
                 }else if (iM===1){
                     ingredientsViews.push(

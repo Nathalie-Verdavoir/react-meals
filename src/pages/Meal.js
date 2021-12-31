@@ -17,7 +17,7 @@ const Meal = () => {
     const dispatch = useDispatch();
     const { strMeal } = useParams();
     useEffect(() => {
-        if(currentMeal===null || (currentMeal && currentMeal.idMeal!==strMeal)){
+        if(currentMeal===null || (currentMeal && !currentMeal[strMeal])){
             dispatch(allActions.loadingCurrentMealAction());
             ( async function (){
                 try {
@@ -43,22 +43,26 @@ const Meal = () => {
                 {isCurrentMealLoading ? <Loader/> :
                 (currentMeal ? 
                     (<>
+                        {currentMeal[strMeal]?
+                        <>
                         <article>
-                            <div key={currentMeal.idMeal} className="card meal flex-grow-1 m-2">
+                            <div key={currentMeal[strMeal].idMeal} className="card meal flex-grow-1 m-2">
                                 <div className="d-flex  flex-wrap flex-md-nowrap  g-0">
-                                    <img className="photo img-fluid rounded" src={currentMeal.strMealThumb}  alt={currentMeal.strMeal}/>
-                                    <div className="vignette card-body">  <AreaFlag country={currentMeal.strArea}/>
-                                        <h3 className="card-title">{currentMeal.strMeal}</h3>
-                                        <p className="card-text fs-6">{currentMeal.strInstructions}</p> 
+                                    <img className="photo img-fluid rounded" src={currentMeal[strMeal].strMealThumb}  alt={currentMeal[strMeal].strMeal}/>
+                                    <div className="vignette card-body">  <AreaFlag country={currentMeal[strMeal].strArea}/>
+                                        <h3 className="card-title">{currentMeal[strMeal].strMeal}</h3>
+                                        <p className="card-text fs-6">{currentMeal[strMeal].strInstructions}</p> 
                                        
                                     </div>
                                 </div>
                             </div>
-                        </article> 
+                        </article>  
                         <div className="infos">
-                            <MealsIngredients/>
-                            <Video youtubeLink={currentMeal.strYoutube.toString()}/>
-                        </div>
+                            <MealsIngredients mealId={strMeal}/>
+                            <Video youtubeLink={currentMeal[strMeal].strYoutube.toString()}/>
+                        </div> 
+                        </>
+                        : (<article></article>)}
                     </>
                     ) : (
                     <p>No Recipe</p>
