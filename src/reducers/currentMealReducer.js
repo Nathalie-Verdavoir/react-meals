@@ -1,6 +1,7 @@
 const initialState = {
     currentMeal: null,
-    isLoading: false
+    isLoading: false,
+    isOnError: false
 }
 
 const currentMealReducer = (state = initialState, action) => {
@@ -22,6 +23,14 @@ const currentMealReducer = (state = initialState, action) => {
                 isLoading: false
             }
         
+        case "SET_CURRENT_MEAL_ERROR":
+            return {
+                ...state,
+                currentMeal: {...state.currentMeal},
+                isLoading: false,
+                isOnError: true
+            }
+             
         default:
             return state
     }

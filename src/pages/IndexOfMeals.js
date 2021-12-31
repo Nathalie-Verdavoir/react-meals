@@ -10,16 +10,21 @@ function IndexOfMeals() {
     const [mealsByIndex, setMealsByIndex] = useState(null);
    
     useEffect(() => {
-       ( async function (){
-            const url = "https://www.themealdb.com/api/json/v1/1/search.php?f="+letter;
-            const response = await fetch(url, {
-                headers: {
-                    Accept: "application/json",
-                },
-                
-            });
-            const mealsFromAPI = await response.json();
-            setMealsByIndex(mealsFromAPI.meals);
+        ( async function (){  
+            try {
+                const url = "https://www.themealdb.com/api/json/v1/1/search.php?f="+letter;
+                const response = await fetch(url, {
+                    headers: {
+                        Accept: "application/json",
+                    },
+                    
+                });
+                const mealsFromAPI = await response.json();
+                setMealsByIndex(mealsFromAPI.meals);
+            } catch(error) {
+                //dispatch(allActions.onErrorMealsByIndexAction());
+                console.log(error);
+            }
         })();
 
         }, [letter]);

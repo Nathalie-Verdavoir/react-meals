@@ -25,6 +25,7 @@ const SidebarIngredients = () => {
                     const ingredientsFromAPI = await response.json();
                     dispatch(allActions.ingredientsAction(ingredientsFromAPI.meals.sort(propComparator('strIngredient'))));
                 } catch(error) {
+                    dispatch(allActions.onErrorIngredientsAction());
                         console.log(error);
                 }
             })();

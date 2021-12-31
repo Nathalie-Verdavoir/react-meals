@@ -30,6 +30,7 @@ const Meal = () => {
                     const mealsFromAPI = await response.json();
                     dispatch(allActions.currentMealAction(mealsFromAPI.meals[0]));
                 } catch(error) {
+                    dispatch(allActions.onErrorCurrentMealAction());
                     console.log(error);
                 }
             })();

@@ -1,6 +1,7 @@
 const initialState = {
     ingredientsDrinks: null,
-    isLoading: false
+    isLoading: false,
+    isOnError: false
 }
 
 const ingredientsDrinksReducer = (state = initialState, action) => {
@@ -19,6 +20,14 @@ const ingredientsDrinksReducer = (state = initialState, action) => {
                 isLoading: false
             }
         
+        case "SET_INGREDIENTS_DRINKS_ERROR":
+            return {
+                ...state,
+                ingredientsDrinks: {...state.ingredientsDrinks},
+                isLoading: false,
+                isOnError: true
+            }
+
         default:
             return state
     }

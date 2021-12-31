@@ -27,7 +27,7 @@ const currentDrinkReducer = (state = initialState, action) => {
         case "SET_CURRENT_DRINK_ERROR":
             return {
                 ...state,
-                currentDrink: null,
+                currentDrink: {...state.currentDrink},
                 isLoading: false,
                 isOnError: true
             }

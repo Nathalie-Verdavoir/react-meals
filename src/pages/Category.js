@@ -26,22 +26,27 @@ const Category = () => {
             })
             setMealsByCategories(mealsByCat);
         }
-        else if (mealsByCategoriesState && mealsByCategoriesState[strCategory] && categories!==null){console.log('ok');
+        else if (mealsByCategoriesState && mealsByCategoriesState[strCategory] && categories!==null){
              setMealsByCategories(mealsByCategoriesState[strCategory]);
         }else{
-            (async () => {console.log('charge');
-                dispatch(allActions.loadingMealsByCategoriesAction());
-                const url = "https://www.themealdb.com/api/json/v1/1/filter.php?c="+strCategory;
-                const response = await fetch(url, {
-                     headers: {
-                         Accept : 'application/json'
-                     }
-                 }
-                )
-                const categoriesFromAPI = await response.json();
-                setMealsByCategories(categoriesFromAPI.meals);
-                dispatch(allActions.mealsByCategoriesAction([categoriesFromAPI.meals,strCategory]));
-             })();
+            ( async function (){  
+                try {
+                    dispatch(allActions.loadingMealsByCategoriesAction());
+                    const url = "https://www.themealdb.com/api/json/v1/1/filter.php?c="+strCategory;
+                    const response = await fetch(url, {
+                        headers: {
+                            Accept : 'application/json'
+                        }
+                    }
+                    )
+                    const categoriesFromAPI = await response.json();
+                    setMealsByCategories(categoriesFromAPI.meals);
+                    dispatch(allActions.mealsByCategoriesAction([categoriesFromAPI.meals,strCategory]));
+                } catch(error) {
+                    dispatch(allActions.onErrorMealsByCategoriesAction());
+                    console.log(error);
+                }
+            })();
         }
     },[strCategory,categories,dispatch,mealsByCategoriesState]);
     

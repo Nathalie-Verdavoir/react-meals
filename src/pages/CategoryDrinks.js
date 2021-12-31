@@ -2,15 +2,20 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import SidebarDrinks from "../components/SidebarDrinks";
 import DrinkCard from "../components/DrinkCard";
+import allActions from "../actions/allActions";
 
 const CategoryDrinks = () => {
     const { strCategory } = useParams();
     const [drinksByCategories, setDrinksByCategories] = useState([]);
     const categoriesDrinks = useSelector(state => state.categoriesDrinksReducer.categoriesDrinks);
+    const drinksByCategoriesState = useSelector(state => state.mealsByCategoriesReducer.mealsByCategories);
+    
+    const dispatch = useDispatch();
+    
     useEffect (() => {
         if(strCategory==='all' && categoriesDrinks){
             const drinksByCat = categoriesDrinks.map(cat => {
@@ -21,21 +26,29 @@ const CategoryDrinks = () => {
                 }
             })
             setDrinksByCategories(drinksByCat);
-        }
-        else {
-            (async () => {
-                const url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c="+strCategory;
-                const response = await fetch(url, {
-                     headers: {
-                         Accept : 'application/json'
-                     }
-                 }
-                )
-                const categoriesDrinksFromAPI = await response.json();
-                setDrinksByCategories(categoriesDrinksFromAPI.drinks);
+        }else if (drinksByCategoriesState && drinksByCategoriesState[strCategory] && categoriesDrinks!==null){console.log('ok');
+            setDrinksByCategories(drinksByCategoriesState[strCategory]);
+        }else {
+            ( async function (){  
+                try {
+                    dispatch(allActions.loadingDrinksByCategoriesAction());
+                    const url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c="+strCategory;
+                    const response = await fetch(url, {
+                        headers: {
+                            Accept : 'application/json'
+                        }
+                    }
+                    )
+                    const categoriesDrinksFromAPI = await response.json();
+                    setDrinksByCategories(categoriesDrinksFromAPI.drinks);
+                    dispatch(allActions.drinksByCategoriesAction([categoriesDrinksFromAPI.drinks,strCategory]));
+                } catch(error) {
+					dispatch(allActions.onErrorDrinksByCategoriesAction());
+                    console.log(error);
+                }
              })();
         }
-    },[strCategory,categoriesDrinks]);
+    },[strCategory,categoriesDrinks,dispatch,drinksByCategoriesState]);
     
     const allCat = strCategory==='all';
     const title = allCat ? `All categories` : `Recipes with ${strCategory}`;

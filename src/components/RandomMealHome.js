@@ -9,33 +9,43 @@ export const RandomMealHome = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(allActions.loadingCurrentMealAction());
-       ( async function (){
-        const url = "https://www.themealdb.com/api/json/v1/1/random.php";
-        const response = await fetch(url, {
-            headers: {
-                Accept: "application/json",
-            },
-            
-        });
-        const mealsFromAPI = await response.json();
-        setMeal(mealsFromAPI.meals[0]);
-        dispatch(allActions.currentMealAction(mealsFromAPI.meals[0]));
+        ( async function (){  
+            try {
+                const url = "https://www.themealdb.com/api/json/v1/1/random.php";
+                const response = await fetch(url, {
+                    headers: {
+                        Accept: "application/json",
+                    },
+                    
+                });
+                const mealsFromAPI = await response.json();
+                setMeal(mealsFromAPI.meals[0]);
+                dispatch(allActions.currentMealAction(mealsFromAPI.meals[0]));
+            } catch(error) {
+                dispatch(allActions.onErrorCurrentMealAction());
+                console.log(error);
+            }
     })();
     
     }, [dispatch]);//tableau vide pour initialiser au premier chargement
     
-    const handleClick = async () => {
-        dispatch(allActions.loadingCurrentMealAction());
-        const url = "https://www.themealdb.com/api/json/v1/1/random.php";
-        const response = await fetch(url, {
-            headers: {
-                Accept: "application/json",
-            },
-            
-        });
-        const mealsFromAPI = await response.json();
-        setMeal(mealsFromAPI.meals[0]); 
-        dispatch(allActions.currentMealAction(mealsFromAPI.meals[0]));
+    const handleClick = async function (){  
+        try {
+            dispatch(allActions.loadingCurrentMealAction());
+            const url = "https://www.themealdb.com/api/json/v1/1/random.php";
+            const response = await fetch(url, {
+                headers: {
+                    Accept: "application/json",
+                },
+                
+            });
+            const mealsFromAPI = await response.json();
+            setMeal(mealsFromAPI.meals[0]); 
+            dispatch(allActions.currentMealAction(mealsFromAPI.meals[0]));
+        } catch(error) {
+            dispatch(allActions.onErrorCurrentMealAction());
+            console.log(error);
+        }
     };
     return (
         <>

@@ -1,6 +1,7 @@
 const initialState = {
     categoriesDrinks: null,
-    isLoading: false
+    isLoading: false,
+    isOnError: false
 }
 
 const categoriesDrinksReducer = (state = initialState, action) => {
@@ -18,7 +19,15 @@ const categoriesDrinksReducer = (state = initialState, action) => {
                 categoriesDrinks: action.payload,
                 isLoading: false
             }
-        
+
+        case "SET_GATEGORIES_ERROR":
+            return {
+                ...state,
+                categoriesDrinks: {...state.categoriesDrinks},
+                isLoading: false,
+                isOnError: true
+            }   
+    
         default:
             return state
     }

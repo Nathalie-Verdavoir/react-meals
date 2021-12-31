@@ -11,7 +11,14 @@ const loadingCurrentMealAction = () => {
     }
 }
 
+const onErrorCurrentMealAction = () => {
+    return {
+        type:"SET_CURRENT_MEAL_ERROR"
+    }
+}
+
 export {
     currentMealAction,
-    loadingCurrentMealAction
+    loadingCurrentMealAction,
+    onErrorCurrentMealAction
 }

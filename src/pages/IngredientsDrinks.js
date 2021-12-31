@@ -23,7 +23,8 @@ const IngredientsDrinks = () => {
         setDrinksByIngredients(drinksByIng);
     }
     else if(strIngredientsDrinks!=='all' && ingredientsDrinks!=null){
-        (async () => {
+        ( async function (){  
+            try {
                 const url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+strIngredientsDrinks;
                 const response = await fetch(url, {
                     headers: {
@@ -33,7 +34,11 @@ const IngredientsDrinks = () => {
                 )
                 const ingredientsDrinksFromAPI = await response.json();
                 setDrinksByIngredients(ingredientsDrinksFromAPI.drinks);
-            })();
+            } catch(error) {
+                //dispatch(allActions.onErrorDrinksByIngredientsAction());
+                console.log(error);
+            }
+        })();
     }
 },[strIngredientsDrinks,ingredientsDrinks]);
 

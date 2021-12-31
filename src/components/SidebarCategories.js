@@ -24,6 +24,7 @@ const SidebarCategories = () => {
                     const categoriesFromAPI = await response.json();
                     dispatch(allActions.categoriesAction(categoriesFromAPI.categories.sort(propComparator('strCategory'))));
                 } catch(error) {
+                    dispatch(allActions.onErrorCategoriesAction());
                     console.log(error);
                 }
             })();

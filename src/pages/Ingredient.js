@@ -23,7 +23,8 @@ const Ingredient = () => {
         setMealsByIngredients(mealsByIng);
     }
     else {
-        (async () => {
+        ( async function (){  
+            try {
                 const url = "https://www.themealdb.com/api/json/v1/1/filter.php?i="+strIngredient;
                 const response = await fetch(url, {
                     headers: {
@@ -33,7 +34,11 @@ const Ingredient = () => {
                 )
                 const ingredientsFromAPI = await response.json();
                 setMealsByIngredients(ingredientsFromAPI.meals);
-            })();
+            } catch(error) {
+                //dispatch(allActions.onErrorMealsByIngredientsAction());
+                console.log(error);
+            }
+        })();
     }
 },[strIngredient,ingredients]);
 

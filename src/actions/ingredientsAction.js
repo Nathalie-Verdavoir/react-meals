@@ -11,7 +11,14 @@ const loadingIngredientsAction = () => {
     }
 }
 
+const onErrorIngredientsAction = () => {
+    return {
+        type:"SET_INGREDIENTS_ERROR"
+    }
+}
+
 export {
     ingredientsAction,
-    loadingIngredientsAction
+    loadingIngredientsAction,
+    onErrorIngredientsAction
 }

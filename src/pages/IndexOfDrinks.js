@@ -10,16 +10,21 @@ function IndexOfDrinks() {
     const [drinksByIndex, setDrinksByIndex] = useState(null);
    
     useEffect(() => {
-       ( async function (){
-            const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f="+letter;
-            const response = await fetch(url, {
-                headers: {
-                    Accept: "application/json",
-                },
-                
-            });
-            const drinksFromAPI = await response.json();
-            setDrinksByIndex(drinksFromAPI.drinks);
+        ( async function (){  
+            try {
+                const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f="+letter;
+                const response = await fetch(url, {
+                    headers: {
+                        Accept: "application/json",
+                    },
+                    
+                });
+                const drinksFromAPI = await response.json();
+                setDrinksByIndex(drinksFromAPI.drinks);
+            } catch(error) {
+                //dispatch(allActions.onErrorDrinksByIndexAction());
+                console.log(error);
+            }
         })();
 
         }, [letter]);

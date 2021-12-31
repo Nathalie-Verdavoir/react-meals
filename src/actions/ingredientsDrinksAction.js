@@ -11,7 +11,14 @@ const loadingIngredientsDrinksAction = () => {
     }
 }
 
+const onErrorIngredientsDrinksAction = () => {
+    return {
+        type:"SET_INGREDIENTS_DRINKS_ERROR"
+    }
+}
+
 export {
     ingredientsDrinksAction,
-    loadingIngredientsDrinksAction
+    loadingIngredientsDrinksAction,
+    onErrorIngredientsDrinksAction
 }

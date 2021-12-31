@@ -1,6 +1,7 @@
 const initialState = {
     categories: null,
-    isLoading: false
+    isLoading: false,
+    isOnError: false
 }
 
 const categoriesReducer = (state = initialState, action) => {
@@ -19,6 +20,14 @@ const categoriesReducer = (state = initialState, action) => {
                 isLoading: false
             }
         
+        case "SET_GATEGORIES_ERROR":
+            return {
+                ...state,
+                categories: {...state.categories},
+                isLoading: false,
+                isOnError: true
+            }   
+
         default:
             return state
     }

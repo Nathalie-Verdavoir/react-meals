@@ -11,7 +11,14 @@ const loadingCategoriesDrinksAction = () => {
     }
 }
 
+const onErrorCategoriesDrinksAction = () => {
+    return {
+        type:"SET_GATEGORIES_DRINKS_ERROR"
+    }
+}
+
 export {
     categoriesDrinksAction,
-    loadingCategoriesDrinksAction
+    loadingCategoriesDrinksAction,
+    onErrorCategoriesDrinksAction
 }

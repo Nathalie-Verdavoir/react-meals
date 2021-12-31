@@ -11,7 +11,14 @@ const loadingMealsByCategoriesAction = () => {
     }
 }
 
+const onErrorMealsByCategoriesAction = () => {
+    return {
+        type:"SET_MEALS_BY_CATEGORIES_ERROR"
+    }
+}
+
 export {
     mealsByCategoriesAction,
-    loadingMealsByCategoriesAction
+    loadingMealsByCategoriesAction,
+    onErrorMealsByCategoriesAction
 }

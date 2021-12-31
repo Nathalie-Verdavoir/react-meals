@@ -11,7 +11,14 @@ const loadingCategoriesAction = () => {
     }
 }
 
+const onErrorCategoriesAction = () => {
+    return {
+        type:"SET_GATEGORIES_ERROR"
+    }
+}
+
 export {
     categoriesAction,
-    loadingCategoriesAction
+    loadingCategoriesAction,
+    onErrorCategoriesAction
 }

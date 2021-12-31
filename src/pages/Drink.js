@@ -28,6 +28,7 @@ const Drink = () => {
                     const mealsFromAPI = await response.json();
                     dispatch(allActions.currentDrinkAction(mealsFromAPI.drinks[0]));
                 } catch(error) {
+                    dispatch(allActions.onErrorCurrentDrinkAction());
                     console.log(error);
                 }
             })();
