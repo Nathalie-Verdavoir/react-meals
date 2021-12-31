@@ -12,10 +12,9 @@ const CategoryDrinks = () => {
     const { strCategory } = useParams();
     const [drinksByCategories, setDrinksByCategories] = useState([]);
     const categoriesDrinks = useSelector(state => state.categoriesDrinksReducer.categoriesDrinks);
-    const drinksByCategoriesState = useSelector(state => state.mealsByCategoriesReducer.mealsByCategories);
+    const drinksByCategoriesState = useSelector(state => state.drinksByCategoriesReducer.drinksByCategories);
     
     const dispatch = useDispatch();
-    
     useEffect (() => {
         if(strCategory==='all' && categoriesDrinks){
             const drinksByCat = categoriesDrinks.map(cat => {
@@ -26,7 +25,7 @@ const CategoryDrinks = () => {
                 }
             })
             setDrinksByCategories(drinksByCat);
-        }else if (drinksByCategoriesState && drinksByCategoriesState[strCategory] && categoriesDrinks!==null){console.log('ok');
+        }else if (drinksByCategoriesState && drinksByCategoriesState[strCategory] && categoriesDrinks!==null){
             setDrinksByCategories(drinksByCategoriesState[strCategory]);
         }else {
             ( async function (){  
