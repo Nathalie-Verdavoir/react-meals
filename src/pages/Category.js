@@ -3,16 +3,20 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import MealCard from "../components/MealCard";
+import allActions from "../actions/allActions";
 
 const Category = () => {
     const { strCategory } = useParams();
     const [mealsByCategories, setMealsByCategories] = useState([]);
     const categories = useSelector(state => state.categoriesReducer.categories);
+    const mealsByCategoriesState = useSelector(state => state.mealsByCategoriesReducer.mealsByCategories);
+    
+    const dispatch = useDispatch();
     useEffect (() => {
-        if(strCategory==='all' && categories){
+        if(strCategory==='all' && categories!==null){
             const mealsByCat = categories.map(cat => {
                 return {
                 idMeal : cat.idCategory,
@@ -22,8 +26,11 @@ const Category = () => {
             })
             setMealsByCategories(mealsByCat);
         }
-        else {
-            (async () => {
+        else if (mealsByCategoriesState && mealsByCategoriesState[strCategory] && categories!==null){console.log('ok');
+             setMealsByCategories(mealsByCategoriesState[strCategory]);
+        }else{
+            (async () => {console.log('charge');
+                dispatch(allActions.loadingMealsByCategoriesAction());
                 const url = "https://www.themealdb.com/api/json/v1/1/filter.php?c="+strCategory;
                 const response = await fetch(url, {
                      headers: {
@@ -33,9 +40,10 @@ const Category = () => {
                 )
                 const categoriesFromAPI = await response.json();
                 setMealsByCategories(categoriesFromAPI.meals);
+                dispatch(allActions.mealsByCategoriesAction([categoriesFromAPI.meals,strCategory]));
              })();
         }
-    },[strCategory,categories]);
+    },[strCategory,categories,dispatch,mealsByCategoriesState]);
     
     const allCat = strCategory==='all';
     const title = allCat ? `All categories` : `Recipes with ${strCategory}`;
