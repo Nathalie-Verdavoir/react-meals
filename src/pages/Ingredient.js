@@ -29,8 +29,8 @@ const Ingredient = () => {
    }
     else {
         ( async function (){  
-            try {dispatch(allActions.loadingMealsByIngredientsAction());
-                    
+            try {
+                dispatch(allActions.loadingMealsByIngredientsAction());
                 const url = "https://www.themealdb.com/api/json/v1/1/filter.php?i="+strIngredient;
                 const response = await fetch(url, {
                     headers: {
