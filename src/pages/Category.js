@@ -51,7 +51,7 @@ const Category = () => {
     },[strCategory,categories,dispatch,mealsByCategoriesState]);
     
     const allCat = strCategory==='all';
-    const title = allCat ? `All categories` : `Recipes with ${strCategory}`;
+    const title = allCat ? `All categories of meals` : `Recipes of ${strCategory}`;
     
 return (
     <>

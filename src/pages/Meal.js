@@ -47,8 +47,8 @@ const Meal = () => {
                         {currentMeal[strMeal]?
                         <>
                         <article>
-                            <div key={currentMeal[strMeal].idMeal} className="card meal flex-grow-1 m-2">
-                                <div className="d-flex  flex-wrap flex-md-nowrap  g-0">
+                            <div key={currentMeal[strMeal].idMeal} className="flex-grow-1 m-2">
+                                <div className="d-flex card meal  flex-wrap flex-md-nowrap  g-0">
                                     <img className="photo img-fluid rounded" src={currentMeal[strMeal].strMealThumb}  alt={currentMeal[strMeal].strMeal}/>
                                     <div className="vignette card-body">  <AreaFlag country={currentMeal[strMeal].strArea}/>
                                         <h3 className="card-title">{currentMeal[strMeal].strMeal}</h3>

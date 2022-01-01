@@ -26,7 +26,7 @@ export default function DrinksIngredients({drinkId}) {
 
 
     return (
-        <div className="ing-list col-8 container-fluid">
+        <div className="ing-list col-12 col-md-8 container-fluid">
             <div className="d-flex flex-row flex-wrap">
             {isCurrentDrinkLoading ? <Loader/> :
                 (currentDrink && currentDrink[drinkId] && ingredientsViews ? 

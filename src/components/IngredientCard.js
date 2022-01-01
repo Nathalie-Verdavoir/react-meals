@@ -3,8 +3,8 @@ import defaultimg from "../img/defaultimg.png";
 export default function IngredientCard({ing,qty}) {
     return (
         <div key={'ingC'+ing} className=" col-12  col-md-6 col-lg-3 g-0 p-2 flex-grow-1">
-        <div  className="card flex-grow-1 vignette-ing "> 
-         <div className="row g-0">
+        <div  className="card col-12 flex-grow-1 vignette-ing "> 
+         <div className="row col-12 g-0">
             <div className="col-md-4">
                 <img 
                     src={`https://www.themealdb.com/images/ingredients/${ing}.png`}  
@@ -18,7 +18,7 @@ export default function IngredientCard({ing,qty}) {
                 />
             </div>
             <div className="col-md-8">
-                <div className="card-body">
+                <div className="card-body ing-card">
                 <h5 className="card-title">{`${ing[0].toUpperCase()}${ing.slice(1)}`}</h5>
                 <p className="card-text p-0 m-0 lh-1">{qty} </p>
             </div> 

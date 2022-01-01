@@ -2,13 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap');
 
 :root{
-  --yellow: #faeaab;
+  --yellow: #f7f4e9;
   --yellow-1: rgb(250, 250, 151);
   --orange-1: #da8350;
   --orange-2: rgb(253, 240, 221);
   --orange-3: rgb(250, 217, 167);
   --orange-4: rgb(251, 199, 121);
-  --orange-5: rgb(218, 131, 80);
+  --orange-5: rgb(255, 96, 4);
   --orange-6: hsl(23, 59%, 87%);
   --green-1: rgb(199, 253, 204);
   --green-2: #15550a;
@@ -23,6 +23,20 @@ body { background-color:  var(--yellow);
   margin: 0;
   font-family: 'Fuzzy Bubbles', cursive;
 }
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+h1 {
+  font-size: 250%;
+}
+
+.dropdown-menu {
+  background-color: #ffffffbd;
+}
+
 ul.dropdown-menu>li:first-child>a {
   color: white;
   background-color: var(--orange-1);
@@ -76,9 +90,11 @@ aside.drinks>*>* {
   background-color:  var(--green-4);
   color:  var(--green-2);
 }
+
 .accordion-item {
   background-color: var(--yellow-1);
 }
+
 .accordion-button {
   font-family: 'Fuzzy Bubbles', cursive;
 }
@@ -114,6 +130,7 @@ box-shadow: inset 0 -1px 0  var(--shadow);
 li {
   display: inline;
 }
+
 a {
   color:  var(--orange-1);
   text-decoration: none;
@@ -124,10 +141,14 @@ a:focus {
   color:  var(--orange-1);
   text-decoration: underline;
 }
+
 .meal-photo-text {
   display : flex;
 }
 
+.card {
+  flex-flow: nowrap
+}
 
 .App-logo-faster,
 .nav-link,
@@ -137,22 +158,23 @@ a:focus {
   color:  var(--orange-5);
 }
 
-.nav,
-.nav-item {
-  background-color: var(--yellow-1);
+.nav {
+  width: 100vw;
+  min-height: 15vh;
+  background-image: url("./img/header-home.jpg");background-size: cover;
 }
 
 .nav-item {
-  width: 33vw;
-}
-
-.card {
-  flex-flow: nowrap
+ margin-right: 10vw;
 }
 
 .card-body {
   background-image: url("./img/cahier.png");
-  
+  height: auto;
+}
+
+.card-body.ing-card {
+  height: 100%;
 }
 
 .card-text {
@@ -167,12 +189,16 @@ a:focus {
 .btn-lg {
   padding: 0;
 }
+
 .App-logo {
   color: var(--orange-1);
   margin: 10px;
   pointer-events: none;
 }
 
+.card.meal>*{
+  width:50%;
+}
 
 .vignette-photo {
   width: 50%;
@@ -180,7 +206,7 @@ a:focus {
 }
 
 .ing-list,
-.ing-list h5{
+.ing-list h5 {
   font-size: 0.9rem;
   display: flex;
   flex-wrap: wrap;
@@ -190,19 +216,23 @@ a:focus {
   font-size: 0.9rem;
   display: flex;
   flex-wrap: wrap;
+  height: calc(50vh - 16px);
+}
+.ing-list-25>iframe { 
+  width: 100%;
 }
 .infos {
   display: flex;
   flex-wrap: wrap;
 }
+
 .vignette-photo-ing {
   width: auto;
 }
 
 .vignette-ing,
-.vignette-ing .card-body,
-.vignette-photo-ing {
-  background:  var(--green-6);
+.vignette-ing.card-body {
+  background:  var(--green-5);
 }
 
 .flag{float:right;height:64px;width:64px;vertical-align:text-top;line-height:64px; background-image: url("./img/flags32.png");}
@@ -267,13 +297,27 @@ footer a {
 }
 
 @media screen and  (max-width: 767px) { 
+  main {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
   .sidebar{
     display: none;
   }
 
+  .card.meal>*{
+    width:100%;
+  }
+
+  .card {
+    flex-flow: wrap;
+  }
+
   .vignette,
   .vignette-photo {
-    width: 100vw;
+    width: 100%;
+    height: auto;
   }
 } 
 

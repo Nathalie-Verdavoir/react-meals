@@ -50,7 +50,7 @@ const Ingredient = () => {
 },[strIngredient,ingredients,dispatch,mealsByIngredientsState]);
 
 const allIng = strIngredient==='all';
-const title = allIng ? `All ingredients` : `Recipes with ${strIngredient}`;                      
+const title = allIng ? `All ingredients of meals` : `Recipes with ${strIngredient}`;                      
 
 return (
     <>
