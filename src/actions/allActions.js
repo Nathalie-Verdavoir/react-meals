@@ -3,6 +3,7 @@ import { ingredientsAction, loadingIngredientsAction, onErrorIngredientsAction }
 import { currentMealAction, loadingCurrentMealAction, onErrorCurrentMealAction }  from './currentMealAction';
 import { mealsByCategoriesAction, loadingMealsByCategoriesAction, onErrorMealsByCategoriesAction }  from './mealsByCategoriesAction';
 import { mealsByIngredientsAction, loadingMealsByIngredientsAction, onErrorMealsByIngredientsAction }  from './mealsByIngredientsAction';
+import { mealsByLetterAction, loadingMealsByLetterAction, onErrorMealsByLetterAction }  from './mealsByLetterAction';
 import { categoriesDrinksAction, loadingCategoriesDrinksAction, onErrorCategoriesDrinksAction }  from './categoriesDrinkAction';
 import { ingredientsDrinksAction, loadingIngredientsDrinksAction, onErrorIngredientsDrinksAction }  from './ingredientsDrinksAction';
 import { currentDrinkAction, loadingCurrentDrinkAction, onErrorCurrentDrinkAction }  from './currentDrinkAction';
@@ -30,6 +31,10 @@ const allActions = {
     mealsByIngredientsAction,
     loadingMealsByIngredientsAction,
     onErrorMealsByIngredientsAction,
+
+    mealsByLetterAction,
+    loadingMealsByLetterAction,
+    onErrorMealsByLetterAction,
 
     categoriesDrinksAction,
     loadingCategoriesDrinksAction,
