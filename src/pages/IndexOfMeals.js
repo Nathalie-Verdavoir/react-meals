@@ -4,30 +4,46 @@ import Sidebar from '../components/Sidebar';
 import { useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
 import MealCard from '../components/MealCard';
+import { useDispatch, useSelector } from 'react-redux';
+import allActions from '../actions/allActions';
 
 function IndexOfMeals() {
     const { letter } = useParams();
     const [mealsByIndex, setMealsByIndex] = useState(null);
-   
+    const mealsByLetterState = useSelector(state => state.mealsByLetterReducer.mealsByLetter);
+    const currentMeal = useSelector(state => state.currentMealReducer.currentMeal);
+    const dispatch = useDispatch();
     useEffect(() => {
-        ( async function (){  
-            try {
-                const url = "https://www.themealdb.com/api/json/v1/1/search.php?f="+letter;
-                const response = await fetch(url, {
-                    headers: {
-                        Accept: "application/json",
-                    },
-                    
-                });
-                const mealsFromAPI = await response.json();
-                setMealsByIndex(mealsFromAPI.meals);
-            } catch(error) {
-                //dispatch(allActions.onErrorMealsByIndexAction());
-                console.log(error);
-            }
-        })();
+        if (mealsByLetterState && mealsByLetterState[letter]){
+            setMealsByIndex(mealsByLetterState[letter]);
+        }
+        else{
+            ( async function (){  
+                try {
+                    dispatch(allActions.loadingMealsByLetterAction());
+                    const url = "https://www.themealdb.com/api/json/v1/1/search.php?f="+letter;
+                    const response = await fetch(url, {
+                        headers: {
+                            Accept: "application/json",
+                        },
+                        
+                    });
+                    const mealsFromAPI = await response.json();
+                    setMealsByIndex(mealsFromAPI.meals);
+                    dispatch(allActions.mealsByLetterAction([mealsFromAPI.meals,letter]));
+                    console.log('mealsFromAPI.meals.length:',mealsFromAPI.meals.length);
+                    if(mealsFromAPI.meals.length>0){
+                        for(let m=0;m<mealsFromAPI.meals.length;m++){
+                            dispatch(allActions.currentMealAction(mealsFromAPI.meals[m]));
+                        }
+                    }
+                } catch(error) {
+                    dispatch(allActions.onErrorMealsByLetterAction());
+                    console.log(error);
+                }
+            })();
 
-        }, [letter]);
+        }}, [letter,dispatch,mealsByLetterState,currentMeal]);
    
 
     return (
