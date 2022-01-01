@@ -7,6 +7,7 @@ import { categoriesDrinksAction, loadingCategoriesDrinksAction, onErrorCategorie
 import { ingredientsDrinksAction, loadingIngredientsDrinksAction, onErrorIngredientsDrinksAction }  from './ingredientsDrinksAction';
 import { currentDrinkAction, loadingCurrentDrinkAction, onErrorCurrentDrinkAction }  from './currentDrinkAction';
 import { drinksByCategoriesAction, loadingDrinksByCategoriesAction, onErrorDrinksByCategoriesAction }  from './drinksByCategoriesAction';
+import { drinksByIngredientsAction, loadingDrinksByIngredientsAction, onErrorDrinksByIngredientsAction }  from './drinksByIngredientsAction';
 
 const allActions = {
     categoriesAction,
@@ -43,7 +44,11 @@ const allActions = {
 
     drinksByCategoriesAction,
     loadingDrinksByCategoriesAction,
-    onErrorDrinksByCategoriesAction
+    onErrorDrinksByCategoriesAction,
+
+    drinksByIngredientsAction,
+    loadingDrinksByIngredientsAction,
+    onErrorDrinksByIngredientsAction
 }
 
 export default allActions;
