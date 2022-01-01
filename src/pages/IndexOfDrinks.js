@@ -30,6 +30,11 @@ function IndexOfDrinks() {
                     const drinksFromAPI = await response.json();
                     setDrinksByIndex(drinksFromAPI.drinks);
                     dispatch(allActions.drinksByLetterAction([drinksFromAPI.drinks,letter]));
+                    if(drinksFromAPI.drinks.length>0){
+                        for(let m=0;m<drinksFromAPI.drinks.length;m++){
+                            dispatch(allActions.currentDrinkAction(drinksFromAPI.drinks[m]));
+                        }
+                    }
                 } catch(error) {
                     dispatch(allActions.onErrorDrinksByLetterAction());
                     console.log(error);
