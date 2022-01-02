@@ -17,7 +17,7 @@ import IngredientsDrinks from './pages/IngredientsDrinks';
 function App() {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/mealsApp">
       <Routes>
         <Route path="/"  element={<Home/>} />
 
