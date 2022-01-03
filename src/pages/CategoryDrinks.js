@@ -6,14 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import SidebarDrinks from "../components/SidebarDrinks";
 import DrinkCard from "../components/DrinkCard";
-import { setDrinksByCategories , setDrinksByCategoriesLoading , setDrinksByCategoriesError } from "../slices/drinksByCategoriesSlices";
+import { setDrinksByCategories , setDrinksByCategoriesLoading , setDrinksByCategoriesError } from "../slices/drinksByCategoriesSlice";
 
 
 const CategoryDrinks = () => {
     const { strCategory } = useParams();
     const [drinksByCategoriesComp, setDrinksByCategoriesComp] = useState([]);
     const categoriesDrinks = useSelector(state => state.categoriesDrinksReducer.categoriesDrinks);
-    const drinksByCategories = useSelector(state => state.drinksByCategories);
+    const {drinksByCategories} = useSelector(state => state.drinksByCategories);
     
     const dispatch = useDispatch();
     useEffect (() => {
