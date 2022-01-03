@@ -8,7 +8,7 @@ import categoriesDrinksReducer from './categoriesDrinksReducer';
 import ingredientsDrinksReducer from './ingredientsDrinksReducer';
 import currentDrinkReducer from './currentDrinkReducer';
 import drinksByCategoriesReducer from "./drinksByCategoriesReducer";
-import drinksByIngredientsReducer from "./drinksByIngredientsReducer";
+import drinksByIngredients from "../slices/drinksByIngredientsSlice";
 import drinksByLetter from "../slices/drinksByLetterSlice";
 import {combineReducers} from 'redux';
 
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
     ingredientsDrinksReducer,
     currentDrinkReducer,
     drinksByCategoriesReducer,
-    drinksByIngredientsReducer,
+    drinksByIngredients,
     drinksByLetter
 })
 

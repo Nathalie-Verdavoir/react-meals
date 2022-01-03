@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import DrinkCard from "../components/DrinkCard";
 import SidebarDrinks from "../components/SidebarDrinks";
-import allActions from "../actions/allActions";
+import { setDrinksByIngredients , setDrinksByIngredientsLoading , setDrinksByIngredientsError } from '../slices/drinksByIngredientsSlice';
 
 const IngredientsDrinks = () => {
    
     const { strIngredientsDrinks } = useParams();
-    const [drinksByIngredients, setDrinksByIngredients] = useState([]);
+    const [drinksByIngredientsComp, setDrinksByIngredientsComp] = useState([]);
     const ingredientsDrinks = useSelector(state => state.ingredientsDrinksReducer.ingredientsDrinks);
-    const drinksByIngredientsState = useSelector(state => state.drinksByIngredientsReducer.drinksByIngredients);
+    const {drinksByIngredients} = useSelector(state => state.drinksByIngredients);
     const dispatch = useDispatch();
    useEffect (() => {
     if(strIngredientsDrinks==='all' && ingredientsDrinks){
@@ -22,14 +22,14 @@ const IngredientsDrinks = () => {
             strDrinkThumb :"https://www.thecocktaildb.com/images/ingredients/"+ing.strIngredient1+".png",
             }
         })
-        setDrinksByIngredients(drinksByIng);
-    }else if (drinksByIngredientsState && drinksByIngredientsState[strIngredientsDrinks] && ingredientsDrinks!==null){
-        setDrinksByIngredients(drinksByIngredientsState[strIngredientsDrinks]);
+        setDrinksByIngredientsComp(drinksByIng);
+    }else if (drinksByIngredients && drinksByIngredients[strIngredientsDrinks] && ingredientsDrinks!==null){
+        setDrinksByIngredientsComp(drinksByIngredients[strIngredientsDrinks]);
    }
     else if(strIngredientsDrinks!=='all' && ingredientsDrinks!=null){
         ( async function (){  
             try {
-                dispatch(allActions.loadingDrinksByIngredientsAction());
+                dispatch(setDrinksByIngredientsLoading());
                 const url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+strIngredientsDrinks;
                 const response = await fetch(url, {
                     headers: {
@@ -38,15 +38,15 @@ const IngredientsDrinks = () => {
                 }
                 )
                 const ingredientsDrinksFromAPI = await response.json();
-                setDrinksByIngredients(ingredientsDrinksFromAPI.drinks);
-                dispatch(allActions.drinksByIngredientsAction([ingredientsDrinksFromAPI.drinks,strIngredientsDrinks]));
+                setDrinksByIngredientsComp(ingredientsDrinksFromAPI.drinks);
+                dispatch(setDrinksByIngredients([ingredientsDrinksFromAPI.drinks,strIngredientsDrinks]));
             } catch(error) {
-                dispatch(allActions.onErrorDrinksByIngredientsAction());
+                dispatch(setDrinksByIngredientsError());
                 console.log(error);
             }
         })();
     }
-},[strIngredientsDrinks,ingredientsDrinks,dispatch,drinksByIngredientsState]);
+},[strIngredientsDrinks,ingredientsDrinks,dispatch,drinksByIngredients]);
 
 const allIng = strIngredientsDrinks==='all';
 const title = allIng ? `All ingredients of drinks` : `Recipes with ${strIngredientsDrinks}`;                      
@@ -59,9 +59,9 @@ return (
     <div className="col-12 col-md-10">
         <h1>{title}</h1>
     <section className="row align-items-center g-0"> 
-  {drinksByIngredients ? (
+  {drinksByIngredientsComp ? (
       <>
-      {drinksByIngredients.map(drink => {
+      {drinksByIngredientsComp.map(drink => {
           return(
             <DrinkCard key={drink.idDrink}  drink={drink} allCat={null} allIng={allIng}/>
             )
