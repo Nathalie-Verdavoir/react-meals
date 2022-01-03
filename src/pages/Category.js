@@ -6,13 +6,14 @@ import Sidebar from "../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import MealCard from "../components/MealCard";
-import allActions from "../actions/allActions";
+import { setMealsByCategories , setMealsByCategoriesLoading , setMealsByCategoriesError } from "../slices/mealsByCategoriesSlice";
+
 
 const Category = () => {
     const { strCategory } = useParams();
-    const [mealsByCategories, setMealsByCategories] = useState([]);
+    const [mealsByCategoriesComp, setMealsByCategoriesComp] = useState([]);
     const categories = useSelector(state => state.categoriesReducer.categories);
-    const mealsByCategoriesState = useSelector(state => state.mealsByCategoriesReducer.mealsByCategories);
+    const {mealsByCategories} = useSelector(state => state.mealsByCategories);
     
     const dispatch = useDispatch();
     useEffect (() => {
@@ -24,14 +25,14 @@ const Category = () => {
                 strMeal : cat.strCategory,
                 }
             })
-            setMealsByCategories(mealsByCat);
+            setMealsByCategoriesComp(mealsByCat);
         }
-        else if (mealsByCategoriesState && mealsByCategoriesState[strCategory] && categories!==null){
-             setMealsByCategories(mealsByCategoriesState[strCategory]);
+        else if (mealsByCategories && mealsByCategories[strCategory] && categories!==null){
+             setMealsByCategoriesComp(mealsByCategories[strCategory]);
         }else{
             ( async function (){  
                 try {
-                    dispatch(allActions.loadingMealsByCategoriesAction());
+                    dispatch(setMealsByCategoriesLoading());
                     const url = "https://www.themealdb.com/api/json/v1/1/filter.php?c="+strCategory;
                     const response = await fetch(url, {
                         headers: {
@@ -40,15 +41,15 @@ const Category = () => {
                     }
                     )
                     const categoriesFromAPI = await response.json();
-                    setMealsByCategories(categoriesFromAPI.meals);
-                    dispatch(allActions.mealsByCategoriesAction([categoriesFromAPI.meals,strCategory]));
+                    setMealsByCategoriesComp(categoriesFromAPI.meals);
+                    dispatch(setMealsByCategories([categoriesFromAPI.meals,strCategory]));
                 } catch(error) {
-                    dispatch(allActions.onErrorMealsByCategoriesAction());
+                    dispatch(setMealsByCategoriesError());
                     console.log(error);
                 }
             })();
         }
-    },[strCategory,categories,dispatch,mealsByCategoriesState]);
+    },[strCategory,categories,dispatch,mealsByCategories]);
     
     const allCat = strCategory==='all';
     const title = allCat ? `All categories of meals` : `Recipes of ${strCategory}`;
@@ -60,9 +61,9 @@ return (
     <div className="col-12 col-md-10">
         <h1>{title}</h1>
             <section className="row align-items-center g-0"> 
-                {mealsByCategories ? (
+                {mealsByCategoriesComp ? (
                     <>
-                    {mealsByCategories.map(meal => {
+                    {mealsByCategoriesComp.map(meal => {
                         return(
                             <MealCard key={meal.idMeal}  meal={meal} allCat={allCat} allIng={null}/>
                             )

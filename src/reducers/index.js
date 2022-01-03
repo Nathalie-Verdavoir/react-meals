@@ -1,7 +1,7 @@
 import categoriesReducer from './categoriesReducer';
 import ingredientsReducer from './ingredientsReducer';
 import currentMealReducer from './currentMealReducer';
-import mealsByCategoriesReducer from './mealsByCategoriesReducer';
+import mealsByCategories from '../slices/mealsByCategoriesSlice';
 import mealsByIngredients from '../slices/mealsByIngredientsSlice';
 import mealsByLetter from "../slices/mealsByLetterSlice";
 import categoriesDrinksReducer from './categoriesDrinksReducer';
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
     categoriesReducer,
     ingredientsReducer,
     currentMealReducer,
-    mealsByCategoriesReducer,
+    mealsByCategories,
     mealsByIngredients,
     mealsByLetter,
     categoriesDrinksReducer,
