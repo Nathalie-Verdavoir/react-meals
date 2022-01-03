@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import SidebarDrinks from "../components/SidebarDrinks";
 import DrinkCard from "../components/DrinkCard";
-import allActions from "../actions/allActions";
+import { setDrinksByCategories , setDrinksByCategoriesLoading , setDrinksByCategoriesError } from "../slices/drinksByCategoriesSlices";
+
 
 const CategoryDrinks = () => {
     const { strCategory } = useParams();
-    const [drinksByCategories, setDrinksByCategories] = useState([]);
+    const [drinksByCategoriesComp, setDrinksByCategoriesComp] = useState([]);
     const categoriesDrinks = useSelector(state => state.categoriesDrinksReducer.categoriesDrinks);
-    const drinksByCategoriesState = useSelector(state => state.drinksByCategoriesReducer.drinksByCategories);
+    const drinksByCategories = useSelector(state => state.drinksByCategories);
     
     const dispatch = useDispatch();
     useEffect (() => {
@@ -24,13 +25,13 @@ const CategoryDrinks = () => {
                 strDrink : cat.strCategory,
                 }
             })
-            setDrinksByCategories(drinksByCat);
-        }else if (drinksByCategoriesState && drinksByCategoriesState[strCategory] && categoriesDrinks!==null){
-            setDrinksByCategories(drinksByCategoriesState[strCategory]);
+            setDrinksByCategoriesComp(drinksByCat);
+        }else if (drinksByCategories && drinksByCategories[strCategory] && categoriesDrinks!==null){
+            setDrinksByCategoriesComp(drinksByCategories[strCategory]);
         }else {
             ( async function (){  
                 try {
-                    dispatch(allActions.loadingDrinksByCategoriesAction());
+                    dispatch(setDrinksByCategoriesLoading());
                     const url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c="+strCategory;
                     const response = await fetch(url, {
                         headers: {
@@ -39,15 +40,15 @@ const CategoryDrinks = () => {
                     }
                     )
                     const categoriesDrinksFromAPI = await response.json();
-                    setDrinksByCategories(categoriesDrinksFromAPI.drinks);
-                    dispatch(allActions.drinksByCategoriesAction([categoriesDrinksFromAPI.drinks,strCategory]));
+                    setDrinksByCategoriesComp(categoriesDrinksFromAPI.drinks);
+                    dispatch(setDrinksByCategories([categoriesDrinksFromAPI.drinks,strCategory]));
                 } catch(error) {
-					dispatch(allActions.onErrorDrinksByCategoriesAction());
+					dispatch(setDrinksByCategoriesError());
                     console.log(error);
                 }
              })();
         }
-    },[strCategory,categoriesDrinks,dispatch,drinksByCategoriesState]);
+    },[strCategory,categoriesDrinks,dispatch,drinksByCategories]);
     
     const allCat = strCategory==='all';
     const title = allCat ? `All categories of drinks` : `Recipes of ${strCategory}`;
@@ -59,9 +60,9 @@ return (
     <div className="col-12 col-md-10">
         <h1>{title}</h1>
             <section className="row align-items-center g-0"> 
-                {drinksByCategories ? (
+                {drinksByCategoriesComp ? (
                     <>
-                    {drinksByCategories.map(drink => {
+                    {drinksByCategoriesComp.map(drink => {
                         return(
                             <DrinkCard key={drink.idDrink}  drink={drink} allCat={allCat} allIng={null}/>
                             )
