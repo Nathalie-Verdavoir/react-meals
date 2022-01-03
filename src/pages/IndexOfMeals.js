@@ -6,20 +6,21 @@ import Footer from '../components/Footer';
 import MealCard from '../components/MealCard';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../actions/allActions';
+import { setMealsByLetter , setMealsByLetterLoading , setMealsByLetterError } from "../slices/mealsByLetterSlice";
 
 function IndexOfMeals() {
     const { letter } = useParams();
     const [mealsByIndex, setMealsByIndex] = useState(null);
-    const mealsByLetterState = useSelector(state => state.mealsByLetterReducer.mealsByLetter);
+    const {mealsByLetter} = useSelector(state => state.mealsByLetter);
     const dispatch = useDispatch();
     useEffect(() => {
-        if (mealsByLetterState && mealsByLetterState[letter]){
-            setMealsByIndex(mealsByLetterState[letter]);
+        if (mealsByLetter && mealsByLetter[letter]){
+            setMealsByIndex(mealsByLetter[letter]);
         }
         else{
             ( async function (){  
                 try {
-                    dispatch(allActions.loadingMealsByLetterAction());
+                    dispatch(setMealsByLetterLoading());
                     const url = "https://www.themealdb.com/api/json/v1/1/search.php?f="+letter;
                     const response = await fetch(url, {
                         headers: {
@@ -29,19 +30,19 @@ function IndexOfMeals() {
                     });
                     const mealsFromAPI = await response.json();
                     setMealsByIndex(mealsFromAPI.meals);
-                    dispatch(allActions.mealsByLetterAction([mealsFromAPI.meals,letter]));
+                    dispatch(setMealsByLetter([mealsFromAPI.meals,letter]));
                     if(mealsFromAPI.meals.length>0){
                         for(let m=0;m<mealsFromAPI.meals.length;m++){
                             dispatch(allActions.currentMealAction(mealsFromAPI.meals[m]));
                         }
                     }
                 } catch(error) {
-                    dispatch(allActions.onErrorMealsByLetterAction());
+                    dispatch(setMealsByLetterError());
                     console.log(error);
                 }
             })();
 
-        }}, [letter,dispatch,mealsByLetterState]);
+        }}, [letter,dispatch,mealsByLetter]);
    
 
     return (

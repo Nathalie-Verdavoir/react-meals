@@ -6,20 +6,22 @@ import DrinkCard from '../components/DrinkCard';
 import SidebarDrinks from '../components/SidebarDrinks';
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../actions/allActions';
+import { setDrinksByLetter , setDrinksByLetterLoading , setDrinksByLetterError } from "../slices/drinksByLetterSlice";
 
 function IndexOfDrinks() {
     const { letter } = useParams();
     const [drinksByIndex, setDrinksByIndex] = useState(null);
-    const drinksByLetterState = useSelector(state => state.drinksByLetterReducer.drinksByLetter);
+    const {drinksByLetter}  = useSelector(state => state.drinksByLetter);
     const dispatch = useDispatch();
+    
     useEffect(() => {
-        if (drinksByLetterState && drinksByLetterState[letter]){
-            setDrinksByIndex(drinksByLetterState[letter]);
+        if (drinksByLetter && drinksByLetter[letter]){
+            setDrinksByIndex(drinksByLetter[letter]);
         }
         else{
             ( async function (){  
                 try {
-                    dispatch(allActions.loadingDrinksByLetterAction());
+                    dispatch(setDrinksByLetterLoading());
                     const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f="+letter;
                     const response = await fetch(url, {
                         headers: {
@@ -29,19 +31,19 @@ function IndexOfDrinks() {
                     });
                     const drinksFromAPI = await response.json();
                     setDrinksByIndex(drinksFromAPI.drinks);
-                    dispatch(allActions.drinksByLetterAction([drinksFromAPI.drinks,letter]));
+                    dispatch(setDrinksByLetter([drinksFromAPI.drinks,letter]));
                     if(drinksFromAPI.drinks.length>0){
                         for(let m=0;m<drinksFromAPI.drinks.length;m++){
                             dispatch(allActions.currentDrinkAction(drinksFromAPI.drinks[m]));
                         }
                     }
                 } catch(error) {
-                    dispatch(allActions.onErrorDrinksByLetterAction());
+                    dispatch(setDrinksByLetterError());
                     console.log(error);
                 }
             })();
             
-        }}, [letter,dispatch,drinksByLetterState]);
+        }}, [letter,dispatch,drinksByLetter]);
     
         
     return (
