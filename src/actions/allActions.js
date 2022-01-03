@@ -3,13 +3,11 @@ import { ingredientsAction, loadingIngredientsAction, onErrorIngredientsAction }
 import { currentMealAction, loadingCurrentMealAction, onErrorCurrentMealAction }  from './currentMealAction';
 import { mealsByCategoriesAction, loadingMealsByCategoriesAction, onErrorMealsByCategoriesAction }  from './mealsByCategoriesAction';
 import { mealsByIngredientsAction, loadingMealsByIngredientsAction, onErrorMealsByIngredientsAction }  from './mealsByIngredientsAction';
-import { mealsByLetterAction, loadingMealsByLetterAction, onErrorMealsByLetterAction }  from './mealsByLetterAction';
 import { categoriesDrinksAction, loadingCategoriesDrinksAction, onErrorCategoriesDrinksAction }  from './categoriesDrinkAction';
 import { ingredientsDrinksAction, loadingIngredientsDrinksAction, onErrorIngredientsDrinksAction }  from './ingredientsDrinksAction';
 import { currentDrinkAction, loadingCurrentDrinkAction, onErrorCurrentDrinkAction }  from './currentDrinkAction';
 import { drinksByCategoriesAction, loadingDrinksByCategoriesAction, onErrorDrinksByCategoriesAction }  from './drinksByCategoriesAction';
 import { drinksByIngredientsAction, loadingDrinksByIngredientsAction, onErrorDrinksByIngredientsAction }  from './drinksByIngredientsAction';
-import { drinksByLetterAction, loadingDrinksByLetterAction, onErrorDrinksByLetterAction }  from './drinksByLetterAction';
 
 const allActions = {
     categoriesAction,
@@ -32,10 +30,6 @@ const allActions = {
     loadingMealsByIngredientsAction,
     onErrorMealsByIngredientsAction,
 
-    mealsByLetterAction,
-    loadingMealsByLetterAction,
-    onErrorMealsByLetterAction,
-
     categoriesDrinksAction,
     loadingCategoriesDrinksAction,
     onErrorCategoriesDrinksAction,
@@ -54,11 +48,7 @@ const allActions = {
 
     drinksByIngredientsAction,
     loadingDrinksByIngredientsAction,
-    onErrorDrinksByIngredientsAction,
-
-    drinksByLetterAction,
-    loadingDrinksByLetterAction,
-    onErrorDrinksByLetterAction
+    onErrorDrinksByIngredientsAction
 }
 
 export default allActions;
