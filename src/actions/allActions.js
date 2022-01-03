@@ -2,7 +2,6 @@ import { categoriesAction, loadingCategoriesAction, onErrorCategoriesAction }  f
 import { ingredientsAction, loadingIngredientsAction, onErrorIngredientsAction }  from './ingredientsAction';
 import { currentMealAction, loadingCurrentMealAction, onErrorCurrentMealAction }  from './currentMealAction';
 import { mealsByCategoriesAction, loadingMealsByCategoriesAction, onErrorMealsByCategoriesAction }  from './mealsByCategoriesAction';
-import { mealsByIngredientsAction, loadingMealsByIngredientsAction, onErrorMealsByIngredientsAction }  from './mealsByIngredientsAction';
 import { categoriesDrinksAction, loadingCategoriesDrinksAction, onErrorCategoriesDrinksAction }  from './categoriesDrinkAction';
 import { ingredientsDrinksAction, loadingIngredientsDrinksAction, onErrorIngredientsDrinksAction }  from './ingredientsDrinksAction';
 import { currentDrinkAction, loadingCurrentDrinkAction, onErrorCurrentDrinkAction }  from './currentDrinkAction';
@@ -25,10 +24,6 @@ const allActions = {
     mealsByCategoriesAction,
     loadingMealsByCategoriesAction,
     onErrorMealsByCategoriesAction,
-
-    mealsByIngredientsAction,
-    loadingMealsByIngredientsAction,
-    onErrorMealsByIngredientsAction,
 
     categoriesDrinksAction,
     loadingCategoriesDrinksAction,
