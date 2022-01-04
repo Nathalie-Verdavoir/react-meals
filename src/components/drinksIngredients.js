@@ -4,9 +4,9 @@ import Loader from "./Loader";
 
 
 export default function DrinksIngredients({drinkId}) {
-    const currentDrink = useSelector(state => state.currentDrinkReducer.currentDrink);
-    const ingredientsDrinks = useSelector(state => state.ingredientsDrinksReducer.ingredientsDrinks);
-    const isCurrentDrinkLoading = useSelector(state => state.currentDrinkReducer.isLoading);
+    const {currentDrink} = useSelector(state => state.currentDrink);
+    const {ingredientsDrinks} = useSelector(state => state.ingredientsDrinksReducer);
+    const {isCurrentDrinkLoading} = useSelector(state => state.currentDrink);
     let ingredientsViews=[];
         if(currentDrink && currentDrink[drinkId] && ingredientsDrinks!==null){
             for(let iM=1;iM<15;iM++){ 

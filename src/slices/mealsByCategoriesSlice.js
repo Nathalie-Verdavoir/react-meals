@@ -3,18 +3,19 @@ const mealsByCategoriesSlice = createSlice({
     name: "mealsByCategories",
     initialState: {
         mealsByCategories: [],
-        isLoading: false,
-        isOnError: false
+        isMealsByCategoriesLoading: false,
+        isMealsByCategoriesOnError: false
     },
     reducers: {
         setMealsByCategories: (state, action) => {
             state.mealsByCategories = {...state.mealsByCategories, [action.payload[1]] : action.payload[0]};
+            state.isMealsByCategoriesLoading = false;
         },
-        setMealsByCategoriesLoading: (state) => {
-            state.isLoading = {...state, isLoading: true}
+        setMealsByCategoriesLoading: state => {
+            state.isMealsByCategoriesLoading = true;
         },
-        setMealsByCategoriesError: (state) => {
-            state.isOnError = {...state, mealsByCategories: {...state.mealsByCategories}, isLoading: false, isOnError: true}
+        setMealsByCategoriesError: state => {
+            state = {...state, mealsByCategories: {...state.mealsByCategories}, isMealsByCategoriesLoading: false, isMealsByCategoriesOnError: true}
         },
     }
 });

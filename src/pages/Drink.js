@@ -1,22 +1,22 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import allActions from "../actions/allActions";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Loader from "../components/Loader";
 import DrinksIngredients from "../components/drinksIngredients";
 import SidebarDrinks from "../components/SidebarDrinks";
+import { setCurrentDrink , setCurrentDrinkLoading , setCurrentDrinkError } from '../slices/currentDrinkSlice';
 
 const Drink = () => {
 
-    const currentDrink = useSelector(state => state.currentDrinkReducer.currentDrink);
-    const iscurrentDrinkLoading = useSelector(state => state.currentDrinkReducer.isLoading);
+    const {currentDrink} = useSelector(state => state.currentDrink);
+    const {isCurrentDrinkLoading} = useSelector(state => state.currentDrink);
     const dispatch = useDispatch();
     const { strDrink } = useParams();
     useEffect(() => {
         if(currentDrink===null || (currentDrink && !currentDrink[strDrink]  )){
-            dispatch(allActions.loadingCurrentDrinkAction());
+            dispatch(setCurrentDrinkLoading());
             ( async function (){
                 try {
                     const url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+strDrink;
@@ -26,9 +26,9 @@ const Drink = () => {
                         }, 
                     });
                     const mealsFromAPI = await response.json();
-                    dispatch(allActions.currentDrinkAction(mealsFromAPI.drinks[0]));
+                    dispatch(setCurrentDrink(mealsFromAPI.drinks[0]));
                 } catch(error) {
-                    dispatch(allActions.onErrorCurrentDrinkAction());
+                    dispatch(setCurrentDrinkError());
                     console.log(error);
                 }
             })();
@@ -38,7 +38,7 @@ const Drink = () => {
         <>
             <Header/>
             <main>
-                {iscurrentDrinkLoading ? <Loader/> :
+                {isCurrentDrinkLoading ? <Loader/> :
                 (currentDrink ? 
                     (<>
                         {currentDrink[strDrink]? 

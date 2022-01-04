@@ -14,7 +14,6 @@ const Category = () => {
     const [mealsByCategoriesComp, setMealsByCategoriesComp] = useState([]);
     const categories = useSelector(state => state.categoriesReducer.categories);
     const {mealsByCategories} = useSelector(state => state.mealsByCategories);
-    
     const dispatch = useDispatch();
     useEffect (() => {
         if(strCategory==='all' && categories!==null){
@@ -65,7 +64,7 @@ return (
                     <>
                     {mealsByCategoriesComp.map(meal => {
                         return(
-                            <MealCard key={meal.idMeal}  meal={meal} allCat={allCat} allIng={null}/>
+                            <MealCard key={'MealCard'+meal.idMeal}  meal={meal} allCat={allCat} allIng={null}/>
                             )
                         }
                         )

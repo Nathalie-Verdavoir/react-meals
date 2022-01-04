@@ -3,18 +3,19 @@ const drinksByIngredientsSlice = createSlice({
     name: "drinksByIngredients",
     initialState: {
         drinksByIngredients: [],
-        isLoading: false,
-        isOnError: false
+        isDrinksByIngredientsLoading: false,
+        isDrinksByIngredientsOnError: false
     },
     reducers: {
         setDrinksByIngredients: (state, action) => {
             state.drinksByIngredients = {...state.drinksByIngredients, [action.payload[1]] : action.payload[0]};
+            state.isDrinksByIngredientsLoading = false;
         },
-        setDrinksByIngredientsLoading: (state) => {
-            state.isLoading = {...state, isLoading: true}
+        setDrinksByIngredientsLoading: state => {
+            state.isDrinksByIngredientsLoading = true;
         },
-        setDrinksByIngredientsError: (state) => {
-            state.isOnError = {...state, drinksByIngredients: {...state.drinksByIngredients}, isLoading: false, isOnError: true}
+        setDrinksByIngredientsError: state => {
+            state = {...state, drinksByIngredients: {...state.drinksByIngredients}, isDrinksByIngredientsLoading: false, isDrinksByIngredientsOnError: true}
         },
     }
 });

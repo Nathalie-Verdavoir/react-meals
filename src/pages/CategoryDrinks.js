@@ -17,11 +17,10 @@ const CategoryDrinks = () => {
     
     const dispatch = useDispatch();
     useEffect (() => {
-        if(strCategory==='all' && categoriesDrinks){
+        if(strCategory==='all' && categoriesDrinks!==null){
             const drinksByCat = categoriesDrinks.map(cat => {
                 return {
-                idDrink : cat.idCategory,
-                strDrinkThumb : cat.strCategoryThumb,
+                idDrink : cat.strCategory,
                 strDrink : cat.strCategory,
                 }
             })
@@ -64,7 +63,7 @@ return (
                     <>
                     {drinksByCategoriesComp.map(drink => {
                         return(
-                            <DrinkCard key={drink.idDrink}  drink={drink} allCat={allCat} allIng={null}/>
+                            <DrinkCard key={'DrinkCard'+drink.idDrink}  drink={drink} allCat={allCat} allIng={null}/>
                             )
                         }
                         )
