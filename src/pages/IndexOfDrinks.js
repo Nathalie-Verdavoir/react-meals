@@ -5,8 +5,8 @@ import Footer from '../components/Footer';
 import DrinkCard from '../components/DrinkCard';
 import SidebarDrinks from '../components/SidebarDrinks';
 import { useDispatch, useSelector } from 'react-redux';
-import allActions from '../actions/allActions';
 import { setDrinksByLetter , setDrinksByLetterLoading , setDrinksByLetterError } from "../slices/drinksByLetterSlice";
+import { setCurrentDrink } from '../slices/currentDrinkSlice';
 
 function IndexOfDrinks() {
     const { letter } = useParams();
@@ -34,7 +34,7 @@ function IndexOfDrinks() {
                     dispatch(setDrinksByLetter([drinksFromAPI.drinks,letter]));
                     if(drinksFromAPI.drinks.length>0){
                         for(let m=0;m<drinksFromAPI.drinks.length;m++){
-                            dispatch(allActions.currentDrinkAction(drinksFromAPI.drinks[m]));
+                            dispatch(setCurrentDrink(drinksFromAPI.drinks[m]));
                         }
                     }
                 } catch(error) {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import allActions from "../actions/allActions";
+import { setCurrentDrink , setCurrentDrinkLoading , setCurrentDrinkError } from '../slices/currentDrinkSlice';
 import RecipeButton from "./RecipeButton";
 
 
@@ -10,7 +10,7 @@ export const RandomDrinkHome = ({home}) => {
     useEffect(() => {
         ( async function (){  
             try {
-                dispatch(allActions.loadingCurrentDrinkAction());
+                dispatch(setCurrentDrinkLoading());
                 const url = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
                 const response = await fetch(url, {
                     headers: {
@@ -19,9 +19,9 @@ export const RandomDrinkHome = ({home}) => {
                 });
                 const drinksFromAPI = await response.json();
                 setDrink(drinksFromAPI.drinks[0]);
-                dispatch(allActions.currentDrinkAction(drinksFromAPI.drinks[0]));
+                dispatch(setCurrentDrink(drinksFromAPI.drinks[0]));
             } catch(error) {
-                dispatch(allActions.onErrorCurrentDrinkAction());
+                dispatch(setCurrentDrinkError());
                 console.log(error);
             }
         })();
@@ -29,7 +29,7 @@ export const RandomDrinkHome = ({home}) => {
     
     const handleClick = async function (){  
         try {
-            dispatch(allActions.loadingCurrentDrinkAction());
+            dispatch(setCurrentDrinkLoading());
             const url = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
             const response = await fetch(url, {
                 headers: {
@@ -39,9 +39,9 @@ export const RandomDrinkHome = ({home}) => {
             });
             const drinksFromAPI = await response.json();
             setDrink(drinksFromAPI.drinks[0]);
-            dispatch(allActions.currentDrinkAction(drinksFromAPI.drinks[0]));
+            dispatch(setCurrentDrink(drinksFromAPI.drinks[0]));
         } catch(error) {
-            dispatch(allActions.onErrorCurrentDrinkAction());
+            dispatch(setCurrentDrinkError());
             console.log(error);
         }
     };

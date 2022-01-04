@@ -4,11 +4,11 @@ import Loader from "./Loader";
 
 
 export default function MealsIngredients({mealId}) {
-    const currentMeal = useSelector(state => state.currentMealReducer.currentMeal);
+    const {currentMeal} = useSelector(state => state.currentMeal);
     const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
-    const isCurrentMealLoading = useSelector(state => state.currentMealReducer.isLoading);
+    const {isCurrentMealLoading} = useSelector(state => state.currentMeal);
     let ingredientsViews=[];
-    
+    console.log(currentMeal);
         if(currentMeal && currentMeal[mealId] && ingredients!=null){
             for(let iM=1;iM<13;iM++){
                 if(currentMeal[mealId]["strIngredient"+iM] && currentMeal[mealId]["strIngredient"+iM]!=='' && currentMeal[mealId]["strIngredient"+iM]!==null){

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import RecipeButton from "./RecipeButton";
-import allActions from "../actions/allActions";
+import { setCurrentMeal , setCurrentMealLoading , setCurrentMealError } from '../slices/currentMealSlice'
 
 
 export const RandomMealHome = () => {
     const [meal, setMeal] = useState(null);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(allActions.loadingCurrentMealAction());
+        dispatch(setCurrentMealLoading());
         ( async function (){  
             try {
                 const url = "https://www.themealdb.com/api/json/v1/1/random.php";
@@ -20,9 +20,9 @@ export const RandomMealHome = () => {
                 });
                 const mealsFromAPI = await response.json();
                 setMeal(mealsFromAPI.meals[0]);
-                dispatch(allActions.currentMealAction(mealsFromAPI.meals[0]));
+                dispatch(setCurrentMeal(mealsFromAPI.meals[0]));
             } catch(error) {
-                dispatch(allActions.onErrorCurrentMealAction());
+                dispatch(setCurrentMealError());
                 console.log(error);
             }
     })();
@@ -31,7 +31,7 @@ export const RandomMealHome = () => {
     
     const handleClick = async function (){  
         try {
-            dispatch(allActions.loadingCurrentMealAction());
+            dispatch(setCurrentMealLoading());
             const url = "https://www.themealdb.com/api/json/v1/1/random.php";
             const response = await fetch(url, {
                 headers: {
@@ -41,9 +41,9 @@ export const RandomMealHome = () => {
             });
             const mealsFromAPI = await response.json();
             setMeal(mealsFromAPI.meals[0]); 
-            dispatch(allActions.currentMealAction(mealsFromAPI.meals[0]));
+            dispatch(setCurrentMeal(mealsFromAPI.meals[0]));
         } catch(error) {
-            dispatch(allActions.onErrorCurrentMealAction());
+            dispatch(setCurrentMealError());
             console.log(error);
         }
     };

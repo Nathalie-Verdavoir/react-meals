@@ -3,18 +3,19 @@ const mealsByLetterSlice = createSlice({
     name: "mealsByLetter",
     initialState: {
         mealsByLetter: [],
-        isLoading: false,
-        isOnError: false
+        isMealsByLetterLoading: false,
+        isMealsByLetterOnError: false
     },
     reducers: {
         setMealsByLetter: (state, action) => {
             state.mealsByLetter = {...state.mealsByLetter, [action.payload[1]] : action.payload[0]};
+            state.isMealsByLetterLoading = false;
         },
-        setMealsByLetterLoading: (state) => {
-            state.isLoading = {...state, isLoading: true}
+        setMealsByLetterLoading: state => {
+            state.isMealsByLetterLoading = true;
         },
-        setMealsByLetterError: (state) => {
-            state.isOnError = {...state, mealsByLetter: {...state.mealsByLetter}, isLoading: false, isOnError: true}
+        setMealsByLetterError: state => {
+            state = {...state, mealsByLetter: {...state.mealsByLetter}, isMealsByLetterLoading: false, isMealsByLetterOnError: true}
         },
     }
 });

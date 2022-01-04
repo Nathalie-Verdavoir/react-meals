@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
 import MealCard from '../components/MealCard';
 import { useDispatch, useSelector } from 'react-redux';
-import allActions from '../actions/allActions';
 import { setMealsByLetter , setMealsByLetterLoading , setMealsByLetterError } from "../slices/mealsByLetterSlice";
+import { setCurrentMeal } from '../slices/currentMealSlice';
 
 function IndexOfMeals() {
     const { letter } = useParams();
@@ -33,7 +33,7 @@ function IndexOfMeals() {
                     dispatch(setMealsByLetter([mealsFromAPI.meals,letter]));
                     if(mealsFromAPI.meals.length>0){
                         for(let m=0;m<mealsFromAPI.meals.length;m++){
-                            dispatch(allActions.currentMealAction(mealsFromAPI.meals[m]));
+                            dispatch(setCurrentMeal(mealsFromAPI.meals[m]));
                         }
                     }
                 } catch(error) {
