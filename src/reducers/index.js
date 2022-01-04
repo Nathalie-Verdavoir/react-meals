@@ -5,7 +5,7 @@ import mealsByCategories from '../slices/mealsByCategoriesSlice';
 import mealsByIngredients from '../slices/mealsByIngredientsSlice';
 import mealsByLetter from "../slices/mealsByLetterSlice";
 import categoriesDrink from '../slices/categoriesDrinkSlice';
-import ingredientsDrinksReducer from './ingredientsDrinksReducer';
+import ingredientsDrink from '../slices/ingredientsDrinkSlice';
 import currentDrink from '../slices/currentDrinkSlice';
 import drinksByCategories from "../slices/drinksByCategoriesSlice";
 import drinksByIngredients from "../slices/drinksByIngredientsSlice";
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
     mealsByIngredients,
     mealsByLetter,
     categoriesDrink,
-    ingredientsDrinksReducer,
+    ingredientsDrink,
     currentDrink,
     drinksByCategories,
     drinksByIngredients,

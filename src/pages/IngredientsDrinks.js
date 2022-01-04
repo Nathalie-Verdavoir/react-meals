@@ -11,22 +11,22 @@ const IngredientsDrinks = () => {
    
     const { strIngredientsDrinks } = useParams();
     const [drinksByIngredientsComp, setDrinksByIngredientsComp] = useState([]);
-    const ingredientsDrinks = useSelector(state => state.ingredientsDrinksReducer.ingredientsDrinks);
-    const {drinksByIngredients} = useSelector(state => state.drinksByIngredients);
+    const { ingredientsDrink } = useSelector(state => state.ingredientsDrink);
+    const { drinksByIngredients } = useSelector(state => state.drinksByIngredients);
     const dispatch = useDispatch();
    useEffect (() => {
-    if(strIngredientsDrinks==='all' && ingredientsDrinks){
-        const drinksByIng = ingredientsDrinks.map(ing => {
+    if(strIngredientsDrinks==='all' && ingredientsDrink){
+        const drinksByIng = ingredientsDrink.map(ing => {
             return {
             idDrink : ing.strIngredient1,
             strDrinkThumb :"https://www.thecocktaildb.com/images/ingredients/"+ing.strIngredient1+".png",
             }
         })
         setDrinksByIngredientsComp(drinksByIng);
-    }else if (drinksByIngredients && drinksByIngredients[strIngredientsDrinks] && ingredientsDrinks!==null){
+    }else if (drinksByIngredients && drinksByIngredients[strIngredientsDrinks] && ingredientsDrink!==null){
         setDrinksByIngredientsComp(drinksByIngredients[strIngredientsDrinks]);
    }
-    else if(strIngredientsDrinks!=='all' && ingredientsDrinks!=null){
+    else if(strIngredientsDrinks!=='all' && ingredientsDrink!=null){
         ( async function (){  
             try {
                 dispatch(setDrinksByIngredientsLoading());
@@ -46,7 +46,7 @@ const IngredientsDrinks = () => {
             }
         })();
     }
-},[strIngredientsDrinks,ingredientsDrinks,dispatch,drinksByIngredients]);
+},[strIngredientsDrinks,ingredientsDrink,dispatch,drinksByIngredients]);
 
 const allIng = strIngredientsDrinks==='all';
 const title = allIng ? `All ingredients of drinks` : `Recipes with ${strIngredientsDrinks}`;                      
