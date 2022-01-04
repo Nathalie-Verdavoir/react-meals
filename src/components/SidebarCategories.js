@@ -1,18 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import allActions from "../actions/allActions";
+import { setCategoriesMeal , setCategoriesMealLoading , setCategoriesMealError } from '../slices/categoriesMealSlice';
 import Loader from "./Loader";
 
 const SidebarCategories = () => {
-    const categories = useSelector(state => state.categoriesReducer.categories);
-    const isCategoriesLoading = useSelector(state => state.categoriesReducer.isLoading);
+    const { categoriesMeal } = useSelector(state => state.categoriesMeal);
+    const { isCategoriesMealLoading } = useSelector(state => state.categoriesMeal);
     const dispatch = useDispatch();
 
     const propComparator = (propName) => (a, b) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
     useEffect(() => { 
-        if(categories===null) {
-            dispatch(allActions.loadingCategoriesAction());
+        if(categoriesMeal===null) {
+            dispatch(setCategoriesMealLoading());
             ( async function (){  
                 try {
                     const url = "https://www.themealdb.com/api/json/v1/1/categories.php";
@@ -22,23 +22,23 @@ const SidebarCategories = () => {
                         },
                     });
                     const categoriesFromAPI = await response.json();
-                    dispatch(allActions.categoriesAction(categoriesFromAPI.categories.sort(propComparator('strCategory'))));
+                    dispatch(setCategoriesMeal(categoriesFromAPI.categories.sort(propComparator('strCategory'))));
                 } catch(error) {
-                    dispatch(allActions.onErrorCategoriesAction());
+                    dispatch(setCategoriesMealError());
                     console.log(error);
                 }
             })();
         }
-    }, [categories,dispatch]);
+    }, [categoriesMeal,dispatch]);
 
     return (
         <>
             <aside className="categories rounded-3 my-2">
                 <h4>All categories</h4>
-                    {isCategoriesLoading ? <Loader/> :
-                        ( categories ?
+                    {isCategoriesMealLoading ? <Loader/> :
+                        ( categoriesMeal ?
                             (<> 
-                                {categories.slice(0,11).map(category => {
+                                {categoriesMeal.slice(0,11).map(category => {
                                     return(
                                         <article key={category.idCategory}>
                                             <Link to={`/category/${category.strCategory}`}>

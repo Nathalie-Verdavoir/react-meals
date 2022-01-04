@@ -1,18 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import allActions from "../actions/allActions";
+import { setCategoriesDrink , setCategoriesDrinkLoading , setCategoriesDrinkError } from '../slices/categoriesDrinkSlice';
 import Loader from "./Loader";
 
 const SidebarDrinksCategories = () => {
-    const categoriesDrinks = useSelector(state => state.categoriesDrinksReducer.categoriesDrinks);
-    const isCategoriesLoading = useSelector(state => state.categoriesDrinksReducer.isLoading);
+    const { categoriesDrink } = useSelector(state => state.categoriesDrink);
+    const { isCategoriesDrinkLoading } = useSelector(state => state.categoriesDrink);
     const dispatch = useDispatch();
 
     const propComparator = (propName) => (a, b) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
     useEffect(() => { 
-        if(categoriesDrinks===null) {
-            dispatch(allActions.loadingCategoriesDrinksAction());
+        if(categoriesDrink===null) {
+            dispatch(setCategoriesDrinkLoading());
             ( async function (){  
                 try {
                     const url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
@@ -22,23 +22,23 @@ const SidebarDrinksCategories = () => {
                         },
                     });
                     const categoriesFromAPI = await response.json();
-                    dispatch(allActions.categoriesDrinksAction(categoriesFromAPI.drinks.sort(propComparator('strCategory'))));
+                    dispatch(setCategoriesDrink(categoriesFromAPI.drinks.sort(propComparator('strCategory'))));
                 } catch(error) {
-                    dispatch(allActions.onErrorCategoriesDrinksAction());
+                    dispatch(setCategoriesDrinkError());
                     console.log(error);
                 }
             })();
         }
-    }, [categoriesDrinks,dispatch]);
+    }, [categoriesDrink,dispatch]);
 
     return (
         <>
             <aside className="categoriesDrinks rounded-3 my-2">
                 <h4>All categories</h4>
-                    {isCategoriesLoading ? <Loader/> :
-                        ( categoriesDrinks ?
+                    {isCategoriesDrinkLoading ? <Loader/> :
+                        ( categoriesDrink ?
                             (<> 
-                                {categoriesDrinks.slice(0,11).map(category => {
+                                {categoriesDrink.slice(0,11).map(category => {
                                     return(
                                         <article key={category.strCategory}>
                                             <Link to={`/categoryDrinks/${category.strCategory.replaceAll('/','%2F')}`}>

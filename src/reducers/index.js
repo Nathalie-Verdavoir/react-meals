@@ -1,10 +1,10 @@
-import categoriesReducer from './categoriesReducer';
+import categoriesMeal from '../slices/categoriesMealSlice';
 import ingredientsReducer from './ingredientsReducer';
 import currentMeal from '../slices/currentMealSlice';
 import mealsByCategories from '../slices/mealsByCategoriesSlice';
 import mealsByIngredients from '../slices/mealsByIngredientsSlice';
 import mealsByLetter from "../slices/mealsByLetterSlice";
-import categoriesDrinksReducer from './categoriesDrinksReducer';
+import categoriesDrink from '../slices/categoriesDrinkSlice';
 import ingredientsDrinksReducer from './ingredientsDrinksReducer';
 import currentDrink from '../slices/currentDrinkSlice';
 import drinksByCategories from "../slices/drinksByCategoriesSlice";
@@ -13,13 +13,13 @@ import drinksByLetter from "../slices/drinksByLetterSlice";
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
-    categoriesReducer,
+    categoriesMeal,
     ingredientsReducer,
     currentMeal,
     mealsByCategories,
     mealsByIngredients,
     mealsByLetter,
-    categoriesDrinksReducer,
+    categoriesDrink,
     ingredientsDrinksReducer,
     currentDrink,
     drinksByCategories,

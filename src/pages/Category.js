@@ -12,12 +12,12 @@ import { setMealsByCategories , setMealsByCategoriesLoading , setMealsByCategori
 const Category = () => {
     const { strCategory } = useParams();
     const [mealsByCategoriesComp, setMealsByCategoriesComp] = useState([]);
-    const categories = useSelector(state => state.categoriesReducer.categories);
-    const {mealsByCategories} = useSelector(state => state.mealsByCategories);
+    const { categoriesMeal } = useSelector(state => state.categoriesMeal);
+    const { mealsByCategories } = useSelector(state => state.mealsByCategories);
     const dispatch = useDispatch();
     useEffect (() => {
-        if(strCategory==='all' && categories!==null){
-            const mealsByCat = categories.map(cat => {
+        if(strCategory==='all' && categoriesMeal!==null){
+            const mealsByCat = categoriesMeal.map(cat => {
                 return {
                 idMeal : cat.idCategory,
                 strMealThumb : cat.strCategoryThumb,
@@ -26,7 +26,7 @@ const Category = () => {
             })
             setMealsByCategoriesComp(mealsByCat);
         }
-        else if (mealsByCategories && mealsByCategories[strCategory] && categories!==null){
+        else if (mealsByCategories && mealsByCategories[strCategory] && categoriesMeal!==null){
              setMealsByCategoriesComp(mealsByCategories[strCategory]);
         }else{
             ( async function (){  
@@ -48,7 +48,7 @@ const Category = () => {
                 }
             })();
         }
-    },[strCategory,categories,dispatch,mealsByCategories]);
+    },[strCategory,categoriesMeal,dispatch,mealsByCategories]);
     
     const allCat = strCategory==='all';
     const title = allCat ? `All categories of meals` : `Recipes of ${strCategory}`;
