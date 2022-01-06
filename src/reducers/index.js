@@ -10,9 +10,13 @@ import currentDrink from '../slices/currentDrinkSlice';
 import drinksByCategories from "../slices/drinksByCategoriesSlice";
 import drinksByIngredients from "../slices/drinksByIngredientsSlice";
 import drinksByLetter from "../slices/drinksByLetterSlice";
+import { mealApi } from '../services/mealApi';
+import { drinkApi } from '../services/drinkApi';
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
+    [drinkApi.reducerPath]: drinkApi.reducer,
+    [mealApi.reducerPath]: mealApi.reducer,
     categoriesMeal,
     ingredientsReducer,
     currentMeal,
