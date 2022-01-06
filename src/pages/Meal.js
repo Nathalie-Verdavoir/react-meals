@@ -33,7 +33,7 @@ const Meal = () => {
                             <div key={data.meals[0].idMeal} className="flex-grow-1 m-2">
                                 <div className="d-flex card meal  flex-wrap flex-md-nowrap  g-0">
                                     <img className="photo img-fluid rounded" src={data.meals[0].strMealThumb}  alt={data.meals[0].strMeal}/>
-                                    <div className="vignette card-body">{isSuccess && data ?  `<p>${JSON.stringify(data)}</p>` : "non"}<AreaFlag country={data.meals[0].strArea}/>
+                                    <div className="vignette card-body"><AreaFlag country={data.meals[0].strArea}/>
                                         <h3 className="card-title">{data.meals[0].strMeal}</h3>
                                         <p className="card-text fs-6">{data.meals[0].strInstructions}</p> 
                                       
