@@ -9,9 +9,12 @@ export const mealApi = createApi({
     getCurrentMeal: builder.query({
       query: (strMeal) => `lookup.php?i=${strMeal}`,
     }),
+    getMealsByLetter: builder.query({
+      query: (letter) => `search.php?f=${letter}`,
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetCurrentMealQuery } = mealApi
+export const { useGetCurrentMealQuery , useGetMealsByLetterQuery } = mealApi

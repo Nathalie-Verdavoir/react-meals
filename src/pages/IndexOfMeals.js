@@ -1,49 +1,28 @@
-import { useEffect, useState }  from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import { useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
 import MealCard from '../components/MealCard';
-import { useDispatch, useSelector } from 'react-redux';
+import { useGetMealsByLetterQuery } from '../services/mealApi';
 import { setMealsByLetter , setMealsByLetterLoading , setMealsByLetterError } from "../slices/mealsByLetterSlice";
 import { setCurrentMeal } from '../slices/currentMealSlice';
 
 function IndexOfMeals() {
     const { letter } = useParams();
-    const [mealsByIndex, setMealsByIndex] = useState(null);
-    const {mealsByLetter} = useSelector(state => state.mealsByLetter);
+    const { data,  isLoading, isSuccess, isError } = useGetMealsByLetterQuery(letter);
     const dispatch = useDispatch();
-    useEffect(() => {
-        if (mealsByLetter && mealsByLetter[letter]){
-            setMealsByIndex(mealsByLetter[letter]);
-        }
-        else{
-            ( async function (){  
-                try {
-                    dispatch(setMealsByLetterLoading());
-                    const url = "https://www.themealdb.com/api/json/v1/1/search.php?f="+letter;
-                    const response = await fetch(url, {
-                        headers: {
-                            Accept: "application/json",
-                        },
-                        
-                    });
-                    const mealsFromAPI = await response.json();
-                    setMealsByIndex(mealsFromAPI.meals);
-                    dispatch(setMealsByLetter([mealsFromAPI.meals,letter]));
-                    if(mealsFromAPI.meals.length>0){
-                        for(let m=0;m<mealsFromAPI.meals.length;m++){
-                            dispatch(setCurrentMeal(mealsFromAPI.meals[m]));
-                        }
-                    }
-                } catch(error) {
-                    dispatch(setMealsByLetterError());
-                    console.log(error);
-                }
-            })();
 
-        }}, [letter,dispatch,mealsByLetter]);
-   
+    if(isSuccess && data && data.meals){
+        dispatch(setMealsByLetter(data.meals),letter);
+        if(data.meals.length>0){
+            for(let m=0;m<data.meals.length;m++){
+                dispatch(setCurrentMeal(data.meals[m]));
+            }
+        }
+    }
+    if(isLoading)dispatch(setMealsByLetterLoading());
+    if(isError)dispatch(setMealsByLetterError());
 
     return (
         <>
@@ -53,9 +32,9 @@ function IndexOfMeals() {
     <h1>{`Meals starting by ${letter.toUpperCase()}`}</h1>
         
         <section className="row align-items-center g-0"> 
-            {mealsByIndex ? (
+            {isSuccess && data && data.meals ? (
                 <>
-                {mealsByIndex.map(meal => {
+                {data.meals.map(meal => {
                     return(
                         <MealCard key={meal.idMeal}  meal={meal} allCat={false} allIng={null}/>
                         )
