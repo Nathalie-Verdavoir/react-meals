@@ -1,6 +1,6 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { RandomDrinkHome } from "../components/RandomDrinkHome";
+import RandomDrinkHome  from "../components/RandomDrinkHome";
 import RandomMealHome from "../components/RandomMealHome";
 import SidebarCategories from "../components/SidebarCategories";
 import SidebarDrinksCategories from "../components/SidebarDrinksCategories";

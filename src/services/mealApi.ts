@@ -12,9 +12,16 @@ export const mealApi = createApi({
     getMealsByLetter: builder.query({
       query: (letter) => `search.php?f=${letter}`,
     }),
+    getRandomMeal: builder.query({
+      query: (random) => `random.php?date=${random}`,
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetCurrentMealQuery , useGetMealsByLetterQuery } = mealApi
+export const { 
+  useGetCurrentMealQuery,
+  useGetMealsByLetterQuery,
+  useGetRandomMealQuery,
+  } = mealApi
