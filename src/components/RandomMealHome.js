@@ -7,11 +7,10 @@ export default class RandomMealHome extends Component {
         this.handleButtonClick = this.handleButtonClick.bind(this);
         this.state = {
             up:'bla' + Math.random(),
-        };console.log(this.state.up);
+        };
     }
 
     handleButtonClick() {
-        console.log('ok')
         this.setState({up:'bla' + Math.random()})
     }
 
