@@ -39,7 +39,7 @@ return (
                                     </Link>
                                 </li>
                                 <li key="catAllHeader" className="nav-item">
-                                    <Link to="/category/all" className="nav-link fs-5 lh-1 text p-0 m-0" >
+                                    <Link to="/allCategory" className="nav-link fs-5 lh-1 text p-0 m-0" >
                                         Categories
                                     </Link>
                                 </li>

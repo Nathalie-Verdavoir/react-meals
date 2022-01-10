@@ -49,7 +49,7 @@ const SidebarCategories = () => {
                                 })
                             }
                             <article key="allCategoriess">
-                                <Link to={`/category/all`}>
+                                <Link to={`/allCategory`}>
                                     ...
                                 </Link>
                             </article> 

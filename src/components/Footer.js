@@ -8,7 +8,7 @@ function Footer() {
                 <h3 className="text-uppercase fs-6 fw-bold">Meals</h3>
                 <ul className="list-group">
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/category/all">Categories of Meals</Link></li> 
+                    <li><Link to="/allCategory">Categories of Meals</Link></li> 
                     <li><Link to="/ingredient/all">All Ingredients</Link></li> 
                 </ul>
             </div>
@@ -16,7 +16,7 @@ function Footer() {
                 <h3 className="text-uppercase fs-6 fw-bold">Drinks</h3>
                 <ul className="list-group">
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/category/all">Categories of Drinks</Link></li> 
+                    <li><Link to="/allCategory">Categories of Drinks</Link></li> 
                     <li><Link to="/ingredientsDrinks/all">All Ingredients</Link></li> 
                 </ul>
             </div>

@@ -1,85 +1,47 @@
-import React from "react";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Footer from "../components/Footer";
 import MealCard from "../components/MealCard";
 import { setMealsByCategories , setMealsByCategoriesLoading , setMealsByCategoriesError } from "../slices/mealsByCategoriesSlice";
+import { useGetMealsByCategoriesQuery } from "../services/mealApi";
 
 
 const Category = () => {
     const { strCategory } = useParams();
-    const [mealsByCategoriesComp, setMealsByCategoriesComp] = useState([]);
-    const { categoriesMeal } = useSelector(state => state.categoriesMeal);
-    const { mealsByCategories } = useSelector(state => state.mealsByCategories);
+    const { data,  isLoading, isSuccess, isError } = useGetMealsByCategoriesQuery(strCategory);
     const dispatch = useDispatch();
-    useEffect (() => {
-        if(strCategory==='all' && categoriesMeal!==null){
-            const mealsByCat = categoriesMeal.map(cat => {
-                return {
-                idMeal : cat.idCategory,
-                strMealThumb : cat.strCategoryThumb,
-                strMeal : cat.strCategory,
-                }
-            })
-            setMealsByCategoriesComp(mealsByCat);
-        }
-        else if (mealsByCategories && mealsByCategories[strCategory] && categoriesMeal!==null){
-             setMealsByCategoriesComp(mealsByCategories[strCategory]);
-        }else{
-            ( async function (){  
-                try {
-                    dispatch(setMealsByCategoriesLoading());
-                    const url = "https://www.themealdb.com/api/json/v1/1/filter.php?c="+strCategory;
-                    const response = await fetch(url, {
-                        headers: {
-                            Accept : 'application/json'
-                        }
-                    }
-                    )
-                    const categoriesFromAPI = await response.json();
-                    setMealsByCategoriesComp(categoriesFromAPI.meals);
-                    dispatch(setMealsByCategories([categoriesFromAPI.meals,strCategory]));
-                } catch(error) {
-                    dispatch(setMealsByCategoriesError());
-                    console.log(error);
-                }
-            })();
-        }
-    },[strCategory,categoriesMeal,dispatch,mealsByCategories]);
-    
-    const allCat = strCategory==='all';
-    const title = allCat ? `All categories of meals` : `Recipes of ${strCategory}`;
-    
+
+    if(isSuccess && data && data.meals)dispatch(setMealsByCategories([data.meals,strCategory]));
+    if(isLoading)dispatch(setMealsByCategoriesLoading());
+    if(isError)dispatch(setMealsByCategoriesError());
+
 return (
     <>
-    <Header/>
-    <main className="d-flex col-12">
-    <div className="col-12 col-md-10">
-        <h1>{title}</h1>
-            <section className="row align-items-center g-0"> 
-                {mealsByCategoriesComp ? (
-                    <>
-                    {mealsByCategoriesComp.map(meal => {
-                        return(
-                            <MealCard key={'MealCard'+meal.idMeal}  meal={meal} allCat={allCat} allIng={null}/>
-                            )
-                        }
-                        )
-                    }
+        <Header/>
+        <main className="d-flex col-12">
+            <div className="col-12 col-md-10">
+                <h1>{`Recipes of ${strCategory}`}</h1>
+                <section className="row align-items-center g-0"> 
+                    {isSuccess && data && data.meals ? (
+                        <>
+                            {data.meals
+                                .map(meal => {
+                                    return(
+                                        <MealCard key={'MealCard'+meal.idMeal}  meal={meal} allIng={null}/>
+                                    )
+                                }
+                                )
+                            }
                         </>   
-                ) : (<p>pas de recette</p>)
-                }
-        </section>
-        </div>
-        
-        <Sidebar />
-    </main>  
-    
-    <Footer/> 
-    
+                    ) : (<p>pas de recette</p>)
+                    }
+                </section>
+            </div>
+            <Sidebar />
+        </main>  
+        <Footer/> 
     </>
 ) 
 }

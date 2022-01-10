@@ -15,6 +15,9 @@ export const mealApi = createApi({
     getRandomMeal: builder.query({
       query: (random) => `random.php?date=${random}`,
     }),
+    getMealsByCategories: builder.query({
+      query: (strCategory) => `filter.php?c=${strCategory}`,
+    }),
   }),
 })
 
@@ -24,4 +27,6 @@ export const {
   useGetCurrentMealQuery,
   useGetMealsByLetterQuery,
   useGetRandomMealQuery,
+  useGetMealsByCategoriesQuery,
+
   } = mealApi

@@ -12,6 +12,7 @@ import Drink from './pages/Drink';
 import IndexOfDrinks from './pages/IndexOfDrinks';
 import CategoryDrinks from './pages/CategoryDrinks';
 import IngredientsDrinks from './pages/IngredientsDrinks';
+import AllCategory from './pages/AllCategories';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
 
         <Route path="/homemeals"  element={<HomeMeals/>} />
         <Route path="/category/:strCategory"  element={<Category/>} />
+        <Route path="/allCategory"  element={<AllCategory/>} />
         <Route path="/ingredient/:strIngredient"  element={<Ingredient/>} />
         <Route path="/meal/:strMeal"  element={<Meal/>} />
         <Route path="/meals/:letter"  element={<IndexOfMeals/>} />
