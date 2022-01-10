@@ -12,9 +12,12 @@ export const drinkApi = createApi({
     getDrinksByLetter: builder.query({
       query: (letter) => `search.php?f=${letter}`,
     }),
+    getRandomDrink: builder.query({
+      query: (random) => `random.php?date=${random}`,
+    }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetCurrentDrinkQuery , useGetDrinksByLetterQuery } = drinkApi
+export const { useGetCurrentDrinkQuery , useGetDrinksByLetterQuery , useGetRandomDrinkQuery } = drinkApi
