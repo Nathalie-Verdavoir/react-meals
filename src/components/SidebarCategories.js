@@ -10,9 +10,7 @@ const SidebarCategories = () => {
     const { data,  isLoading, isSuccess, isError } = useGetCategoriesMealQuery();
     const dispatch = useDispatch();
     
-    if(isSuccess && data && data.categories){
-        dispatch(setCategoriesMeal(data.categories));
-    }
+    if(isSuccess && data && data.categories)dispatch(setCategoriesMeal(data.categories));
     if(isLoading)dispatch(setCategoriesMealLoading());
     if(isError)dispatch(setCategoriesMealError());
 

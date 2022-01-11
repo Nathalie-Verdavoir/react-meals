@@ -19,7 +19,7 @@ export const mealApi = createApi({
       query: (strCategory) => `filter.php?c=${strCategory}`,
     }),
     getCategoriesMeal: builder.query({
-      query: (strCategory) => `categories.php`,
+      query: () => `categories.php`,
     }),
   }),
 })

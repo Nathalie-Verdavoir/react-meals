@@ -66,7 +66,7 @@ return (
                                     </Link>
                                 </li>
                                 <li key="catDrinksAllHeader" className="nav-item">
-                                    <Link to="/categoryDrinks/all" className="nav-link fs-5 lh-1 text p-0 m-0" >
+                                    <Link to="/allCategoryDrink" className="nav-link fs-5 lh-1 text p-0 m-0" >
                                         Categories
                                     </Link>
                                 </li>
