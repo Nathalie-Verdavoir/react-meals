@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import Footer from "../components/Footer";
 import MealCard from "../components/MealCard";
 import { setMealsByIngredients , setMealsByIngredientsLoading , setMealsByIngredientsError } from '../slices/mealsByIngredientsSlice';
 
@@ -26,7 +23,7 @@ const Ingredient = () => {
         setMealsByIngredientsComp(mealsByIng);
     }else if (mealsByIngredients && mealsByIngredients[strIngredient] && ingredients!==null){
         setMealsByIngredientsComp(mealsByIngredients[strIngredient]);
-   }
+    }
     else {
         ( async function (){  
             try {
@@ -54,26 +51,21 @@ const title = allIng ? `All ingredients of meals` : `Recipes with ${strIngredien
 
 return (
     <>
-    <Header/>
-    <main className="d-flex col-12">
-        
-    <div className="col-12 col-md-10">
         <h1>{title}</h1>
-    <section className="row align-items-center g-0"> 
-  {mealsByIngredientsComp ? (
-      <>
-      {mealsByIngredientsComp.map((meal) => {
-          return(
-            <MealCard key={meal.idMeal}  meal={meal} allCat={null} allIng={allIng}/>
-            )
-          }
-        )
-      }
-        </>   
-        ) : (<p>pas de recette</p>)
-        }
-</section></div><Sidebar/></main>  
-<Footer/>
+        <section className="row align-items-center g-0"> 
+            {mealsByIngredientsComp ? (
+                <>
+                    {mealsByIngredientsComp.map((meal) => {
+                        return(
+                            <MealCard key={meal.idMeal}  meal={meal} allCat={null} allIng={allIng}/>
+                            )
+                        }
+                        )
+                    }
+                </>   
+            ) : (<p>pas de recette</p>)
+            }
+        </section>
     </>
 ) 
 }

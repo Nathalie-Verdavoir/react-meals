@@ -14,12 +14,14 @@ import CategoryDrinks from './pages/CategoryDrinks';
 import IngredientsDrinks from './pages/IngredientsDrinks';
 import AllCategory from './pages/AllCategories';
 import AllCategoryDrink from './pages/AllCategoriesDrink';
+import Layout from './components/Layout';
 
 
 function App() {
 
   return (
     <BrowserRouter basename="/mealsApp">
+      <Layout>
       <Routes>
         <Route path="/"  element={<Home/>} />
 
@@ -38,6 +40,7 @@ function App() {
         <Route path="/drink/:strDrink"  element={<Drink/>} />
         <Route path="/drinks/:letter"  element={<IndexOfDrinks/>} />
       </Routes>
+      </Layout>
     </BrowserRouter>
    
   );

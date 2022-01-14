@@ -35,17 +35,17 @@ return (
                             <ul className="dropdown-menu">
                                 <li key="mealRandomHeader" className="nav-item">
                                     <Link to="/HomeMeals" className="nav-link fs-5 lh-1 text p-0 m-0" >
-                                        Random recipe
+                                        Random Meal recipe
                                     </Link>
                                 </li>
                                 <li key="catAllHeader" className="nav-item">
                                     <Link to="/allCategory" className="nav-link fs-5 lh-1 text p-0 m-0" >
-                                        Categories
+                                        All Categories of Meals
                                     </Link>
                                 </li>
                                 <li key="ingAllHeader" className="nav-item">
                                     <Link to="/ingredient/all" className="nav-link fs-5 lh-1 text p-0 m-0" >
-                                        Ingredients
+                                        Ingredients of Meals
                                     </Link>
                                 </li>
                             </ul>
@@ -62,17 +62,17 @@ return (
                             <ul className="dropdown-menu">
                                 <li key="drinkRandomHeader" className="nav-item">
                                     <Link to="/HomeDrinks" className="nav-link fs-5 lh-1 text p-0 m-0" >
-                                        Random recipe
+                                        Random Drink recipe
                                     </Link>
                                 </li>
                                 <li key="catDrinksAllHeader" className="nav-item">
                                     <Link to="/allCategoryDrink" className="nav-link fs-5 lh-1 text p-0 m-0" >
-                                        Categories
+                                        All Categories of Drinks
                                     </Link>
                                 </li>
                                 <li key="ingDrinksAllHeader" className="nav-item">
                                     <Link to="/ingredientsDrinks/all" className="nav-link fs-5 lh-1 text p-0 m-0" >
-                                        Ingredients
+                                        Ingredients of Drinks
                                     </Link>
                                 </li>
                             </ul>

@@ -36,7 +36,7 @@ export default function DrinksIngredients({drinkId}) {
                     <p>No Recipe</p>
                     )
                 )}
-                </div>
+            </div>
         </div>
     )
 }

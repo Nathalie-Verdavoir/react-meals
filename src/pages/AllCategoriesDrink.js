@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import Header from "../components/Header";
 import { useSelector } from "react-redux";
-import Footer from "../components/Footer";
 import DrinkCard from "../components/DrinkCard";
-import SidebarDrinks from "../components/SidebarDrinks";
+import SidebarHome from "../components/SidebarHome";
 
 const AllCategoryDrink = () => {
     const [drinksByCategoriesComp, setDrinksByCategoriesComp] = useState([]);
@@ -23,28 +21,21 @@ const AllCategoryDrink = () => {
     
 return (
     <>
-        <Header/>
-        <main className="d-flex col-12">
-            <div className="col-12 col-md-10">
-                <h1>All categories of drinks</h1>
-                    <section className="row align-items-center g-0"> 
-                    {drinksByCategoriesComp ? (
-                        <>
-                        {drinksByCategoriesComp.map(drink => {
-                            return(
-                                <DrinkCard key={'DrinkCard'+drink.idDrink}  drink={drink} allCat={true} allIng={null}/>
-                                )
-                            }
-                            )
-                        }
-                            </>   
-                    ) : (<p>pas de recette</p>)
+        <h1>All categories of drinks</h1>
+        <section className="row align-items-center g-0"> 
+            {drinksByCategoriesComp ? (
+            <>
+                    {drinksByCategoriesComp.map(drink => {
+                        return(
+                            <DrinkCard key={'DrinkCard'+drink.idDrink}  drink={drink} allCat={true} allIng={null}/>
+                        )
                     }
-                </section>
-            </div>
-            <SidebarDrinks />
-        </main>  
-        <Footer/>
+                    )
+                }
+            </>   
+            ) : (<p>pas de recette</p>)
+            }
+        </section>
     </>
 ) 
 }

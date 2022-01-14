@@ -1,8 +1,5 @@
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
-import Footer from '../components/Footer';
 import MealCard from '../components/MealCard';
 import { useGetMealsByLetterQuery } from '../services/mealApi';
 import { setMealsByLetter , setMealsByLetterLoading , setMealsByLetterError } from "../slices/mealsByLetterSlice";
@@ -26,29 +23,21 @@ function IndexOfMeals() {
 
     return (
         <>
-        <Header/>
-        <main className="d-flex col-12">
-    <div className="col-12 col-md-10">
-    <h1>{`Meals starting by ${letter.toUpperCase()}`}</h1>
-        
-        <section className="row align-items-center g-0"> 
-            {isSuccess && data && data.meals ? (
-                <>
-                {data.meals.map(meal => {
-                    return(
-                        <MealCard key={meal.idMeal}  meal={meal} allCat={false} allIng={null}/>
+            <h1>{`Meals starting by ${letter.toUpperCase()}`}</h1>
+            <section className="row align-items-center g-0"> 
+                {isSuccess && data && data.meals ? (
+                    <>
+                    {data.meals.map(meal => {
+                        return(
+                            <MealCard key={meal.idMeal}  meal={meal} allCat={false} allIng={null}/>
+                            )
+                        }
                         )
                     }
-                    )
-                }
-                    </>   
-                    ) : (<p>pas de recette</p>)
-                    }
-    </section>
-    </div>
-    <Sidebar/>
-    </main>  
-    <Footer/>
+                        </>   
+                        ) : (<p>pas de recette</p>)
+                        }
+            </section>
         </>
     )
 }
