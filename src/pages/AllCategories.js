@@ -5,10 +5,10 @@ import MealCard from "../components/MealCard";
 const AllCategory = () => {
     const [mealsByCategoriesComp, setMealsByCategoriesComp] = useState([]);
     const { categoriesMeal } = useSelector(state => state.categoriesMeal);
-
+    const propComparator = (propName) => (a, b) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
     useEffect (() => {
         if( categoriesMeal!==null){
-            const mealsByCat = categoriesMeal.map(cat => {
+            const mealsByCat = categoriesMeal.slice().sort(propComparator('strCategory')).map(cat => {
                 return {
                 idMeal : cat.idCategory,
                 strMealThumb : cat.strCategoryThumb,

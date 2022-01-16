@@ -9,6 +9,7 @@ const SidebarDrinksCategories = () => {
     const { isCategoriesDrinkLoading } = useSelector(state => state.categoriesDrink);
     const { data,  isLoading, isSuccess, isError } = useGetCategoriesDrinkQuery();
     const dispatch = useDispatch();
+    const propComparator = (propName) => (a, b) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
     
     if(isSuccess && data && data.drinks)dispatch(setCategoriesDrink(data.drinks));
     if(isLoading)dispatch(setCategoriesDrinkLoading());
@@ -21,7 +22,7 @@ const SidebarDrinksCategories = () => {
                 {isCategoriesDrinkLoading ? <Loader/> :
                     ( categoriesDrink ?
                         (<> 
-                            {categoriesDrink.slice(0,11)
+                            {categoriesDrink.slice().sort(propComparator('strCategory')).slice(0,11)
                                 .map(category => {
                                     return(
                                         <article key={category.strCategory}>

@@ -9,7 +9,7 @@ const SidebarCategories = () => {
     const { isCategoriesMealLoading } = useSelector(state => state.categoriesMeal);
     const { data,  isLoading, isSuccess, isError } = useGetCategoriesMealQuery();
     const dispatch = useDispatch();
-    
+    const propComparator = (propName) => (a, b) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
     if(isSuccess && data && data.categories)dispatch(setCategoriesMeal(data.categories));
     if(isLoading)dispatch(setCategoriesMealLoading());
     if(isError)dispatch(setCategoriesMealError());
@@ -21,7 +21,7 @@ const SidebarCategories = () => {
                     {isCategoriesMealLoading ? <Loader/> :
                         ( categoriesMeal ?
                             (<> 
-                                {categoriesMeal.slice(0,11).map(category => {
+                                {categoriesMeal.slice().sort(propComparator('strCategory')).slice(0,11).map(category => {
                                     return(
                                         <article key={category.idCategory}>
                                             <Link to={`/category/${category.strCategory}`}>

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import DrinkCard from "../components/DrinkCard";
-import SidebarHome from "../components/SidebarHome";
 
 const AllCategoryDrink = () => {
     const [drinksByCategoriesComp, setDrinksByCategoriesComp] = useState([]);
     const { categoriesDrink } = useSelector(state => state.categoriesDrink);
+    const propComparator = (propName) => (a, b) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
 
     useEffect (() => {
         if( categoriesDrink!==null){
-            const drinksByCat = categoriesDrink.map(cat => {
+            const drinksByCat = categoriesDrink.slice().sort(propComparator('strCategory')).map(cat => {
                 return {
                 idDrink : cat.strCategory,
                 strDrink : cat.strCategory,
