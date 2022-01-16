@@ -25,7 +25,7 @@ export const mealApi = createApi({
       query: () => `list.php?i=list`,
     }),
     getMealsByIngredients: builder.query({
-      query: (strIngredientsDrinks) => `filter.php?i=${strIngredientsDrinks}`,
+      query: (strIngredients) => `filter.php?i=${strIngredients}`,
     }),
   }),
 })
