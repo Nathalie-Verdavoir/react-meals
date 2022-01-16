@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useGetIngredientsMealQuery } from "../services/mealApi";
 import { setIngredientsMeal , setIngredientsMealLoading , setIngredientsMealError } from '../slices/ingredientsMealSlice';
 import Loader from "./Loader";
 
@@ -8,29 +8,13 @@ const SidebarIngredients = () => {
 
     const { ingredientsMeal } = useSelector(state => state.ingredientsMeal);
     const { isIngredientsMealLoading } = useSelector(state => state.ingredientsMeal);
+    const { data,  isLoading, isSuccess, isError } = useGetIngredientsMealQuery();
     const dispatch = useDispatch();
     const propComparator = (propName) => (a, b) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
-    
-    useEffect(() => { 
-        if(ingredientsMeal===null) {
-            dispatch(setIngredientsMealLoading());
-            ( async function (){
-                try {
-                    const url = "https://www.themealdb.com/api/json/v1/1/list.php?i=list";
-                    const response = await fetch(url, {
-                        headers: {
-                             Accept: "application/json",
-                        },
-                    });
-                    const ingredientsFromAPI = await response.json();
-                    dispatch(setIngredientsMeal(ingredientsFromAPI.meals.sort(propComparator('strIngredient1'))));
-                } catch(error) {
-                    dispatch(setIngredientsMealError());
-                    console.log(error);
-                }
-            })();
-        }
-    }, [ingredientsMeal,dispatch]);
+ 
+    if(isSuccess && data && data.meals)dispatch(setIngredientsMeal(data.meals));
+    if(isLoading)dispatch(setIngredientsMealLoading());
+    if(isError)dispatch(setIngredientsMealError());
 
     return (
         <>
@@ -39,7 +23,7 @@ const SidebarIngredients = () => {
                 {isIngredientsMealLoading ? <Loader/> :
                     ( ingredientsMeal ?
                         (<> 
-                            {ingredientsMeal.slice(0,10).map(ingredient => {
+                            {ingredientsMeal.slice().sort(propComparator('strIngredient')).slice(0,10).map(ingredient => {
                                     return(
                                         <article key={ingredient.idIngredient}>
                                             <Link to={`/ingredient/${ingredient.strIngredient}`}>
@@ -50,7 +34,7 @@ const SidebarIngredients = () => {
                                 })
                             } 
                             <article key="allIngredients">
-                                <Link to={`/ingredient/all`}>
+                                <Link to={`/allIngredients`}>
                                     ...
                                 </Link>
                             </article>

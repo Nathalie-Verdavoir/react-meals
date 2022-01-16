@@ -44,7 +44,7 @@ return (
                                     </Link>
                                 </li>
                                 <li key="ingAllHeader" className="nav-item">
-                                    <Link to="/ingredient/all" className="nav-link fs-5 lh-1 text p-0 m-0" >
+                                    <Link to="/allIngredients" className="nav-link fs-5 lh-1 text p-0 m-0" >
                                         Ingredients of Meals
                                     </Link>
                                 </li>
@@ -71,7 +71,7 @@ return (
                                     </Link>
                                 </li>
                                 <li key="ingDrinksAllHeader" className="nav-item">
-                                    <Link to="/ingredientsDrinks/all" className="nav-link fs-5 lh-1 text p-0 m-0" >
+                                    <Link to="/allIngredientsDrink" className="nav-link fs-5 lh-1 text p-0 m-0" >
                                         Ingredients of Drinks
                                     </Link>
                                 </li>

@@ -9,7 +9,7 @@ function Footer() {
                 <ul className="list-group">
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/allCategory">Categories of Meals</Link></li> 
-                    <li><Link to="/ingredient/all">All Ingredients</Link></li> 
+                    <li><Link to="/allIngredients">All Ingredients</Link></li> 
                 </ul>
             </div>
             <div className="col-12 col-md-3 border border-white p-3 footer-drinks">
