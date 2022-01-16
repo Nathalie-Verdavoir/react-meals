@@ -8,12 +8,12 @@ const Ingredient = () => {
    
     const { strIngredient } = useParams();
     const [mealsByIngredientsComp, setMealsByIngredientsComp] = useState([]);
-    const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
+    const ingredientsMeal = useSelector(state => state.ingredientsMeal);
     const {mealsByIngredients} = useSelector(state => state.mealsByIngredients);
     const dispatch = useDispatch();
    useEffect (() => {
-    if(strIngredient==='all' && ingredients){
-        const mealsByIng = ingredients.map(ing => {
+    if(strIngredient==='all' && ingredientsMeal){
+        const mealsByIng = ingredientsMeal.map(ing => {
             return {
             idMeal : ing.idIngredient,
             strMealThumb : `https://www.themealdb.com/images/ingredients/${ing.strIngredient}.png`,
@@ -21,7 +21,7 @@ const Ingredient = () => {
             }
         })
         setMealsByIngredientsComp(mealsByIng);
-    }else if (mealsByIngredients && mealsByIngredients[strIngredient] && ingredients!==null){
+    }else if (mealsByIngredients && mealsByIngredients[strIngredient] && ingredientsMeal!==null){
         setMealsByIngredientsComp(mealsByIngredients[strIngredient]);
     }
     else {
@@ -44,7 +44,7 @@ const Ingredient = () => {
             }
         })();
     }
-},[strIngredient,ingredients,dispatch,mealsByIngredients]);
+},[strIngredient,ingredientsMeal,dispatch,mealsByIngredients]);
 
 const allIng = strIngredient==='all';
 const title = allIng ? `All ingredients of meals` : `Recipes with ${strIngredient}`;                      

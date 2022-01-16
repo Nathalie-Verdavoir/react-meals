@@ -1,5 +1,5 @@
 import categoriesMeal from '../slices/categoriesMealSlice';
-import ingredientsReducer from './ingredientsReducer';
+import ingredientsMeal from '../slices/ingredientsMealSlice';
 import currentMeal from '../slices/currentMealSlice';
 import mealsByCategories from '../slices/mealsByCategoriesSlice';
 import mealsByIngredients from '../slices/mealsByIngredientsSlice';
@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
     [drinkApi.reducerPath]: drinkApi.reducer,
     [mealApi.reducerPath]: mealApi.reducer,
     categoriesMeal,
-    ingredientsReducer,
+    ingredientsMeal,
     currentMeal,
     mealsByCategories,
     mealsByIngredients,

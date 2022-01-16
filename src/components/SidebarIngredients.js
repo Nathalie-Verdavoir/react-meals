@@ -1,19 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import allActions from "../actions/allActions";
+import { setIngredientsMeal , setIngredientsMealLoading , setIngredientsMealError } from '../slices/ingredientsMealSlice';
 import Loader from "./Loader";
 
 const SidebarIngredients = () => {
-        
-    const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
-    const isIngredientsLoading = useSelector(state => state.ingredientsReducer.isLoading);
+
+    const { ingredientsMeal } = useSelector(state => state.ingredientsMeal);
+    const { isIngredientsMealLoading } = useSelector(state => state.ingredientsMeal);
     const dispatch = useDispatch();
     const propComparator = (propName) => (a, b) => a[propName] === b[propName] ? 0 : a[propName] < b[propName] ? -1 : 1;
     
     useEffect(() => { 
-        if(ingredients===null) {
-            dispatch(allActions.loadingIngredientsAction());
+        if(ingredientsMeal===null) {
+            dispatch(setIngredientsMealLoading());
             ( async function (){
                 try {
                     const url = "https://www.themealdb.com/api/json/v1/1/list.php?i=list";
@@ -23,23 +23,23 @@ const SidebarIngredients = () => {
                         },
                     });
                     const ingredientsFromAPI = await response.json();
-                    dispatch(allActions.ingredientsAction(ingredientsFromAPI.meals.sort(propComparator('strIngredient'))));
+                    dispatch(setIngredientsMeal(ingredientsFromAPI.meals.sort(propComparator('strIngredient1'))));
                 } catch(error) {
-                    dispatch(allActions.onErrorIngredientsAction());
-                        console.log(error);
+                    dispatch(setIngredientsMealError());
+                    console.log(error);
                 }
             })();
         }
-    }, [ingredients,dispatch]);
+    }, [ingredientsMeal,dispatch]);
 
     return (
         <>
             <aside className="ingredients rounded-3 my-2">
                 <h4>All ingredients</h4>
-                {isIngredientsLoading ? <Loader/> :
-                    ( ingredients ?
+                {isIngredientsMealLoading ? <Loader/> :
+                    ( ingredientsMeal ?
                         (<> 
-                            {ingredients.slice(0,10).map(ingredient => {
+                            {ingredientsMeal.slice(0,10).map(ingredient => {
                                     return(
                                         <article key={ingredient.idIngredient}>
                                             <Link to={`/ingredient/${ingredient.strIngredient}`}>

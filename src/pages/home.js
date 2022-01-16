@@ -4,7 +4,8 @@ import RandomMealHome from "../components/RandomMealHome";
 const Home = () => {
     return (
         <>
-            <section className="col-12 col-md-7 bg-meal p-2 mt-2 mb-2 me-2">
+        <div className="d-flex">
+            <section className="col-12 col-md-9 bg-meal p-2 mt-2 mb-2 me-2">
                 <h1>Meals</h1> 
                 <RandomMealHome/>  
             </section>
@@ -12,6 +13,7 @@ const Home = () => {
                 <h1>Drinks</h1>
                 <RandomDrinkHome home={"true"}/>  
             </section>
+        </div>
         </>
     )
 };

@@ -5,10 +5,10 @@ import Loader from "./Loader";
 
 export default function MealsIngredients({mealId}) {
     const {currentMeal} = useSelector(state => state.currentMeal);
-    const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
+    const ingredientsMeal = useSelector(state => state.ingredientsMeal);
     const {isCurrentMealLoading} = useSelector(state => state.currentMeal);
     let ingredientsViews=[];
-        if(currentMeal && currentMeal[mealId] && ingredients!=null){
+        if(currentMeal && currentMeal[mealId] && ingredientsMeal!=null){
             for(let iM=1;iM<13;iM++){
                 if(currentMeal[mealId]["strIngredient"+iM] && currentMeal[mealId]["strIngredient"+iM]!=='' && currentMeal[mealId]["strIngredient"+iM]!==null){
                     ingredientsViews.push(
