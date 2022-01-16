@@ -21,7 +21,7 @@ const CategoryDrinks = () => {
                     <>
                     {data.drinks.map(drink => {
                         return(
-                            <DrinkCard key={'DrinkCard'+drink.idDrink}  drink={drink} allIng={null}/>
+                            <DrinkCard key={'DrinkCard'+drink.idDrink}  drink={drink}/>
                         )
                     }
                     )

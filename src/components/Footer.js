@@ -17,7 +17,7 @@ function Footer() {
                 <ul className="list-group">
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/allCategory">Categories of Drinks</Link></li> 
-                    <li><Link to="/ingredientsDrinks/all">All Ingredients</Link></li> 
+                    <li><Link to="/allIngredientsDrink">All Ingredients</Link></li> 
                 </ul>
             </div>
             <div className="col-12 col-md-3 border border-white p-3 footer-socials">

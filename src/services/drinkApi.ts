@@ -21,6 +21,12 @@ export const drinkApi = createApi({
     getCategoriesDrink: builder.query({
       query: () => `list.php?c=list`,
     }),
+    getIngredientsDrink: builder.query({
+      query: () => `list.php?i=list`,
+    }),
+    getDrinksByIngredients: builder.query({
+      query: (strIngredientsDrinks) => `filter.php?i=${strIngredientsDrinks}`,
+    }),
   }),
 })
 
@@ -32,4 +38,6 @@ export const {
   useGetRandomDrinkQuery, 
   useGetDrinksByCategoriesQuery,
   useGetCategoriesDrinkQuery,
+  useGetIngredientsDrinkQuery,
+  useGetDrinksByIngredientsQuery,
 } = drinkApi

@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import MealCard from "../components/MealCard";
 import { setMealsByCategories , setMealsByCategoriesLoading , setMealsByCategoriesError } from "../slices/mealsByCategoriesSlice";
 import { useGetMealsByCategoriesQuery } from "../services/mealApi";
-import SidebarHome from "../components/SidebarHome";
 
 
 const Category = () => {
