@@ -10,8 +10,8 @@ const Layout = ({ children }) => {
     return (
     <>
         <Header />
-        <main className="d-flex col-12">
-            <div className="col-12 col-md-10">
+        <main className="d-flex flex-wrap flex-lg-nowrap col-12">
+            <div className="col-12 col-lg-10">
                 {children}
             </div>
             <SidebarHome openedSidebarDrink={openedSidebarDrink}/>

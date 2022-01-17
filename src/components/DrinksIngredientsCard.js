@@ -2,7 +2,7 @@ import defaultimg from "../img/defaultimg.png";
 
 export default function DrinksIngredientsCard({ing,qty}) {  
     return (
-        <div key={'ingC'+ing} className=" col-12  col-md-6 col-lg-3 g-0 p-2 flex-grow-1">
+        <div key={'ingC'+ing} className=" col-4 col-lg-3 g-0 p-2 flex-grow-2">
             <div  className="card flex-grow-1 vignette-ing "> 
                 <div className="row col-12  g-0">
                     <div className="col-md-4">

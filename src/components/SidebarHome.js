@@ -12,7 +12,7 @@ const SidebarHome = ({openedSidebarDrink}) => {
 
     return(
         <>   
-            <section className="col-12 col-md-2 sidebar-home">
+            <section className="col-12 col-lg-2 sidebar-home">
                     <div className="accordion" id="accordion">
                         <div className="accordion-item">
                             <h2 className="accordion-header" id="headingOne">
