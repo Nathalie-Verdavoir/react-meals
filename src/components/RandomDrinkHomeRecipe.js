@@ -18,9 +18,9 @@ export const RandomDrinkHomeRecipe = (up) => {
         <>
             {isSuccess && data && data.drinks && data.drinks[0] ? (
                 <article>
-                    <div key={data.drinks[0].idDrink} className="card flex-grow-1 m-2">
+                    <div key={data.drinks[0].idDrink} className="card bg-photo-drink flex-grow-1 m-2">
                         <div className={wrapped}>
-                            <img className="photo bg-photo-drink img-thumbnail mx-auto rounded" src={data.drinks[0].strDrinkThumb}  alt={data.drinks[0].strDrink}/>
+                            <img className="photo img-thumbnail mx-auto rounded" src={data.drinks[0].strDrinkThumb}  alt={data.drinks[0].strDrink}/>
                             <div className="vignette card-body"> 
                                 <h3 className="card-title">{data.drinks[0].strDrink} ({data.drinks[0].strAlcoholic})</h3>  
                                 <p className="card-text fs-5">Category : {data.drinks[0].strCategory}</p>
