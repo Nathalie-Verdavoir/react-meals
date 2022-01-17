@@ -80,10 +80,12 @@ aside.categoriesDrinks>*>* {
   color:  var(--green-2);
 }
 
+.bg-photo-meal,
 aside.ingredients {
   background-color:  var(--orange-3);
 }
 
+.bg-photo-drink,
 aside.ingredientsDrinks,
 aside.ingredientsDrinks>*>* {
   background-color:  var(--green-3);

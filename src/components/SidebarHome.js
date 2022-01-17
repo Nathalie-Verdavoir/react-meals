@@ -13,14 +13,14 @@ const SidebarHome = ({openedSidebarDrink}) => {
     return(
         <>   
             <section className="col-12 col-md-2 sidebar-home">
-                    <div className="accordion" id="accordionExample">
+                    <div className="accordion" id="accordion">
                         <div className="accordion-item">
                             <h2 className="accordion-header" id="headingOne">
                             <button className="accordion-button meal" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded={openedSidebarDrink} aria-controls="collapseOne">
                                 <i className="fas fa-pizza-slice "></i>&nbsp; Meals
                             </button>
                             </h2>
-                            <div id="collapseOne" className={`accordion-collapse collapse${mealShow}`} aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div id="collapseOne" className={`accordion-collapse collapse${mealShow}`} aria-labelledby="headingOne" data-bs-parent="#accordion">
                             <div className="accordion-body">
                                 <SidebarCategories/>
                                 <SidebarIngredients/>
@@ -38,7 +38,7 @@ const SidebarHome = ({openedSidebarDrink}) => {
                                 </i>&nbsp;Drinks
                             </button>
                             </h2>
-                            <div id="collapseTwo" className={`accordion-collapse collapse${drinkShow}`} aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div id="collapseTwo" className={`accordion-collapse collapse${drinkShow}`} aria-labelledby="headingTwo" data-bs-parent="#accordion">
                             <div className="accordion-body">
                                 <SidebarDrinksCategories/>
                                 <SidebarDrinksIngredients/>

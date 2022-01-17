@@ -20,7 +20,7 @@ export const RandomDrinkHomeRecipe = (up) => {
                 <article>
                     <div key={data.drinks[0].idDrink} className="card flex-grow-1 m-2">
                         <div className={wrapped}>
-                            <img className="photo img-fluid rounded" src={data.drinks[0].strDrinkThumb}  alt={data.drinks[0].strDrink}/>
+                            <img className="photo bg-photo-drink img-thumbnail mx-auto rounded" src={data.drinks[0].strDrinkThumb}  alt={data.drinks[0].strDrink}/>
                             <div className="vignette card-body"> 
                                 <h3 className="card-title">{data.drinks[0].strDrink} ({data.drinks[0].strAlcoholic})</h3>  
                                 <p className="card-text fs-5">Category : {data.drinks[0].strCategory}</p>

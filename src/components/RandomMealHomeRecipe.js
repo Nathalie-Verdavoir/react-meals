@@ -17,11 +17,11 @@ export const RandomMealHomeRecipe = (up) => {
             {isSuccess && data && data.meals && data.meals[0] ? (
                 <article>
                     <div key={data.meals[0].idMeal} className="card flex-grow-1 m-2">
-                        <div className="d-flex  flex-wrap flex-md-nowrap g-0">
-                            <img className="photo img-fluid rounded" src={data.meals[0].strMealThumb}  alt={data.meals[0].strMeal}/>
+                        <div className="d-flex bg-photo-meal flex-wrap flex-xxl-nowrap g-0">
+                            <img className="photo img-thumbnail mx-auto rounded" src={data.meals[0].strMealThumb}  alt={data.meals[0].strMeal}/>
                             <div className="vignette card-body"> 
                                 <h3 className="card-title">{data.meals[0].strMeal}</h3> 
-                                <p className="card-text fs-5">{data.meals[0].strInstructions.slice(0,850)+'...'}</p> 
+                                <p className="card-text fs-5">{data.meals[0].strInstructions.slice(0,250)+'...'}</p> 
                                 <RecipeButton urlTo={`/meal/${data.meals[0].idMeal}`} titleButton={'Recipe'}/>
                             </div>
                         </div>
