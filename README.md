@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+[Access to the online app](https://nverdavoir.orgfree.com/mealsApp/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
