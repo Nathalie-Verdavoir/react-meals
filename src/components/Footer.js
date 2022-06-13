@@ -15,7 +15,7 @@ function Footer() {
                 <h3 className="text-uppercase fs-6 fw-bold">Drinks</h3>
                 <ul className="list-group">
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/allCategory">Categories of Drinks</Link></li> 
+                    <li><Link to="/allCategoryDrink">Categories of Drinks</Link></li> 
                     <li><Link to="/allIngredientsDrink">All Ingredients</Link></li> 
                 </ul>
             </div>
